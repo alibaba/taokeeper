@@ -1,0 +1,21 @@
+
+DIV.neat-dialog-cont {
+ Z-INDEX: 98; BACKGROUND: none transparent scroll repeat 0% 0%; LEFT: 0px; WIDTH: 100%; POSITION: absolute; TOP: 0px; HEIGHT: 100%
+}
+DIV.neat-dialog-bg {
+ Z-INDEX: -1; FILTER: alpha(opacity=70); LEFT: 0px; WIDTH: 100%; POSITION: absolute; TOP: 0px; HEIGHT: 100%; BACKGROUND-COLOR: #eee; opacity: 0.7
+}
+DIV.neat-dialog {
+ BORDER-RIGHT: #555 1px solid; BORDER-TOP: #555 1px solid; Z-INDEX: 99; MARGIN-LEFT: auto; BORDER-LEFT: #555 1px solid; WIDTH: 50%; MARGIN-RIGHT: auto; BORDER-BOTTOM: #555 1px solid; POSITION: relative; TOP: 25%; BACKGROUND-COLOR: #fff
+}
+DIV.neat-dialog-title {
+ PADDING-RIGHT: 0.3em; PADDING-LEFT: 0.3em; FONT-SIZE: 1.2em; 
+ PADDING-BOTTOM: 0.1em; MARGIN: 0px; LINE-HEIGHT: 1.2em; PADDING-TOP: 0.1em; BORDER-BOTTOM: #444 1px solid; 
+ POSITION: relative;
+ background-color:#EEEEEE;
+}
+IMG.nd-cancel {
+ RIGHT: 0.2em; POSITION: absolute; TOP: 0.2em
+}
+DIV.neat-dialog P {
+ PADDING-RIGHT: 0.2em; PADDING-LEFT: 0.2em; PADDING-BOTTOM: 0.2em; PADDING-TOP: 0.2em; TEXT-ALIGN: center

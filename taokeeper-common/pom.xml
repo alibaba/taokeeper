@@ -1,0 +1,89 @@
+<?xml version="1.0"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.taobao.taokeeper</groupId>
+		<artifactId>taokeeper</artifactId>
+		<version>1.1.0-SNAPSHOT</version>
+	</parent>
+
+	<name>taokeeper-common</name>
+	<artifactId>taokeeper-common</artifactId>
+	<packaging>jar</packaging>
+
+	<properties>
+		<zookeeper.version>3.3.3</zookeeper.version>
+		<toolkit.version>0.0.1-SNAPSHOT</toolkit.version>
+	</properties>
+
+	<dependencies>
+
+		<!-- ZooKeeper -->
+		<dependency>
+			<groupId>org.apache.zookeeper</groupId>
+			<artifactId>zookeeper</artifactId>
+			<version>${zookeeper.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.taobao.taokeeper</groupId>
+			<artifactId>zkclient</artifactId>
+			<version>0.2-SNAPSHOT</version>
+		</dependency>
+
+		<dependency>
+			<groupId>common.toolkit</groupId>
+			<artifactId>common-toolkit</artifactId>
+			<version>${toolkit.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>common.toolkit</groupId>
+			<artifactId>common-toolkit</artifactId>
+			<version>${toolkit.version}</version>
+			<classifier>sources</classifier>
+		</dependency>
+
+
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+		</dependency>
+
+		<dependency>
+			<artifactId>commons-lang</artifactId>
+			<groupId>commons-lang</groupId>
+		</dependency>
+		<!-- DBCP -->
+		<dependency>
+			<groupId>commons-dbcp</groupId>
+			<artifactId>commons-dbcp</artifactId>
+		</dependency>
+
+
+		<!-- DEPENDENCIES FOR TEST -->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+		</dependency>
+
+
+		<!-- Config client -->
+		<dependency>
+			<groupId>com.taobao.configserver</groupId>
+			<artifactId>config-client</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.taobao.jm.msgcenter</groupId>
+			<artifactId>msgcenter-utils</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.sun.xml.bind</groupId>
+			<artifactId>jaxb-impl</artifactId>
+		</dependency>
+
+
+
+	</dependencies>
+
+</project>

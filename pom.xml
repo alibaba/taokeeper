@@ -1,0 +1,484 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.taobao.taokeeper</groupId>
+	<artifactId>taokeeper</artifactId>
+	<name>taokeeper</name>
+	<version>1.1.0-SNAPSHOT</version><!-- 注意同时修改下面的properties中的版本号 -->
+	<packaging>pom</packaging>
+	<description>Taobao.com ZooKeeper Keeper(Include ZK permissions, defend, some tools, etc. )</description>
+	<organization>
+		<name>Taobao.com-RD-Common</name>
+		<url>http://rdc.taobao.com/team/jm</url>
+	</organization>
+	<developers>
+		<developer>
+			<id>yinshi.nc</id>
+			<name>银时</name>
+			<email>yinshi.nc@taobao.com</email>
+		</developer>
+	</developers>
+
+	<modules>
+		<module>taokeeper-monitor</module>
+		<module>taokeeper-common</module>
+	</modules>
+
+
+	<properties>
+
+		<taokeeper.version>1.1.0-SNAPSHOT</taokeeper.version>
+
+
+		<source.encoding>UTF-8</source.encoding>
+		<java.version>1.6</java.version>
+		<common-toolkit.version>1.1.0-SNAPSHOT</common-toolkit.version>
+		<taokeeper-common-version>1.1.0-SNAPSHOT</taokeeper-common-version>
+
+
+
+
+
+
+		<!-- Maven plugin -->
+		<maven-source-plugin.version>2.0.3</maven-source-plugin.version>
+		<maven-compiler-plugin.version>2.0.2</maven-compiler-plugin.version>
+		<maven-assembly-plugin.version>2.2.1</maven-assembly-plugin.version>
+		<maven-deploy-plugin.version>2.4</maven-deploy-plugin.version>
+		<maven-war-plugin.version>2.1.1</maven-war-plugin.version>
+		<maven-jar-plugin.version>2.3.2</maven-jar-plugin.version>
+
+		<commons-beanutils.version>1.7.0</commons-beanutils.version>
+		<commons-collections.version>3.2</commons-collections.version>
+		<commons-dbcp.version>1.2.2</commons-dbcp.version>
+		<commons-fileupload.version>1.2.1</commons-fileupload.version>
+		<commons-httpclient.version>3.1</commons-httpclient.version>
+		<commons-lang.version>2.6</commons-lang.version>
+		<commons-logging.version>1.1.1</commons-logging.version>
+		<commons-net.version>3.0.1</commons-net.version>
+		<commons-pool.version>1.5.4</commons-pool.version>
+
+		<logback.version>1.0.0</logback.version>
+		<slf4j.version>1.6.4</slf4j.version>
+		<log4j.version>1.2.16</log4j.version>
+
+		<!-- Spring,ibatis -->
+		<spring.version>2.5.6.SEC03</spring.version>
+		<spring.beans.version>3.1.0.RELEASE</spring.beans.version>
+		<spring.core.version>3.1.0.RELEASE</spring.core.version>
+		<spring.context.version>3.1.0.RELEASE</spring.context.version>
+		<spring.mock.version>2.0-rc2</spring.mock.version>
+		<spring.web.version>3.1.0.RELEASE</spring.web.version>
+		<spring.asm.version>3.1.0.RELEASE</spring.asm.version>
+		<spring.orm.version>3.1.0.RELEASE</spring.orm.version>
+		<spring.test.version>3.1.0.RELEASE</spring.test.version>
+		<ibatis.version>2.3.4.726</ibatis.version>
+
+
+		<servlet.version>2.5</servlet.version>
+		<javamail.version>1.4.3</javamail.version>
+		<junit.version>4.8.2</junit.version>
+
+		<!-- apache geronimo -->
+		<geronimo.activation.version>1.0.1</geronimo.activation.version>
+		<geronimo.javamail.version>1.6</geronimo.javamail.version>
+		<geronimo.jaxws.version>1.0</geronimo.jaxws.version>
+		<geronimo.servlet.version>1.2</geronimo.servlet.version>
+		<geronimo.staxapi.version>1.0.1</geronimo.staxapi.version>
+		<geronimo.ws-metadata.version>1.1.3</geronimo.ws-metadata.version>
+
+		<mysql-connector-java.version>5.1.12</mysql-connector-java.version>
+		<ganymed.ssh.version>build210</ganymed.ssh.version>
+		<jsontools.version>1.7</jsontools.version>
+		<json.version>2.2</json.version>
+
+
+
+		<!-- HTML tags -->
+		<displaytag.version>1.2</displaytag.version>
+		<servlet.jstl.version>1.2</servlet.jstl.version>
+		<apache.standard.taglib.version>1.1.2</apache.standard.taglib.version>
+		<sitemesh.version>2.4.2</sitemesh.version>
+
+		<config.client.version>1.5.6</config.client.version>
+		<msgcenter.version>1.0.0-SNAPSHOT</msgcenter.version>
+
+	</properties>
+
+
+
+
+
+	<build>
+		<finalName>${artifactId}-${version}</finalName>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-jar-plugin</artifactId>
+					<version>${maven-jar-plugin.version}</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-war-plugin</artifactId>
+					<version>${maven-war-plugin.version}</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-source-plugin</artifactId>
+					<version>${maven-source-plugin.version}</version>
+					<executions>
+						<execution>
+							<id>attach-sources</id>
+							<goals>
+								<goal>jar</goal>
+							</goals>
+						</execution>
+					</executions>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<version>${maven-compiler-plugin.version}</version>
+					<configuration>
+						<encoding>${source.encoding}</encoding>
+						<source>${java.version}</source>
+						<target>${java.version}</target>
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-assembly-plugin</artifactId>
+					<version>${maven-assembly-plugin.version}</version>
+					<configuration>
+						<appendAssemblyId>false</appendAssemblyId>
+						<descriptors>
+							<descriptor>src/main/resources/assembly.xml</descriptor>
+						</descriptors>
+					</configuration>
+					<executions>
+						<execution>
+							<id>make-assembly</id>
+							<phase></phase>
+							<goals>
+								<goal>single</goal>
+							</goals>
+						</execution>
+					</executions>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
+
+
+	<dependencyManagement>
+		<dependencies>
+
+			<!-- Apache commons -->
+			<dependency>
+				<groupId>commons-lang</groupId>
+				<artifactId>commons-lang</artifactId>
+				<version>${commons-lang.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>commons-beanutils</groupId>
+				<artifactId>commons-beanutils</artifactId>
+				<version>${commons-beanutils.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>commons-collections</groupId>
+				<artifactId>commons-collections</artifactId>
+				<version>${commons-collections.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>commons-httpclient</groupId>
+				<artifactId>commons-httpclient</artifactId>
+				<version>${commons-httpclient.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>commons-net</groupId>
+				<artifactId>commons-net</artifactId>
+				<version>${commons-net.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>commons-net</groupId>
+				<artifactId>commons-net</artifactId>
+				<classifier>sources</classifier>
+				<version>${commons-net.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>commons-dbcp</groupId>
+				<artifactId>commons-dbcp</artifactId>
+				<version>${commons-dbcp.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>commons-pool</groupId>
+				<artifactId>commons-pool</artifactId>
+				<version>${commons-pool.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>commons-fileupload</groupId>
+				<artifactId>commons-fileupload</artifactId>
+				<version>${commons-fileupload.version}</version>
+			</dependency>
+
+
+			<!-- Spring -->
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-asm</artifactId>
+				<version>${spring.asm.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-beans</artifactId>
+				<version>${spring.beans.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-context</artifactId>
+				<version>${spring.context.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-core</artifactId>
+				<version>${spring.core.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-mock</artifactId>
+				<version>${spring.mock.version}</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-mock</artifactId>
+				<version>${spring.mock.version}</version>
+				<classifier>sources</classifier>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-orm</artifactId>
+				<version>${spring.orm.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-test</artifactId>
+				<version>${spring.test.version}</version>
+				<type>jar</type>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-web</artifactId>
+				<version>${spring.web.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-webmvc</artifactId>
+				<version>${spring.web.version}</version>
+			</dependency>
+
+			<!-- ibatis -->
+			<dependency>
+				<groupId>com.ibatis</groupId>
+				<artifactId>ibatis</artifactId>
+				<version>${ibatis.version}</version>
+			</dependency>
+
+
+
+			<!-- Servlet -->
+			<dependency>
+				<groupId>javax.servlet</groupId>
+				<artifactId>servlet-api</artifactId>
+				<version>${servlet.version}</version>
+			</dependency>
+
+			<!-- Apache geronimo -->
+			<dependency>
+				<groupId>org.apache.geronimo.specs</groupId>
+				<artifactId>geronimo-activation_1.1_spec</artifactId>
+				<version>${geronimo.activation.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.geronimo.specs</groupId>
+				<artifactId>geronimo-javamail_1.4_spec</artifactId>
+				<version>${geronimo.javamail.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.geronimo.specs</groupId>
+				<artifactId>geronimo-jaxws_2.1_spec</artifactId>
+				<version>${geronimo.jaxws.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.geronimo.specs</groupId>
+				<artifactId>geronimo-stax-api_1.0_spec</artifactId>
+				<version>${geronimo.staxapi.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.geronimo.specs</groupId>
+				<artifactId>geronimo-servlet_2.5_spec</artifactId>
+				<version>${geronimo.servlet.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.geronimo.specs</groupId>
+				<artifactId>geronimo-ws-metadata_2.0_spec</artifactId>
+				<version>${geronimo.ws-metadata.version}</version>
+			</dependency>
+
+			<!-- Test -->
+			<dependency>
+				<groupId>junit</groupId>
+				<artifactId>junit</artifactId>
+				<version>${junit.version}</version>
+				<scope>test</scope>
+			</dependency>
+
+			<!-- Java Mail -->
+			<dependency>
+				<groupId>javax.mail</groupId>
+				<artifactId>mail</artifactId>
+				<version>${javamail.version}</version>
+			</dependency>
+
+
+			<!-- DataBase Driver -->
+			<dependency>
+				<groupId>mysql</groupId>
+				<artifactId>mysql-connector-java</artifactId>
+				<version>${mysql-connector-java.version}</version>
+			</dependency>
+
+			<!-- SSH远程 -->
+			<dependency>
+				<groupId>ch.ethz.ganymed</groupId>
+				<artifactId>ganymed-ssh2</artifactId>
+				<version>${ganymed.ssh.version}</version>
+			</dependency>
+
+
+
+			<!-- 序列化 Serializable -->
+			<!-- JSON -->
+			<dependency>
+				<groupId>com.sdicons.jsontools</groupId>
+				<artifactId>jsontools-core</artifactId>
+				<version>${jsontools.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.json</groupId>
+				<artifactId>json</artifactId>
+				<version>${json.version}</version>
+			</dependency>
+
+
+			<!-- Tags -->
+			<dependency>
+				<groupId>displaytag</groupId>
+				<artifactId>displaytag</artifactId>
+				<version>${displaytag.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>javax.servlet</groupId>
+				<artifactId>jstl</artifactId>
+				<version>${servlet.jstl.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>taglibs</groupId>
+				<artifactId>standard</artifactId>
+				<version>${apache.standard.taglib.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>opensymphony</groupId>
+				<artifactId>sitemesh</artifactId>
+				<version>${sitemesh.version}</version>
+			</dependency>
+
+
+			<!-- Log -->
+			<dependency>
+				<groupId>ch.qos.logback</groupId>
+				<artifactId>logback-core</artifactId>
+				<version>${logback.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>ch.qos.logback</groupId>
+				<artifactId>logback-classic</artifactId>
+				<version>${logback.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.slf4j</groupId>
+				<artifactId>slf4j-api</artifactId>
+				<version>${slf4j.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.slf4j</groupId>
+				<artifactId>jcl-over-slf4j</artifactId>
+				<version>${slf4j.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.slf4j</groupId>
+				<artifactId>slf4j-log4j12</artifactId>
+				<version>${slf4j.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>log4j</groupId>
+				<artifactId>log4j</artifactId>
+				<version>${log4j.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>commons-logging</groupId>
+				<artifactId>commons-logging</artifactId>
+				<version>${commons-logging.version}</version>
+			</dependency>
+
+
+			<!-- taobao jar -->
+			<dependency>
+				<groupId>com.taobao.configserver</groupId>
+				<artifactId>config-client</artifactId>
+				<version>${config.client.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.taobao.jm.msgcenter</groupId>
+				<artifactId>msgcenter-utils</artifactId>
+				<version>${msgcenter.version}</version>
+				<exclusions>
+					<exclusion>
+						<groupId>javax.xml.bind</groupId>
+						<artifactId>jaxb-api</artifactId>
+					</exclusion>
+					<exclusion>
+						<groupId>com.sun.xml.bind</groupId>
+						<artifactId>jaxb-xjc</artifactId>
+					</exclusion>
+					<exclusion>
+						<groupId>com.sun.xml.bind</groupId>
+						<artifactId>jaxb-impl</artifactId>
+					</exclusion>
+				</exclusions>
+			</dependency>
+			<dependency>
+				<groupId>com.sun.xml.bind</groupId>
+				<artifactId>jaxb-impl</artifactId>
+				<version>2.2.2-SNAPSHOT</version>
+			</dependency>
+
+
+
+
+
+
+
+
+		</dependencies>
+	</dependencyManagement>
+
+</project>

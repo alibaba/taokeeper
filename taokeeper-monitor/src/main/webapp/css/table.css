@@ -1,0 +1,6 @@
+.mytable {align:center;border-collapse:collapse;border:solid #6AA70B;border-width:0px 0 0 0px;width:600;} 
+.mytable table tr {padding-top:5px;list-style:none; border-bottom:#6AA70B 1px dotted ;font-size: 12px;;height:20px;} 
+.mytable table tr.t1 {background-color:#EEEEEE;}/* 第一行的背景色 */ 
+.mytable table tr.t2{background-color:#;}/* 第二行的背景色 */ 
+.mytable table tr.t3 {background-color:#CCCCCC;}/* 鼠标经过时的背景色 */
+.mytable table tr td{ align:center; }

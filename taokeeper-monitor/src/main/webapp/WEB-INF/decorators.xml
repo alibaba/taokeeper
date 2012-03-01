@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="GB2312"?>
+<decorators defaultdir="/WEB-INF/decorators">
+
+	<decorator name="main" page="default.jsp">
+		<pattern>/*</pattern>
+	</decorator>
+
+	<excludes>
+		<pattern>*/ajax/*</pattern>
+		<pattern>*/css/*</pattern>
+		<pattern>*/images/*</pattern>
+		<pattern>*/js/*</pattern>
+		<pattern>/login.do*</pattern>
+		<pattern>/logout.do*</pattern>
+		<pattern>/account.do*</pattern>
+
+		<!-- 以下这两个请求就不要sitemesh来渲染了,不然core中httpclient要麻烦许多. -->
+		<pattern>/needLogin.do*</pattern>
+		<pattern>/authorise.do*</pattern>
+
+		<pattern>/system.do*</pattern>
+		<pattern>/default.htm</pattern>
+		<pattern>/ruok.htm</pattern>
+	</excludes>
+
+</decorators>

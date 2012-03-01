@@ -1,0 +1,1 @@
+mvn eclipse:eclipse package -Dmaven.test.skip -P qdcm5

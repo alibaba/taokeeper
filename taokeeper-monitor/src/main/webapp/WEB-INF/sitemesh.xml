@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="GB2312"?>
+<sitemesh>
+	<property name="decorators-file" value="/WEB-INF/decorators.xml" />
+	<excludes file="${decorators-file}" />
+	<page-parsers>
+		<parser default="true"
+			class="com.opensymphony.module.sitemesh.parser.HTMLPageParser" />
+		<parser content-type="text/html"
+			class="com.opensymphony.module.sitemesh.parser.HTMLPageParser" />
+		<parser content-type="text/html;charset=UTF-8"
+			class="com.opensymphony.module.sitemesh.parser.HTMLPageParser" />
+	</page-parsers>
+
+	<decorator-mappers>
+		<mapper
+			class="com.opensymphony.module.sitemesh.mapper.ConfigDecoratorMapper">
+			<param name="config" value="${decorators-file}" />
+		</mapper>
+	</decorator-mappers>
+</sitemesh>
