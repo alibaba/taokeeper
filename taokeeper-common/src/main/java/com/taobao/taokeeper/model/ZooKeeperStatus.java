@@ -24,7 +24,7 @@ public class ZooKeeperStatus {
 	private int watchedPaths;
 	private boolean isLeader;
 	private String mode;
-	private int nodeCount;
+	private long nodeCount;
 	private String statContent;
 	/** 0:不确定 1:OK 2: ERROR*/
 	private int statusType = 0;
@@ -68,11 +68,11 @@ public class ZooKeeperStatus {
 		this.clientConnectionList = clientConnectionList;
 	}
 
-	public int getNodeCount() {
+	public long getNodeCount() {
 		return nodeCount;
 	}
 
-	public void setNodeCount( int nodeCount ) {
+	public void setNodeCount( long nodeCount ) {
 		this.nodeCount = nodeCount;
 	}
 

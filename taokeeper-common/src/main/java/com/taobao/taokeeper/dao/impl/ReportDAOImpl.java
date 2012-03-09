@@ -72,11 +72,11 @@ public class ReportDAOImpl implements ReportDAO {
 
 				server = StringUtil.trimToEmpty( rs.getString( "server" ) );
 				String statDateTime = StringUtil.trimToEmpty( StringUtil.trimToEmpty( rs.getString( "stat_date_time" ) ).replaceFirst( statDate, EMPTY_STRING ) );
-				int connections = rs.getInt( "connections" );
-				int watches = rs.getInt( "watches" );
-				int sendTimes = rs.getInt( "send_times" );
-				int receiveTimes = rs.getInt( "receive_times" );
-				int nodeCount = rs.getInt( "node_count" );
+				int connections 	= rs.getInt( "connections" );
+				int watches 		= rs.getInt( "watches" );
+				long sendTimes 		= rs.getLong( "send_times" );
+				long receiveTimes 	= rs.getLong( "receive_times" );
+				int nodeCount 		= rs.getInt( "node_count" );
 				taoKeeperStatList.add( new TaoKeeperStat( clusterId, server, statDateTime, statDate, connections, watches, sendTimes, receiveTimes,
 						nodeCount ) );
 			}

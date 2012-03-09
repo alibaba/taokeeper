@@ -35,7 +35,7 @@ import common.toolkit.java.entity.io.Connection;
 import common.toolkit.java.exception.DaoException;
 import common.toolkit.java.exception.SSHException;
 import common.toolkit.java.util.DateUtil;
-import common.toolkit.java.util.JSONObjectUtil;
+import common.toolkit.java.util.JsonUtil;
 import common.toolkit.java.util.StringUtil;
 import common.toolkit.java.util.io.FileUtil;
 import common.toolkit.java.util.io.IOUtil;
@@ -199,7 +199,7 @@ public class ClientThroughputStatJob implements Runnable {
 						Connection conn = connectionOfCluster.get( sessionId );
 						if ( null != conn ) {
 							String key = clusterId + WORD_SEPARATOR + sessionId + WORD_SEPARATOR + conn.getClientIp();
-							sb.append( key ).append( "=" ).append( JSONObjectUtil.convertVO2String( conn ) ).append( "\n" );
+							sb.append( key ).append( "=" ).append( JsonUtil.convertVO2String( conn ) ).append( "\n" );
 						}
 					}// each clusterId-sessionId-clientIp
 				}
@@ -252,7 +252,7 @@ public class ClientThroughputStatJob implements Runnable {
 					connectionMap = new HashMap< String, Connection >();
 				} else { // 其它就是加入conn
 					clusterId = clusterIdLine;
-					connectionMap.put( preLine[1], ( Connection ) JSONObjectUtil.convertString2VO( lineArray[1], Connection.class ) );
+					connectionMap.put( preLine[1], ( Connection ) JsonUtil.convertString2VO( lineArray[1], Connection.class ) );
 				}
 			}
 

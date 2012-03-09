@@ -41,7 +41,7 @@ public class ReportServiceImpl extends BaseService implements ReportService {
 			String xValue       = StringUtil.replace( statDateTime.substring( 0, statDateTime.indexOf( "." ) ), COLON, EmptyObjectConstant.EMPTY_STRING );
 			int watchers = taoKeeperStat.getWatches();
 			int conns = taoKeeperStat.getConnections();
-			int nodeConut = taoKeeperStat.getNodeCount();
+			long nodeConut = taoKeeperStat.getNodeCount();
 			if( StringUtil.trimToEmpty( xValue ).startsWith( "0" ) )
 				xValue = xValue.replaceFirst( "0", EmptyObjectConstant.EMPTY_STRING );
 			contentOfReport.append( "{date: " + xValue + ",watchers: " + watchers + ",conns: " + conns + ",znodes: " + nodeConut + "}," );

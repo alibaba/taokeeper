@@ -381,8 +381,8 @@ public class ZKServerStatusCollector implements Runnable {
 																	DateUtil.getNowTime( DateFormat.Date ),
 																	MapUtil.size( zooKeeperStatus.getConnections() ),
 																	zooKeeperStatus.getWatches(),
-																	Integer.parseInt( zooKeeperStatus.getSent() ), 
-																	Integer.parseInt( zooKeeperStatus.getReceived() ),
+																	Long.parseLong( zooKeeperStatus.getSent() ), 
+																	Long.parseLong( zooKeeperStatus.getReceived() ),
 																	zooKeeperStatus.getNodeCount() ) );
 		} catch ( NumberFormatException e ) {
 			LOG.error( "将统计信息记入数据库出错：" + e.getMessage() );

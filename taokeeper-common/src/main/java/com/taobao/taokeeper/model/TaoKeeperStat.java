@@ -13,15 +13,15 @@ public class TaoKeeperStat {
 	private String statDate;
 	private int connections;
 	private int watches;
-	private int sendTimes;
-	private int receiveTimes;
-	private int nodeCount;
+	private long sendTimes;
+	private long receiveTimes;
+	private long nodeCount;
 	
 	
 	
 	
 	public TaoKeeperStat(){}
-	public TaoKeeperStat(int clusterId, String server, String statDateTime, String statDate, int connections, int watches, int sendTimes, int receiveTimes, int nodeCount ){
+	public TaoKeeperStat(int clusterId, String server, String statDateTime, String statDate, int connections, int watches, long sendTimes, long receiveTimes, long nodeCount ){
 		this.clusterId    = clusterId;
 		this.server       = server;
 		this.statDateTime = statDateTime;
@@ -64,19 +64,19 @@ public class TaoKeeperStat {
 	public void setWatches( int watches ) {
 		this.watches = watches;
 	}
-	public int getSendTimes() {
+	public long getSendTimes() {
 		return sendTimes;
 	}
 	public void setSendTimes( int sendTimes ) {
 		this.sendTimes = sendTimes;
 	}
-	public int getReceiveTimes() {
+	public long getReceiveTimes() {
 		return receiveTimes;
 	}
 	public void setReceiveTimes( int receiveTimes ) {
 		this.receiveTimes = receiveTimes;
 	}
-	public int getNodeCount() {
+	public long getNodeCount() {
 		return nodeCount;
 	}
 	public void setNodeCount( int nodeCount ) {
