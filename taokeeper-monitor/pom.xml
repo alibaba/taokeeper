@@ -51,10 +51,26 @@
 			</build>
 		</profile>
 		<profile>
+			<id>online4etao</id>
+			<build>
+				<filters>
+					<filter>src/main/resources/config-online-etao.properties</filter>
+				</filters>
+			</build>
+		</profile>
+		<profile>
 			<id>daily</id>
 			<build>
 				<filters>
 					<filter>src/main/resources/config-daily.properties</filter>
+				</filters>
+			</build>
+		</profile>
+		<profile>
+			<id>daily4etao</id>
+			<build>
+				<filters>
+					<filter>src/main/resources/config-daily-etao.properties</filter>
 				</filters>
 			</build>
 		</profile>

@@ -45,12 +45,12 @@ CREATE TABLE `taokeeper_stat` (
   `server` varchar(30) NOT NULL COMMENT '127.0.0.1:2181',
   `stat_date_time` datetime NOT NULL COMMENT '统计时间 2012-01-05 14:56:20',
   `stat_date` date NOT NULL,
-  `connections` int(11) default NULL,
-  `watches` int(11) default NULL COMMENT '订阅者数目',
-  `send_times` int(11) default NULL,
-  `receive_times` int(11) default NULL,
-  `node_count` int(11) default NULL,
-  PRIMARY KEY  (`cluster_id`,`server`,`stat_date_time`)
+  `connections` int(11) DEFAULT NULL,
+  `watches` int(11) DEFAULT NULL COMMENT '订阅者数目',
+  `send_times` bigint(20) unsigned DEFAULT 0,
+  `receive_times` bigint(20) unsigned DEFAULT 0,
+  `node_count` int(11) DEFAULT 0,
+  PRIMARY KEY (`cluster_id`,`server`,`stat_date_time`)
 ) ENGINE=InnoDB DEFAULT CHARSET=gbk;
 
 

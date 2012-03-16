@@ -112,10 +112,10 @@ public class ZKServerPerformanceCollector implements Runnable {
 					if ( GlobalInstance.needAlarm.get() ) {
 						ThreadPoolManager.addJobToMessageSendExecutor( new TbMessageSender( 
 								
-								new Message( wangwangList, "ZK Server load usage too high:-" + clusterName, hostPerformanceEntity.getIp() + " load too high：" + memoryUsage + "-" + maxMemoryUsage + "=" + difference,
+								new Message( wangwangList, "ZK Server memory usage too high:-" + clusterName, hostPerformanceEntity.getIp() + " memory too high：" + memoryUsage + "-" + maxMemoryUsage + "=" + difference,
 								Message.MessageType.WANGWANG ),
 								
-								new Message( phoneList, "", "ZK Server load usage too high-" + clusterName + hostPerformanceEntity.getIp() + memoryUsage + "-" + maxMemoryUsage + "=" + difference, Message.MessageType.SMS )
+								new Message( phoneList, "", "ZK Server memory usage too high-" + clusterName + hostPerformanceEntity.getIp() + memoryUsage + "-" + maxMemoryUsage + "=" + difference, Message.MessageType.SMS )
 								
 								) );
 					}

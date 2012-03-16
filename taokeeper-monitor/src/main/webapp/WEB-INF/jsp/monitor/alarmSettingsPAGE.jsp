@@ -92,7 +92,7 @@ a:visited { text-decoration:none}
 	
 		 
 		 
-		 
+		 <!-- 
 		 <tr style="background-color:#D3D1D1; text-align:center;">
 		 	<td colspan="2" ><b>周报对象</b></td>
 		 </tr>
@@ -100,7 +100,7 @@ a:visited { text-decoration:none}
 		 	<td>邮箱</td>
 		 	<td><input type="text" name="emailList" id="emailList"  value="${alarmSettings.emailList}" size="50"  readonly/></td>
 		 </tr>
-		 
+		 -->
 		 <tr >
 		 	<td valign="middle"></td>
 		 	<td align="right" ><input type="submit"  value="Update"  size="90"/> <font color="red">${handleMessage}</font> </td>

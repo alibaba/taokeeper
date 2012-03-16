@@ -1,0 +1,7 @@
+# ignore files
+.project
+.settings/
+taokeeper-monitor/target/
+taokeeper-common/.classpath
+taokeeper-common/target/
+taokeeper-monitor/.classpath

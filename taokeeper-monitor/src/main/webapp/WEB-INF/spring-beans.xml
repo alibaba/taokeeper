@@ -1,19 +1,19 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="GB2312"?>
 <beans default-autowire="byName" xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="
 			http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 
-	<!-- æ³¨æ„,å¯¹è¿™ä¸ªæ–‡ä»¶çš„ä»»ä½•ä¿®æ”¹å¿…é¡»åŒæ­¥åˆ°æ–‡ä»¶:src/main/packageFilter/applicationContext-Service.xml,å¦åˆ™ç™½æ”¹äº†. -->
+	<!-- ×¢Òâ,¶ÔÕâ¸öÎÄ¼þµÄÈÎºÎÐÞ¸Ä±ØÐëÍ¬²½µ½ÎÄ¼þ:src/main/packageFilter/applicationContext-Service.xml,·ñÔò°×¸ÄÁË. -->
 
-	<!-- ç³»ç»Ÿä¿¡æ¯ -->
+	<!-- ÏµÍ³ÐÅÏ¢ -->
 	<bean id="systemInfo" class="com.taobao.taokeeper.common.SystemInfo">
 		<property name="envName" value="${systemInfo.envName}" />
 	</bean>
-	
-	<!-- ç³»ç»Ÿé…ç½® -->
+
+	<!-- ÏµÍ³ÅäÖÃ -->
 	<bean id="systemConstant" class="com.taobao.taokeeper.common.constant.SystemConstant">
-		<property name="dataStoreBasePath" value="${SystemConstent.dataStoreBasePath}" /> <!-- çŠ¶æ€ä¿¡æ¯å­˜å‚¨ï¼Œé˜²æ­¢å› ä¸ºæ•°æ®åº“æŒ‚é€ æˆçš„å½±å“ -->
-		<property name="userNameOfSSH" value="${userNameOfSSH}" /> <!-- ZKæœåŠ¡å™¨ç”¨æˆ·åä¸Žå¯†ç  -->
+		<property name="dataStoreBasePath" value="${SystemConstent.dataStoreBasePath}" /> <!-- ×´Ì¬ÐÅÏ¢´æ´¢£¬·ÀÖ¹ÒòÎªÊý¾Ý¿â¹ÒÔì³ÉµÄÓ°Ïì -->
+		<property name="userNameOfSSH" value="${userNameOfSSH}" />	<!-- ZK·þÎñÆ÷ÓÃ»§ÃûÓëÃÜÂë -->
 		<property name="passwordOfSSH" value="${passwordOfSSH}" />
 		<property name="configOfMsgCenter" value="${configOfMsgCenter}" />
 	</bean>
@@ -33,10 +33,10 @@
 	<!-- Service -->
 	<bean id="reportService" class="com.taobao.taokeeper.monitor.service.impl.ReportServiceImpl" />
 
-	<bean id="zooKeeperClusterDAO"  class="com.taobao.taokeeper.dao.impl.ZooKeeperClusterDAOImpl" />
-	<bean id="alarmSettingsDAO"     class="com.taobao.taokeeper.dao.impl.AlarmSettingsDAOImpl" />
+	<bean id="zooKeeperClusterDAO" class="com.taobao.taokeeper.dao.impl.ZooKeeperClusterDAOImpl" />
+	<bean id="alarmSettingsDAO" class="com.taobao.taokeeper.dao.impl.AlarmSettingsDAOImpl" />
 	<bean id="taoKeeperSettingsDAO" class="com.taobao.taokeeper.dao.impl.SettingsDAOImpl" />
-	<bean id="reportDAO"  class="com.taobao.taokeeper.dao.impl.ReportDAOImpl" />
+	<bean id="reportDAO" class="com.taobao.taokeeper.dao.impl.ReportDAOImpl" />
 </beans>
 
-<!-- æ³¨æ„,å¯¹è¿™ä¸ªæ–‡ä»¶çš„ä»»ä½•ä¿®æ”¹å¿…é¡»åŒæ­¥åˆ°æ–‡ä»¶:src/main/packageFilter/applicationContext-Service.xml,å¦åˆ™ç™½æ”¹äº†. -->
+<!-- #Attention: Generate by maven filter -->
