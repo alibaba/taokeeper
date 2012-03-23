@@ -25,6 +25,7 @@ import com.taobao.taokeeper.monitor.core.task.ZooKeeperALiveCheckerJob;
 import com.taobao.taokeeper.monitor.core.task.runable.ZKClusterConfigDumper;
 import common.toolkit.java.exception.DaoException;
 import common.toolkit.java.util.StringUtil;
+import common.toolkit.java.util.collection.CollectionUtil;
 import common.toolkit.java.util.collection.ListUtil;
 import common.toolkit.java.util.io.ServletUtil;
 
@@ -65,7 +66,7 @@ public class ZooKeeperController extends BaseController {
 			
 			
 			//由于serverList格式问题，因为这里要特殊处理
-			String zooKeeperClusterServerList = ListUtil.toString( zooKeeperCluster.getServerList() );
+			String zooKeeperClusterServerList = CollectionUtil.toString( zooKeeperCluster.getServerList() );
 			Map<String, Object> model = new HashMap<String, Object>();
 			model.put( "zooKeeperCluster", zooKeeperCluster );
 			model.put( "zooKeeperClusterMap", zooKeeperClusterMap );

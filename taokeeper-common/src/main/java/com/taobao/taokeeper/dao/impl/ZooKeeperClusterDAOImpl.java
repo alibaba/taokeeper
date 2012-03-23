@@ -17,6 +17,7 @@ import common.toolkit.java.entity.db.DBConnectionResource;
 import common.toolkit.java.exception.DaoException;
 import common.toolkit.java.util.StringUtil;
 import common.toolkit.java.util.collection.ArrayUtil;
+import common.toolkit.java.util.collection.CollectionUtil;
 import common.toolkit.java.util.collection.ListUtil;
 import common.toolkit.java.util.db.DbcpUtil;
 /**
@@ -178,7 +179,7 @@ public class ZooKeeperClusterDAOImpl implements ZooKeeperClusterDAO{
 			return -1;
 		
     	try {
-    		String serverListString = ListUtil.toString( zooKeeperCluster.getServerList() );
+    		String serverListString = CollectionUtil.toString( zooKeeperCluster.getServerList() );
     		
     		String insertSql = StringUtil.replaceSequenced( SQL_ADD_ZOOKEEPER_CLUSTER, zooKeeperCluster.getClusterName(), serverListString, zooKeeperCluster.getDescription() );
 			int key	= DbcpUtil.executeInsertAndReturnGeneratedKeys( insertSql );
