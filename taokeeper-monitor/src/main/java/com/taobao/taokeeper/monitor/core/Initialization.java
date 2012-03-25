@@ -1,5 +1,7 @@
 package com.taobao.taokeeper.monitor.core;
 
+import java.util.Properties;
+
 import javax.servlet.Servlet;
 import javax.servlet.http.HttpServlet;
 
@@ -9,6 +11,8 @@ import org.springframework.web.context.ContextLoader;
 import org.springframework.web.context.WebApplicationContext;
 
 import com.taobao.taokeeper.common.GlobalInstance;
+import com.taobao.taokeeper.common.SystemInfo;
+import com.taobao.taokeeper.common.constant.SystemConstant;
 import com.taobao.taokeeper.dao.SettingsDAO;
 import com.taobao.taokeeper.model.TaoKeeperSettings;
 import com.taobao.taokeeper.monitor.core.task.HostPerformanceCollectTask;
@@ -16,9 +20,13 @@ import com.taobao.taokeeper.monitor.core.task.ZooKeeperALiveCheckerJob;
 import com.taobao.taokeeper.monitor.core.task.ZooKeeperClusterMapDumpJob;
 import com.taobao.taokeeper.monitor.core.task.ZooKeeperStatusCollectJob;
 import com.taobao.taokeeper.monitor.core.task.runable.ClientThroughputStatJob;
-
 import common.toolkit.java.exception.DaoException;
+import common.toolkit.java.util.ObjectUtil;
+import common.toolkit.java.util.StringUtil;
 import common.toolkit.java.util.ThreadUtil;
+import common.toolkit.java.util.db.DbcpUtil;
+import common.toolkit.java.util.number.IntegerUtil;
+import common.toolkit.java.util.system.SystemUtil;
 /**
  * Description: System Initialization
  * @author yinshi.nc
@@ -36,6 +44,8 @@ public class Initialization extends HttpServlet implements Servlet {
 
 		initSystem();
 
+		
+		
 		// Start the job of dump db info to memeory
 		Thread zooKeeperClusterMapDumpJobThread = new Thread( new ZooKeeperClusterMapDumpJob() );
 		zooKeeperClusterMapDumpJobThread.start();
@@ -67,6 +77,35 @@ public class Initialization extends HttpServlet implements Servlet {
 	 */
 	private void initSystem() {
 
+		Properties properties = null;
+		try {
+			properties = SystemUtil.loadProperty();
+			if( ObjectUtil.isBlank( properties ) )
+				throw new Exception( "Please defined,such as -DconfigFilePath=\"W:\\TaoKeeper\\taokeeper\\config\\config-test.properties\"" );
+		} catch ( Exception e ) {
+			LOG.error( e.getMessage() );
+			throw new RuntimeException( e.getMessage(), e.getCause() );
+		}
+		
+		SystemInfo.envName = StringUtil.defaultIfBlank( properties.getProperty( "systemInfo.envName" ), "TaoKeeper-Deploy" );
+		
+		DbcpUtil.driverClassName = StringUtil.defaultIfBlank( properties.getProperty( "dbcp.driverClassName" ), "com.mysql.jdbc.Driver" );
+		DbcpUtil.dbJDBCUrl = StringUtil.defaultIfBlank( properties.getProperty( "dbcp.dbJDBCUrl" ), "jdbc:mysql://127.0.0.1:3306/taokeeper" );
+		DbcpUtil.characterEncoding = StringUtil.defaultIfBlank( properties.getProperty( "dbcp.characterEncoding" ), "UTF-8" );
+		DbcpUtil.username = StringUtil.defaultIfBlank( properties.getProperty( "dbcp.username" ), "root" );
+		DbcpUtil.password = StringUtil.defaultIfBlank( properties.getProperty( "dbcp.password" ), "123456" );
+		DbcpUtil.maxActive = IntegerUtil.defaultIfError( properties.getProperty( "dbcp.maxActive" ), 30 );
+		DbcpUtil.maxIdle = IntegerUtil.defaultIfError( properties.getProperty( "dbcp.maxIdle" ), 10 );
+		DbcpUtil.maxWait = IntegerUtil.defaultIfError( properties.getProperty( "dbcp.maxWait" ), 10000 );
+		
+		SystemConstant.dataStoreBasePath = StringUtil.defaultIfBlank( properties.getProperty( "SystemConstent.dataStoreBasePath" ), "/home/yinshi.nc/taokeeper-monitor/" );
+		SystemConstant.userNameOfSSH	 = StringUtil.defaultIfBlank( properties.getProperty( "SystemConstant.userNameOfSSH" ), "admin" );
+		SystemConstant.passwordOfSSH	 = StringUtil.defaultIfBlank( properties.getProperty( "SystemConstant.passwordOfSSH" ), "123456" );
+		
+		SystemConstant.configOfMsgCenter = StringUtil.trimToEmpty( properties.getProperty( "SystemConstant.configOfMsgCenter" ) );
+		
+		LOG.warn( ">>>>>>Finish load the properties: " + properties );
+		
 		WebApplicationContext wac = ContextLoader.getCurrentWebApplicationContext();
 		SettingsDAO settingsDAO = ( SettingsDAO ) wac.getBean( "taoKeeperSettingsDAO" );
 
@@ -79,6 +118,15 @@ public class Initialization extends HttpServlet implements Servlet {
 		}
 		if ( null != taoKeeperSettings )
 			GlobalInstance.taoKeeperSettings = taoKeeperSettings;
+		
+		
+		
+		
+		
+		
+		
+		
+		
 	}
 
 }

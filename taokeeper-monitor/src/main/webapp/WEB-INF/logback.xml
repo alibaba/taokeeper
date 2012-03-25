@@ -1,10 +1,10 @@
 <?xml version = "1.0" encoding = "UTF-8"?>
 <configuration>
 
-	<property name="LOG_HOME" value="${LOG_HOME}" />
-	<property name="LOG_LEVEL" value="${LOG_LEVEL}" />
-	<property name="LOG_LAYOUT_PATTERN" value="%-325%d{HH:mm:ss.SSS} [%thread]) %-5level %logger{32}:%M@%L %n-- %msg%n" />
-	<property name="MAX_HISTORY_LOG_FILES" value="${MAX_HISTORY_LOG_FILES}" />
+	<property name="LOG_HOME" value="/home/admin/taokeeper-monitor/logs" />
+	<property name="LOG_LEVEL" value="INFO" />
+	<property name="LOG_LAYOUT_PATTERN" value="%-25(%d{HH:mm:ss.SSS} [%thread]) %-5level %logger{32}:%M@%L %n-- %msg%n" />
+	<property name="MAX_HISTORY_LOG_FILES" value="10" />
 
 	<timestamp key="byDay" datePattern="yyyy-MM-dd" />
 

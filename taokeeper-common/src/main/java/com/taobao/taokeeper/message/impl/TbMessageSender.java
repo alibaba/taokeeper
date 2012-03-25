@@ -35,7 +35,7 @@ public class TbMessageSender implements MessageSender {
 	@Override
 	public void run() {
 
-		if ( null == messages || 0 == messages.length )
+		if ( null == messages || 0 == messages.length || StringUtil.isBlank( SystemConstant.configOfMsgCenter ) )
 			return;
 
 		for ( Message message : this.messages ) {

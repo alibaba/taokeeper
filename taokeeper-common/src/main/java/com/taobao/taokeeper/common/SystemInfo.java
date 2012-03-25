@@ -20,11 +20,4 @@ public class SystemInfo {
 	public static String systemJavaRuntimeInfo;
 	public static String envName;
 
-	/** 设置变量, 服务器启动的时候会自动调用. */
-	public void setEnvName( String envName ) {
-		SystemInfo.systemHost = SystemUtil.getOSName();
-		SystemInfo.envName = envName;
-		logger.warn( "注意: " + envName + "环境启动" );
-	}
-
 }

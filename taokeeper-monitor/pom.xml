@@ -5,7 +5,7 @@
 	<parent>
 		<groupId>com.taobao.taokeeper</groupId>
 		<artifactId>taokeeper</artifactId>
-		<version>1.1.0</version>
+		<version>1.1.1</version>
 	</parent>
 
 	<name>taokeeper-monitor</name>
@@ -14,94 +14,7 @@
 
 	<build>
 		<finalName>taokeeper-monitor</finalName>
-		<plugins>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-war-plugin</artifactId>
-				<configuration>
-					<webResources>
-						<resource>
-							<directory>src/main/resources/package-filter</directory>
-							<filtering>true</filtering>
-							<targetPath>WEB-INF</targetPath>
-						</resource>
-					</webResources>
-				</configuration>
-			</plugin>
-		</plugins>
 	</build>
-
-
-	<!--profile for bulid -->
-	<profiles>
-		<profile>
-			<id>test</id>
-			<build>
-				<filters>
-					<filter>src/main/resources/config-test.properties</filter>
-				</filters>
-			</build>
-		</profile>
-		<profile>
-			<id>online</id>
-			<build>
-				<filters>
-					<filter>src/main/resources/config-online.properties</filter>
-				</filters>
-			</build>
-		</profile>
-		<profile>
-			<id>online4etao</id>
-			<build>
-				<filters>
-					<filter>src/main/resources/config-online-etao.properties</filter>
-				</filters>
-			</build>
-		</profile>
-		<profile>
-			<id>daily</id>
-			<build>
-				<filters>
-					<filter>src/main/resources/config-daily.properties</filter>
-				</filters>
-			</build>
-		</profile>
-		<profile>
-			<id>daily4etao</id>
-			<build>
-				<filters>
-					<filter>src/main/resources/config-daily-etao.properties</filter>
-				</filters>
-			</build>
-		</profile>
-		<profile>
-			<id>qdcm5</id>
-			<build>
-				<filters>
-					<filter>src/main/resources/config-qdcm5.properties</filter>
-				</filters>
-			</build>
-		</profile>
-		<profile>
-			<id>tencent</id>
-			<build>
-				<filters>
-					<filter>src/main/resources/config-tencent.properties</filter>
-				</filters>
-			</build>
-		</profile>
-		<profile>
-			<id>tbdw-daily</id>
-			<build>
-				<filters>
-					<filter>src/main/resources/config-daily-tbdw.properties</filter>
-				</filters>
-			</build>
-		</profile>
-	</profiles>
-
-
-
 
 	<dependencies>
 
