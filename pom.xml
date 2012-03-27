@@ -28,10 +28,12 @@
 	<properties>
 
 		<taokeeper.version>1.1.1</taokeeper.version>
-
+		<toolkit.version>0.0.2-log4j</toolkit.version>
 		<source.encoding>UTF-8</source.encoding>
 		<java.version>1.6</java.version>
 
+		<zookeeper.version>3.3.3</zookeeper.version>
+		<zkclient.version>0.2-SNAPSHOT</zkclient.version>
 
 
 
@@ -56,8 +58,8 @@
 		<commons-pool.version>1.5.4</commons-pool.version>
 
 		<logback.version>1.0.0</logback.version>
-		<slf4j.version>1.6.4</slf4j.version>
-		<log4j.version>1.2.16</log4j.version>
+		<slf4j.version>1.5.8</slf4j.version>
+		<log4j.version>1.2.14</log4j.version>
 
 		<!-- Spring,ibatis -->
 		<spring.version>2.5.6.SEC03</spring.version>
@@ -360,9 +362,18 @@
 				<version>${ganymed.ssh.version}</version>
 			</dependency>
 
+			<!-- ZooKeeper -->
+			<dependency>
+				<groupId>org.apache.zookeeper</groupId>
+				<artifactId>zookeeper</artifactId>
+				<version>${zookeeper.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.taobao.taokeeper</groupId>
+				<artifactId>zkclient</artifactId>
+				<version>${zkclient.version}</version>
+			</dependency>
 
-
-			<!-- 序列化 Serializable -->
 			<!-- JSON -->
 			<dependency>
 				<groupId>com.sdicons.jsontools</groupId>
@@ -434,6 +445,20 @@
 				<groupId>commons-logging</groupId>
 				<artifactId>commons-logging</artifactId>
 				<version>${commons-logging.version}</version>
+			</dependency>
+
+			<!-- toolkit -->
+			<dependency>
+				<groupId>common.toolkit</groupId>
+				<artifactId>common-toolkit</artifactId>
+				<version>${toolkit.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>common.toolkit</groupId>
+				<artifactId>common-toolkit</artifactId>
+				<version>${toolkit.version}</version>
+				<classifier>sources</classifier>
 			</dependency>
 
 
