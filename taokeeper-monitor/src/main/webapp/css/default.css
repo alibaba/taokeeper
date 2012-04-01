@@ -87,7 +87,7 @@ a:active,a:hover {
 }
 
 #banner {
-	height: 93px;
+	height: 75px;
 	background-color: #e2f3b8;
 }
 
@@ -185,7 +185,7 @@ a:active,a:hover {
 
 #breadcrumbs {
 	margin: 0px;
-	padding: 3px 10px 3px 10px;
+	padding: 1px 5px 3px 1px;
 	overflow: hidden;
 	background-image: url(../images/breadcrumbs.png);
 	background-color: #ccc;

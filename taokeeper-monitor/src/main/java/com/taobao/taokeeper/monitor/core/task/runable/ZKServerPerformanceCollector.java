@@ -12,6 +12,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.taobao.taokeeper.common.GlobalInstance;
+import com.taobao.taokeeper.common.constant.SystemConstant;
 import com.taobao.taokeeper.message.impl.TbMessageSender;
 import com.taobao.taokeeper.model.AlarmSettings;
 import com.taobao.taokeeper.model.ZooKeeperCluster;
@@ -50,10 +51,10 @@ public class ZKServerPerformanceCollector implements Runnable {
 	@Override
 	public void run() {
 		try {
-			HostPerformanceEntity hostPerformanceEntity = SSHUtil.getHostPerformance( ip, userNameOfSSH, passwordOfSSH );
+			HostPerformanceEntity hostPerformanceEntity = SSHUtil.getHostPerformance( ip, SystemConstant.portOfSSH, userNameOfSSH, passwordOfSSH );
 			sendAlarm( alarmSettings, hostPerformanceEntity, zookeeperCluster.getClusterName() );
 			GlobalInstance.putHostPerformanceEntity( ip, hostPerformanceEntity );
-			LOG.info( "HostPerformanceEntity collect of #" + zookeeperCluster.getClusterName() + "-" + ip + " ：" + hostPerformanceEntity );
+			LOG.info( "HostPerformanceEntity collect of #" + zookeeperCluster.getClusterName() + "-" + ip );
 		} catch ( SSHException e ) {
 			LOG.warn( "HostPerformanceEntity collect of " + ip + " ：" + e.getMessage() );
 		} catch ( Throwable exception ) {

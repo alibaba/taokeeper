@@ -21,6 +21,7 @@ import org.springframework.web.context.ContextLoader;
 import org.springframework.web.context.WebApplicationContext;
 
 import com.taobao.taokeeper.common.GlobalInstance;
+import com.taobao.taokeeper.common.constant.SystemConstant;
 import com.taobao.taokeeper.dao.ReportDAO;
 import com.taobao.taokeeper.message.impl.TbMessageSender;
 import com.taobao.taokeeper.model.AlarmSettings;
@@ -103,7 +104,7 @@ public class ZKServerStatusCollector implements Runnable {
 				storeTaoKeeperStatToDB( zookeeperCluster.getClusterId(), zooKeeperStatus );
 			}
 			
-			LOG.info( "Finish #" + zookeeperCluster.getClusterName() + "-" + ip + " status collection：" + zooKeeperStatus );
+			LOG.info( "Finish #" + zookeeperCluster.getClusterName() + "-" + ip );
 
 		} catch ( Exception e ) {
 			e.printStackTrace();
@@ -119,7 +120,7 @@ public class ZKServerStatusCollector implements Runnable {
 		StringBuffer sb = new StringBuffer();
 		SSHResource sshResource = null;
 		try {
-			sshResource = SSHUtil.executeWithoutHandleBufferedReader( ip, userNameOfSSH, passwordOfSSH,
+			sshResource = SSHUtil.executeWithoutHandleBufferedReader( ip, SystemConstant.portOfSSH, userNameOfSSH, passwordOfSSH,
 					StringUtil.replaceSequenced( COMMAND_STAT, ip, port + EMPTY_STRING ) );
 			if ( null == sshResource ) {
 				LOG.warn( "No output of " + StringUtil.replaceSequenced( COMMAND_STAT, ip, port + EMPTY_STRING ) );
@@ -198,7 +199,7 @@ public class ZKServerStatusCollector implements Runnable {
 				LOG.warn( "Ip is empty" );
 				return;
 			}
-			String wchsOutput = SSHUtil.execute( ip, userNameOfSSH, passwordOfSSH,
+			String wchsOutput = SSHUtil.execute( ip, SystemConstant.portOfSSH, userNameOfSSH, passwordOfSSH,
 					StringUtil.replaceSequenced( COMMAND_WCHS, ip, port + EMPTY_STRING ) );
 
 			/**
@@ -249,7 +250,7 @@ public class ZKServerStatusCollector implements Runnable {
 				LOG.warn( "Ip is empty" );
 				return;
 			}
-			String wchcOutput = SSHUtil.execute( ip, userNameOfSSH, passwordOfSSH,
+			String wchcOutput = SSHUtil.execute( ip, SystemConstant.portOfSSH, userNameOfSSH, passwordOfSSH,
 					StringUtil.replaceSequenced( COMMAND_WCHC, ip, port + EMPTY_STRING ) );
 
 			/**

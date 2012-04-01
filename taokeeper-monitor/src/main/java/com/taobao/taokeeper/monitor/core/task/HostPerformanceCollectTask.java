@@ -81,7 +81,7 @@ public class HostPerformanceCollectTask implements Runnable {
 				// collect per 2 mins
 				Thread.sleep( 1000 * 60 * MINS_RATE_OF_COLLECT_HOST_PERFORMANCE );
 			} catch ( Throwable e ) {
-				LOG.error( "Error when HostPerformanceEntityCollectJob" + e.getMessage() );
+				LOG.error( "Error when HostPerformanceEntityCollectJob: " + e.getMessage() );
 				e.printStackTrace();
 			}
 		}

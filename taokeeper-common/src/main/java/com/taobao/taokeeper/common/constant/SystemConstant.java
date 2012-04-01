@@ -36,6 +36,8 @@ public class SystemConstant {
 
 	public static String userNameOfSSH = "nobody";
 	public static String passwordOfSSH = "look";
+	
+	public static int portOfSSH     = 22;
 
 	/** ZooKeeper监控信息存储设置客户端统计信息文件存放目录 */
 	public static String dataStoreBasePath = "/home/yinshi.nc/zookeeper-monitor";
@@ -58,39 +60,23 @@ public class SystemConstant {
 		SystemConstant.dataStoreBasePath = StringUtil.defaultIfBlank( dataStoreBasePath, SystemConstant.dataStoreBasePath );
 	}
 
-	public void setUserNameOfSSH( String userNameOfSSH ) {
-		try {
-			SystemConstant.userNameOfSSH = StringUtil.trimToEmpty( userNameOfSSH );
-		} catch ( Exception e ) {
-			throw new RuntimeException( "SSH用户名解析错误: " + e.getMessage(), e );
-		}
-	}
 
-	public void setPasswordOfSSH( String passwordOfSSH ) {
-		try {
-			SystemConstant.passwordOfSSH = StringUtil.trimToEmpty( passwordOfSSH );
-		} catch ( Exception e ) {
-			throw new RuntimeException( "SSH密码解析错误: " + e.getMessage(), e );
-		}
-	}
-
-	public void setConfigOfMsgCenter( String configOfMsgCenter ) {
+	public static void parseConfigOfMsgCenter( String configOfMsgCenter ) {
 		try {
 			if ( StringUtil.isBlank( configOfMsgCenter ) )
-				throw new Exception( "configOfMsgCenter不能为空" );
+				throw new Exception( "configOfMsgCenter can't be null" );
 
-			// 对配置进行解析
 			String[] configOfMsgCenterArray = configOfMsgCenter.split( SymbolConstant.SLASH );
 			if ( 4 != configOfMsgCenterArray.length )
-				throw new Exception( "configOfMsgCenter格式不合法" );
+				throw new Exception( "Illegal configOfMsgCenter formart" );
 
 			SystemConstant.serverOfMsgCenter = StringUtil.defaultIfBlank( configOfMsgCenterArray[0], SystemConstant.serverOfMsgCenter );
 			SystemConstant.sourceIdOfMsgCenter = StringUtil.defaultIfBlank( configOfMsgCenterArray[1], SystemConstant.sourceIdOfMsgCenter );
 			SystemConstant.templateIdOfMsgCenter = StringUtil.defaultIfBlank( configOfMsgCenterArray[2], SystemConstant.templateIdOfMsgCenter );
 			SystemConstant.messageTypeIdOfMsgCenter = StringUtil.defaultIfBlank( configOfMsgCenterArray[3], SystemConstant.messageTypeIdOfMsgCenter );
 		} catch ( Exception e ) {
-			throw new RuntimeException( "configOfMsgCenter( " + configOfMsgCenter
-					+ " )解析错误，请配置这样一个字符串：1.2.3.4:9999,1.2.3.5:9999/a*b/3545656/67657" + e.getMessage(), e );
+			throw new RuntimeException( "Parse configOfMsgCenter( " + configOfMsgCenter
+					+ " ) error, please config like this：1.2.3.4:9999,1.2.3.5:9999/a*b/3545656/67657" + e.getMessage(), e );
 		}
 	}
 

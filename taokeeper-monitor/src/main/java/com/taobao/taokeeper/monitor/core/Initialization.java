@@ -14,7 +14,9 @@ import com.taobao.taokeeper.common.GlobalInstance;
 import com.taobao.taokeeper.common.SystemInfo;
 import com.taobao.taokeeper.common.constant.SystemConstant;
 import com.taobao.taokeeper.dao.SettingsDAO;
+import com.taobao.taokeeper.message.impl.TbMessageSender;
 import com.taobao.taokeeper.model.TaoKeeperSettings;
+import com.taobao.taokeeper.model.type.Message;
 import com.taobao.taokeeper.monitor.core.task.HostPerformanceCollectTask;
 import com.taobao.taokeeper.monitor.core.task.ZooKeeperALiveCheckerJob;
 import com.taobao.taokeeper.monitor.core.task.ZooKeeperClusterMapDumpJob;
@@ -92,8 +94,8 @@ public class Initialization extends HttpServlet implements Servlet {
 		DbcpUtil.driverClassName = StringUtil.defaultIfBlank( properties.getProperty( "dbcp.driverClassName" ), "com.mysql.jdbc.Driver" );
 		DbcpUtil.dbJDBCUrl = StringUtil.defaultIfBlank( properties.getProperty( "dbcp.dbJDBCUrl" ), "jdbc:mysql://127.0.0.1:3306/taokeeper" );
 		DbcpUtil.characterEncoding = StringUtil.defaultIfBlank( properties.getProperty( "dbcp.characterEncoding" ), "UTF-8" );
-		DbcpUtil.username = StringUtil.defaultIfBlank( properties.getProperty( "dbcp.username" ), "root" );
-		DbcpUtil.password = StringUtil.defaultIfBlank( properties.getProperty( "dbcp.password" ), "123456" );
+		DbcpUtil.username = StringUtil.trimToEmpty( properties.getProperty( "dbcp.username" ) );
+		DbcpUtil.password = StringUtil.trimToEmpty( properties.getProperty( "dbcp.password" ) );
 		DbcpUtil.maxActive = IntegerUtil.defaultIfError( properties.getProperty( "dbcp.maxActive" ), 30 );
 		DbcpUtil.maxIdle = IntegerUtil.defaultIfError( properties.getProperty( "dbcp.maxIdle" ), 10 );
 		DbcpUtil.maxWait = IntegerUtil.defaultIfError( properties.getProperty( "dbcp.maxWait" ), 10000 );
@@ -101,10 +103,13 @@ public class Initialization extends HttpServlet implements Servlet {
 		SystemConstant.dataStoreBasePath = StringUtil.defaultIfBlank( properties.getProperty( "SystemConstent.dataStoreBasePath" ), "/home/yinshi.nc/taokeeper-monitor/" );
 		SystemConstant.userNameOfSSH	 = StringUtil.defaultIfBlank( properties.getProperty( "SystemConstant.userNameOfSSH" ), "admin" );
 		SystemConstant.passwordOfSSH	 = StringUtil.defaultIfBlank( properties.getProperty( "SystemConstant.passwordOfSSH" ), "123456" );
+		SystemConstant.portOfSSH		 = IntegerUtil.defaultIfError( properties.getProperty( "SystemConstant.portOfSSH" ), 22 );
 		
 		SystemConstant.configOfMsgCenter = StringUtil.trimToEmpty( properties.getProperty( "SystemConstant.configOfMsgCenter" ) );
-		
+		SystemConstant.parseConfigOfMsgCenter( SystemConstant.configOfMsgCenter );
 		LOG.warn( ">>>>>>Finish load the properties: " + properties );
+		
+		ThreadPoolManager.addJobToMessageSendExecutor( new TbMessageSender( new Message( "银时", "TaoKeeper启动", "TaoKeeper启动", Message.MessageType.WANGWANG ) ) );
 		
 		WebApplicationContext wac = ContextLoader.getCurrentWebApplicationContext();
 		SettingsDAO settingsDAO = ( SettingsDAO ) wac.getBean( "taoKeeperSettingsDAO" );

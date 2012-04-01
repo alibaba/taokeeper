@@ -66,8 +66,8 @@ public class TbMessageSender implements MessageSender {
 		String sendType = MsgConstants.CUSTOM_SERVER_LIST_TYPE;
 		try {
 
+			LOG.warn( "Init: setServiceType=" + MsgConstants.CUSTOM_SERVER_LIST_TYPE + ", custom server hosts: " + SystemConstant.serverOfMsgCenter  );
 			MsgManager mcm = new MsgManager();
-
 			mcm.setServiceType( MsgConstants.CUSTOM_SERVER_LIST_TYPE );
 			mcm.setCustomServerHosts( SystemConstant.serverOfMsgCenter );
 			mcm.init();

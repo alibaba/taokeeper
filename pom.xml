@@ -28,7 +28,7 @@
 	<properties>
 
 		<taokeeper.version>1.1.1</taokeeper.version>
-		<toolkit.version>0.0.2-log4j</toolkit.version>
+		<toolkit.version>0.0.3-SNAPSHOT</toolkit.version>
 		<source.encoding>UTF-8</source.encoding>
 		<java.version>1.6</java.version>
 
