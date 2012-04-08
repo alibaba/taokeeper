@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.taobao.taokeeper</groupId>
+		<artifactId>taokeeper</artifactId>
+		<version>1.1.1</version>
+	</parent>
+
+	<name>taokeeper-reporter</name>
+	<artifactId>taokeeper-reporter</artifactId>
+	<packaging>jar</packaging>
+
+
+	<dependencies>
+		<dependency>
+			<groupId>com.taobao.taokeeper</groupId>
+			<artifactId>taokeeper-common</artifactId>
+			<version>${taokeeper.version}</version>
+		</dependency>
+
+
+		<!-- Config client -->
+		<dependency>
+			<groupId>com.taobao.configserver</groupId>
+			<artifactId>config-client</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.taobao.jm.msgcenter</groupId>
+			<artifactId>msgcenter-utils</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.sun.xml.bind</groupId>
+			<artifactId>jaxb-impl</artifactId>
+		</dependency>
+
+
+
+
+
+
+
+	</dependencies>
+
+
+</project>

@@ -23,13 +23,13 @@ import org.springframework.web.context.WebApplicationContext;
 import com.taobao.taokeeper.common.GlobalInstance;
 import com.taobao.taokeeper.common.constant.SystemConstant;
 import com.taobao.taokeeper.dao.ReportDAO;
-import com.taobao.taokeeper.message.impl.TbMessageSender;
 import com.taobao.taokeeper.model.AlarmSettings;
 import com.taobao.taokeeper.model.TaoKeeperStat;
 import com.taobao.taokeeper.model.ZooKeeperCluster;
 import com.taobao.taokeeper.model.ZooKeeperStatus;
 import com.taobao.taokeeper.model.type.Message;
 import com.taobao.taokeeper.monitor.core.ThreadPoolManager;
+import com.taobao.taokeeper.reporter.alarm.TbMessageSender;
 import common.toolkit.java.entity.DateFormat;
 import common.toolkit.java.entity.io.Connection;
 import common.toolkit.java.entity.io.SSHResource;
@@ -298,7 +298,7 @@ public class ZKServerStatusCollector implements Runnable {
 					sessionId += "-" + conn.getClientIp();
 				watchedPathMap.put( sessionId, watchedPathList );
 			}
-			LOG.info( ip + "的所有Watch情况是:" + watchedPathMap.keySet() );
+			LOG.debug( ip + "的所有Watch情况是:" + watchedPathMap.keySet() );
 			zooKeeperStatus.setWatchedPathMap( watchedPathMap );
 			zooKeeperStatus.setWatchedPathMapContent( wchcOutputWithIp.toString() );
 		} catch ( SSHException e ) {

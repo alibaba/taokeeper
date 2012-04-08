@@ -1,8 +1,9 @@
 package com.taobao.taokeeper.model;
+import static common.toolkit.java.constant.HtmlTagConstant.BR;
+
 import java.util.List;
 import java.util.Map;
 
-import static common.toolkit.java.constant.HtmlTagConstant.BR;
 import common.toolkit.java.entity.io.Connection;
 import common.toolkit.java.util.StringUtil;
 

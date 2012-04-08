@@ -20,8 +20,10 @@
 	</developers>
 
 	<modules>
-		<module>taokeeper-monitor</module>
 		<module>taokeeper-common</module>
+		<module>taokeeper-monitor</module>
+		<module>taokeeper-build</module>
+		<module>taokeeper-reporter</module>
 	</modules>
 
 
@@ -57,7 +59,6 @@
 		<commons-net.version>3.0.1</commons-net.version>
 		<commons-pool.version>1.5.4</commons-pool.version>
 
-		<logback.version>1.0.0</logback.version>
 		<slf4j.version>1.5.8</slf4j.version>
 		<log4j.version>1.2.14</log4j.version>
 
@@ -412,29 +413,9 @@
 
 			<!-- Log -->
 			<dependency>
-				<groupId>ch.qos.logback</groupId>
-				<artifactId>logback-core</artifactId>
-				<version>${logback.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>ch.qos.logback</groupId>
-				<artifactId>logback-classic</artifactId>
-				<version>${logback.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.slf4j</groupId>
-				<artifactId>slf4j-api</artifactId>
-				<version>${slf4j.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.slf4j</groupId>
-				<artifactId>jcl-over-slf4j</artifactId>
-				<version>${slf4j.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.slf4j</groupId>
-				<artifactId>slf4j-log4j12</artifactId>
-				<version>${slf4j.version}</version>
+				<groupId>commons-logging</groupId>
+				<artifactId>commons-logging</artifactId>
+				<version>${commons-logging.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>log4j</groupId>
@@ -442,10 +423,16 @@
 				<version>${log4j.version}</version>
 			</dependency>
 			<dependency>
-				<groupId>commons-logging</groupId>
-				<artifactId>commons-logging</artifactId>
-				<version>${commons-logging.version}</version>
+				<groupId>org.slf4j</groupId>
+				<artifactId>jcl104-over-slf4j</artifactId>
+				<version>${slf4j.version}</version>
 			</dependency>
+			<dependency>
+				<groupId>org.slf4j</groupId>
+				<artifactId>slf4j-log4j12</artifactId>
+				<version>${slf4j.version}</version>
+			</dependency>
+
 
 			<!-- toolkit -->
 			<dependency>

@@ -14,7 +14,6 @@ import com.taobao.taokeeper.common.GlobalInstance;
 import com.taobao.taokeeper.common.SystemInfo;
 import com.taobao.taokeeper.common.constant.SystemConstant;
 import com.taobao.taokeeper.dao.SettingsDAO;
-import com.taobao.taokeeper.message.impl.TbMessageSender;
 import com.taobao.taokeeper.model.TaoKeeperSettings;
 import com.taobao.taokeeper.model.type.Message;
 import com.taobao.taokeeper.monitor.core.task.HostPerformanceCollectTask;
@@ -22,6 +21,7 @@ import com.taobao.taokeeper.monitor.core.task.ZooKeeperALiveCheckerJob;
 import com.taobao.taokeeper.monitor.core.task.ZooKeeperClusterMapDumpJob;
 import com.taobao.taokeeper.monitor.core.task.ZooKeeperStatusCollectJob;
 import com.taobao.taokeeper.monitor.core.task.runable.ClientThroughputStatJob;
+import com.taobao.taokeeper.reporter.alarm.TbMessageSender;
 import common.toolkit.java.exception.DaoException;
 import common.toolkit.java.util.ObjectUtil;
 import common.toolkit.java.util.StringUtil;
@@ -71,7 +71,8 @@ public class Initialization extends HttpServlet implements Servlet {
 		/** 收集机器CPU LOAD MEMEORY */
 		ThreadUtil.startThread( new HostPerformanceCollectTask() );
 
-		LOG.info( "所有任务顺利启动" );
+		LOG.info( "*********************************************************" );
+		LOG.info( "****************TaoKeeper Startup Success****************" );
 	}
 
 	/**

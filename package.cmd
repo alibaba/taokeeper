@@ -1,1 +1,0 @@
-mvn eclipse:eclipse package -Dmaven.test.skip -e

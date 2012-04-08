@@ -9,8 +9,6 @@ import org.slf4j.LoggerFactory;
 
 import com.taobao.taokeeper.model.TaoKeeperStat;
 import com.taobao.taokeeper.monitor.service.ReportService;
-import com.taobao.taokeeper.monitor.web.ReportController;
-
 import common.toolkit.java.constant.EmptyObjectConstant;
 import common.toolkit.java.exception.DaoException;
 import common.toolkit.java.util.ObjectUtil;

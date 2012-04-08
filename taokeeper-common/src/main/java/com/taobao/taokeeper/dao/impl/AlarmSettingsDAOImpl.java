@@ -2,7 +2,6 @@ package com.taobao.taokeeper.dao.impl;
 import static com.taobao.taokeeper.common.constant.SqlTemplate.SQL_ADD_ALARM_SETTINGS;
 import static com.taobao.taokeeper.common.constant.SqlTemplate.SQL_QUERY_ALARM_SETTINGS_BY_ID;
 import static com.taobao.taokeeper.common.constant.SqlTemplate.SQL_UPDATE_ALARM_SETTINGS_BY_ID;
-
 import static common.toolkit.java.constant.EmptyObjectConstant.EMPTY_STRING;
 
 import java.sql.ResultSet;

@@ -1,6 +1,7 @@
 package com.taobao.taokeeper.model;
 import static com.taobao.taokeeper.common.constant.SystemConstant.DELAY_SECS_OF_TWO_SERVER_ALIVE_CHECK_ZOOKEEPER;
 import static common.toolkit.java.constant.EmptyObjectConstant.EMPTY_STRING;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,19 +11,19 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.zookeeper.CreateMode;
 /**
- * ÀàËµÃ÷: 
+ * ï¿½ï¿½Ëµï¿½ï¿½: 
  * @author yinshi.nc
  */
 public class Subscriber{
 
-	private static Log log = LogFactory.getLog( Subscriber.class ); // Êä³öÈÕÖ¾
+	private static Log log = LogFactory.getLog( Subscriber.class ); // ï¿½ï¿½ï¿½ï¿½ï¿½Ö¾
 	
 	private int okTimes = 0;
 	private String serverList;
 	private String path;
 	private ZkClient zkClient = null;
 	private int maxDelaySecsForNotify = 1;
-	//ÕâÀïÁ½¸ö±äÁ¿·Ö±ðÊÇ×î½üÒ»´ÎÏòserverÌá½»µÄ¸üÐÂÊý¾ÝºÍÕâ´ÎÄÃµ½µÄÊý¾Ý£¬Á½¸öÖµÒ»ÖÂËµÃ÷´æ»î
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½serverï¿½á½»ï¿½Ä¸ï¿½ï¿½ï¿½ï¿½ï¿½Ýºï¿½ï¿½ï¿½ï¿½ï¿½Ãµï¿½ï¿½ï¿½ï¿½ï¿½Ý£ï¿½ï¿½ï¿½ï¿½ï¿½ÖµÒ»ï¿½ï¿½Ëµï¿½ï¿½ï¿½ï¿½ï¿½
 	private  String lastedUpdateToServer = EMPTY_STRING;
 	public void setLastedUpdateToServer( String lastedUpdateToServer ) {
 		this.lastedUpdateToServer = lastedUpdateToServer;
@@ -33,15 +34,15 @@ public class Subscriber{
 		this.path = path;
 		zkClient = new ZkClient( serverList, 5000 );
 		this.maxDelaySecsForNotify = maxDelaySecsForNotify;
-		//Æô¶¯¼àÌý
+		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		this.mointorData( path );
 	}
 
 	
 
 	/**
-	 * ¼à¿Ø parentPath Ä¿Â¼ÏÂËùÓÐÊý¾ÝµÄ±ä¸ü
-	 * ×¢Òâ, ÕâÀïµÄ¼àÌý²»»á¼àÌý¸¸¼¶±ä¸ü, Ö»ÄÜ¼àÌý×Ô¼º.
+	 * ï¿½ï¿½ï¿½ parentPath Ä¿Â¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÝµÄ±ï¿½ï¿½
+	 * ×¢ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½, Ö»ï¿½Ü¼ï¿½ï¿½ï¿½ï¿½Ô¼ï¿½.
 	 * @param parentPath
 	 */
 	private void mointorData( String path) {
@@ -59,7 +60,7 @@ public class Subscriber{
 	}
 	
 	/**
-	 * ¼ì²éÊÇ·ñ´æ»î£¬¼ì²é·½·¨ÊÇ£ºÏòÒ»¸öip·¢ËÍÊý¾Ý£¬ÒªÇóÔÚÖ¸¶¨Ê±¼äÄÚÊÕµ½Í¨Öª²¢»ñÈ¡ÕýÈ·Êý¾Ý¡£Õâ¸ö¹ý³ÌÁ¬Ðø½øÐÐ3´Î£¬ÆäÖÐÓÐÒ»´ÎÊ§°Ü¼´Ê§°Ü¡£
+	 * ï¿½ï¿½ï¿½ï¿½Ç·ï¿½ï¿½î£¬ï¿½ï¿½é·½ï¿½ï¿½ï¿½Ç£ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ipï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý£ï¿½Òªï¿½ï¿½ï¿½ï¿½Ö¸ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½ï¿½Õµï¿½Í¨Öªï¿½ï¿½ï¿½ï¿½È¡ï¿½ï¿½È·ï¿½ï¿½Ý¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½3ï¿½Î£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½Ê§ï¿½Ü¼ï¿½Ê§ï¿½Ü¡ï¿½
 	 */
 	public boolean checkIfAlive(){
 		createNodeNotExist( this.path );
@@ -67,7 +68,7 @@ public class Subscriber{
 			this.lastedUpdateToServer = this.serverList + System.currentTimeMillis();
 			try {
 				this.updateData( this.lastedUpdateToServer );
-				Thread.sleep( 1000 * this.maxDelaySecsForNotify );//Ö¸¶¨Ê±¼äÄÚ
+				Thread.sleep( 1000 * this.maxDelaySecsForNotify );//Ö¸ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½
 			} catch ( InterruptedException e ) {
 				//ingore
 			} catch ( Exception e ) {
@@ -84,14 +85,14 @@ public class Subscriber{
 	}
 	
 
-	/** Èç¹û²»´æÔÚ£¬´´½¨½Úµã */
+	/** ï¿½ï¿½ï¿½ï¿½ï¿½Ú£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Úµï¿½ */
 	private void createNodeNotExist( String defaultData){
 		if( !zkClient.exists( this.path ) ){
 			zkClient.create( this.path, this.serverList + System.currentTimeMillis(), CreateMode.PERSISTENT );
 		}
 	}
 	
-	/**¸üÐÂÊý¾Ý*/
+	/**ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½*/
 	private  void updateData( String newData )throws Exception{
 		zkClient.writeData( this.path, newData );
 	}
@@ -112,19 +113,19 @@ public class Subscriber{
 				Subscriber sub = null;
 				try {
 					sub = new Subscriber( server, "/yinshi.test", 1 );
-					//ÅÐ¶ÏÒ»¸ö½ÚµãÒÑ¾­¹ÒÁË£ºÁ¬ÐøÁ½´Î¼ì²â¾ùÊ§°Ü¡£
+					//ï¿½Ð¶ï¿½Ò»ï¿½ï¿½ï¿½Úµï¿½ï¿½Ñ¾ï¿½ï¿½ï¿½ï¿½Ë£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î¼ï¿½ï¿½ï¿½Ê§ï¿½Ü¡ï¿½
 					if( !sub.checkIfAlive() ){
 						if( !sub.checkIfAlive() ){
-							log.error( server + "´æ»îÐÔ¼ì²éÊ§°Ü" );
+							log.error( server + "ï¿½ï¿½ï¿½ï¿½Ô¼ï¿½ï¿½Ê§ï¿½ï¿½" );
 						}else{
-							log.info( server + "´æ»îÐÔ¼ì²éÍ¨¹ý" );
+							log.info( server + "ï¿½ï¿½ï¿½ï¿½Ô¼ï¿½ï¿½Í¨ï¿½ï¿½" );
 						}
 					}else{
-						log.info( server + "´æ»îÐÔ¼ì²éÍ¨¹ý" );
+						log.info( server + "ï¿½ï¿½ï¿½ï¿½Ô¼ï¿½ï¿½Í¨ï¿½ï¿½" );
 					}
 					Thread.sleep( 1000 * DELAY_SECS_OF_TWO_SERVER_ALIVE_CHECK_ZOOKEEPER );
 				} catch ( Exception e ) {
-					log.error( server + "´æ»îÐÔ¼ì²âÊ§°Ü£¬Ô­ÒòÊÇ" + e.getMessage() );
+					log.error( server + "ï¿½ï¿½ï¿½ï¿½Ô¼ï¿½ï¿½Ê§ï¿½Ü£ï¿½Ô­ï¿½ï¿½ï¿½ï¿½" + e.getMessage() );
 				}finally{
 					if( null != sub )
 						sub.close();

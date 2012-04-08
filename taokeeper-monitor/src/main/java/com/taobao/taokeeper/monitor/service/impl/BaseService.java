@@ -2,8 +2,8 @@ package com.taobao.taokeeper.monitor.service.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.taobao.taokeeper.dao.AlarmSettingsDAO;
-import com.taobao.taokeeper.dao.SettingsDAO;
 import com.taobao.taokeeper.dao.ReportDAO;
+import com.taobao.taokeeper.dao.SettingsDAO;
 import com.taobao.taokeeper.dao.ZooKeeperClusterDAO;
 
 /**
@@ -22,5 +22,4 @@ public class BaseService {
 	protected SettingsDAO taoKeeperSettingsDAO;
 	@Autowired
 	protected ReportDAO reportDAO;
-	
 }

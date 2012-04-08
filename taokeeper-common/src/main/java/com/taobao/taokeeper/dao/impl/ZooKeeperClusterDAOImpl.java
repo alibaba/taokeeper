@@ -4,8 +4,8 @@ import static com.taobao.taokeeper.common.constant.SqlTemplate.SQL_QUERY_ALL_CLU
 import static com.taobao.taokeeper.common.constant.SqlTemplate.SQL_QUERY_ALL_DETAIL_CLUSTER;
 import static com.taobao.taokeeper.common.constant.SqlTemplate.SQL_QUERY_CLUSTER_BY_ID;
 import static com.taobao.taokeeper.common.constant.SqlTemplate.SQL_UPDATE_ZOOKEEPER_CLUSTER_SETTINGS_BY_ID;
-import static common.toolkit.java.constant.SymbolConstant.COMMA;
 import static common.toolkit.java.constant.EmptyObjectConstant.EMPTY_STRING;
+import static common.toolkit.java.constant.SymbolConstant.COMMA;
 
 import java.sql.ResultSet;
 import java.util.ArrayList;
@@ -18,7 +18,6 @@ import common.toolkit.java.exception.DaoException;
 import common.toolkit.java.util.StringUtil;
 import common.toolkit.java.util.collection.ArrayUtil;
 import common.toolkit.java.util.collection.CollectionUtil;
-import common.toolkit.java.util.collection.ListUtil;
 import common.toolkit.java.util.db.DbcpUtil;
 /**
  * Description: Access DB for zookeeper cluster

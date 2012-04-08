@@ -13,11 +13,11 @@ import org.slf4j.LoggerFactory;
 
 import com.taobao.taokeeper.common.GlobalInstance;
 import com.taobao.taokeeper.common.constant.SystemConstant;
-import com.taobao.taokeeper.message.impl.TbMessageSender;
 import com.taobao.taokeeper.model.AlarmSettings;
 import com.taobao.taokeeper.model.ZooKeeperCluster;
 import com.taobao.taokeeper.model.type.Message;
 import com.taobao.taokeeper.monitor.core.ThreadPoolManager;
+import com.taobao.taokeeper.reporter.alarm.TbMessageSender;
 import common.toolkit.java.entity.HostPerformanceEntity;
 import common.toolkit.java.exception.SSHException;
 import common.toolkit.java.util.StringUtil;

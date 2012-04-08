@@ -1,8 +1,8 @@
 package com.taobao.taokeeper.dao.impl;
-import static common.toolkit.java.constant.EmptyObjectConstant.EMPTY_STRING;
 import static com.taobao.taokeeper.common.constant.SqlTemplate.SQL_INSERT_TAOKEEPER_SETTINGS_BY_ID;
 import static com.taobao.taokeeper.common.constant.SqlTemplate.SQL_QUERY_TAOKEEPER_SETTINGS_BY_ID;
 import static com.taobao.taokeeper.common.constant.SqlTemplate.SQL_UPDATE_TAOKEEPER_SETTINGS_BY_ID;
+import static common.toolkit.java.constant.EmptyObjectConstant.EMPTY_STRING;
 
 import java.sql.ResultSet;
 

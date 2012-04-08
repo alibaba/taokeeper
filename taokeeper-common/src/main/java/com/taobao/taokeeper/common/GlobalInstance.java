@@ -1,6 +1,6 @@
 package com.taobao.taokeeper.common;
 
-import static common.toolkit.java.constant.EmptyObjectConstant.EMPTY_STRING; 
+import static common.toolkit.java.constant.EmptyObjectConstant.EMPTY_STRING;
 
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;

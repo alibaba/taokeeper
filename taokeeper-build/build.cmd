@@ -1,0 +1,1 @@
+mvn eclipse:eclipse package -f ../pom.xml -Dmaven.test.skip -e

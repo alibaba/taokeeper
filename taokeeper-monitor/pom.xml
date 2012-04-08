@@ -24,6 +24,13 @@
 			<version>${taokeeper.version}</version>
 		</dependency>
 
+		<dependency>
+			<groupId>com.taobao.taokeeper</groupId>
+			<artifactId>taokeeper-reporter</artifactId>
+			<version>${taokeeper.version}</version>
+		</dependency>
+
+
 		<!-- Spring -->
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -109,6 +116,32 @@
 			<groupId>org.json</groupId>
 			<artifactId>json</artifactId>
 		</dependency>
+
+
+		<dependency>
+			<groupId>commons-logging</groupId>
+			<artifactId>commons-logging</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>jcl104-over-slf4j</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+		</dependency>
+
+
+
+
+
+
+
+
 	</dependencies>
 
 </project>
