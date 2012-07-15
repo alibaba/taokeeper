@@ -14,7 +14,7 @@ import common.toolkit.java.util.StringUtil;
  * @Date 2011-10-28
  */
 public class ZooKeeperStatus {
-
+	
 	private String ip;
 	private List< String > clientConnectionList;
 	private Map< String,Connection > connections;
@@ -157,16 +157,16 @@ public class ZooKeeperStatus {
 	public String getConnectionsContent() {
 		return convertConnsToHtmlContent();
 	}
-	public void setConnectionsContent( String connectionsContent ) {
-		this.connectionsContent = connectionsContent;
-	}
-
 	
 	/** 把一个Map< String,Connection > connections 转换成html内容 */
 	private String convertConnsToHtmlContent(){
 		if( null == this.connections || connections.isEmpty() )
 			return "No conn on this server!";
 		StringBuffer sb = new StringBuffer();
+		
+//		这里可以统计连接数个数
+		
+		
 		for( String sessionId : connections.keySet() ){
 			Connection conn = null;
 			if( StringUtil.isBlank( sessionId ) || null == ( conn = connections.get( sessionId ) ) )

@@ -29,12 +29,19 @@ CREATE TABLE `alarm_settings` (
 -- ----------------------------
 DROP TABLE IF EXISTS `taokeeper_settings`;
 CREATE TABLE `taokeeper_settings` (
-  `settings_id` int(11) NOT NULL auto_increment,
-  `env_name` varchar(20) default NULL,
-  `max_threads_of_zookeeper_check` int(5) default NULL,
-  `description` varchar(255) default NULL,
-  PRIMARY KEY  (`settings_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=gbk;
+  `settings_id` int(11) NOT NULL AUTO_INCREMENT,
+  `env_name` varchar(20) DEFAULT NULL,
+  `max_threads_of_zookeeper_check` int(5) DEFAULT NULL,
+  `description` varchar(10) DEFAULT NULL,
+  PRIMARY KEY (`settings_id`),
+  UNIQUE KEY `uk_alarm_settings_cid` (`env_name`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=gbk;
+
+-- ----------------------------
+-- Records of taokeeper_settings
+-- ----------------------------
+INSERT INTO `taokeeper_settings` VALUES ('1', 'My TaoKeeper', '5', '我的TaoKeeper');
+
 
 -- ----------------------------
 -- Table: taokeeper_stat

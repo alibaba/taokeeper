@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -38,6 +39,8 @@ import common.toolkit.java.exception.SSHException;
 import common.toolkit.java.util.DateUtil;
 import common.toolkit.java.util.ObjectUtil;
 import common.toolkit.java.util.StringUtil;
+import common.toolkit.java.util.collection.CollectionUtil;
+import common.toolkit.java.util.collection.ListUtil;
 import common.toolkit.java.util.collection.MapUtil;
 import common.toolkit.java.util.io.IOUtil;
 import common.toolkit.java.util.io.SSHUtil;
@@ -218,7 +221,8 @@ public class ZKServerStatusCollector implements Runnable {
 			String firstLine = wchsOutputArray[0].replace( STRING_CONNECTIONS_WATCHING, WORD_SEPARATOR ).replace( STRING_PATHS, EMPTY_STRING );
 			String[] firstLineArray = firstLine.split( WORD_SEPARATOR );
 
-			Map< String, Connection > consOfServer = GlobalInstance.getZooKeeperClientConnectionMapByClusterIdAndServerIp( ip );
+			final Map< String, Connection > consOfServer = GlobalInstance.getZooKeeperClientConnectionMapByClusterIdAndServerIp( ip );
+			
 			int watchedPaths = Integer.parseInt( StringUtil.trimToEmpty( firstLineArray[1] ) );
 			zooKeeperStatus.setConnections( consOfServer );
 			zooKeeperStatus.setWatchedPaths( watchedPaths );
@@ -298,7 +302,7 @@ public class ZKServerStatusCollector implements Runnable {
 					sessionId += "-" + conn.getClientIp();
 				watchedPathMap.put( sessionId, watchedPathList );
 			}
-			LOG.debug( ip + "的所有Watch情况是:" + watchedPathMap.keySet() );
+			LOG.debug( ip + " 的所有Watch情况是:" + watchedPathMap.keySet() );
 			zooKeeperStatus.setWatchedPathMap( watchedPathMap );
 			zooKeeperStatus.setWatchedPathMapContent( wchcOutputWithIp.toString() );
 		} catch ( SSHException e ) {
