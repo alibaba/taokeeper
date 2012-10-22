@@ -24,6 +24,7 @@
 		<module>taokeeper-monitor</module>
 		<module>taokeeper-build</module>
 		<module>taokeeper-reporter</module>
+		<module>taokeeper-research</module>
 	</modules>
 
 
@@ -34,7 +35,7 @@
 		<source.encoding>UTF-8</source.encoding>
 		<java.version>1.6</java.version>
 
-		<zookeeper.version>3.3.3</zookeeper.version>
+		<zookeeper.version>3.4.3</zookeeper.version>
 		<zkclient.version>0.2-SNAPSHOT</zkclient.version>
 
 
