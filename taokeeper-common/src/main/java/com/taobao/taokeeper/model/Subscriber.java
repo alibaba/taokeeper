@@ -32,7 +32,7 @@ public class Subscriber{
 	public Subscriber( String serverList, String path, int maxDelaySecsForNotify ){
 		this.serverList = serverList;
 		this.path = path;
-		zkClient = new ZkClient( serverList, 5000 );
+		zkClient = new ZkClient( serverList, 10000 );
 		this.maxDelaySecsForNotify = maxDelaySecsForNotify;
 		//��������
 		this.mointorData( path );
