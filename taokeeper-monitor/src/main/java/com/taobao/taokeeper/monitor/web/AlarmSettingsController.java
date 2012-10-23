@@ -81,7 +81,8 @@ public class AlarmSettingsController extends BaseController {
 			String maxWatchPerIp,
 			String dataDir,
 			String dataLogDir,
-			String maxDiskUsage ) {
+			String maxDiskUsage,
+			String nodePathCheckRule ) {
 		
 		try {
 			if( StringUtil.isBlank( clusterId ) )
@@ -101,6 +102,7 @@ public class AlarmSettingsController extends BaseController {
 			alarmSettings.setDataDir( StringUtil.trimToEmpty( dataDir ) );
 			alarmSettings.setDataLogDir( StringUtil.trimToEmpty( dataLogDir ) );
 			alarmSettings.setMaxDiskUsage( StringUtil.trimToEmpty( maxDiskUsage ) );
+			alarmSettings.setNodePathCheckRule( StringUtil.trimToEmpty( nodePathCheckRule ) );
 			//进行Update
 			String handleMessage = null;
 			if( alarmSettingsDAO.updateAlarmSettingsByClusterId( alarmSettings ) ){

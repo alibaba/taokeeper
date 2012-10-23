@@ -26,7 +26,8 @@ public class AlarmSettingsDAOImpl implements AlarmSettingsDAO{
     	ResultSet rs = null;
     	DBConnectionResource dbConnectionResource = null;
     	try {
-    		String querySQL = StringUtil.replaceSequenced( SQL_QUERY_ALARM_SETTINGS_BY_ID, clusterId + EMPTY_STRING );
+    		String querySQL = StringUtil.replaceSequenced( SQL_QUERY_ALARM_SETTINGS_BY_ID, //
+    				 																	clusterId + EMPTY_STRING );
     		dbConnectionResource = DbcpUtil.executeQuery( querySQL );
     		if( null == dbConnectionResource )
     			throw new DaoException( "没有返回结果" );
@@ -45,6 +46,7 @@ public class AlarmSettingsDAOImpl implements AlarmSettingsDAO{
 				String dataDir				= rs.getString( "data_dir" );
 				String dataLogDir			= rs.getString( "data_log_dir" );
 				String maxDiskUsage			= rs.getString( "max_disk_usage" );
+				String nodePathCheckRule			= StringUtil.trimToEmpty( rs.getString( "node_path_check_rule" ) );
 				
 				alarmSettings = new AlarmSettings();
 				alarmSettings.setClusterId( clusterId );
@@ -60,10 +62,12 @@ public class AlarmSettingsDAOImpl implements AlarmSettingsDAO{
 				alarmSettings.setDataDir( dataDir );
 				alarmSettings.setDataLogDir( dataLogDir );
 				alarmSettings.setMaxDiskUsage( maxDiskUsage );
+				alarmSettings.setNodePathCheckRule( nodePathCheckRule );
 			}
 			return alarmSettings;
 		} catch ( Exception e ) {
-			throw new DaoException( "Error when query AlarmSettings by cluster_id: " + clusterId + ", Error: " + e.getMessage(), e );
+			throw new DaoException( "Error when query AlarmSettings by cluster_id: " + clusterId + 
+					                                ", Error: " + e.getMessage(), e );
 		}finally{
 			if( null != dbConnectionResource ){
 				DbcpUtil.closeResultSetAndStatement( rs, dbConnectionResource.statement );
@@ -142,16 +146,31 @@ public class AlarmSettingsDAOImpl implements AlarmSettingsDAO{
 		if( null == alarmSettings )
 			return false;
 		
-		//从数据库中获取指定zookeeper集群中所有机器
+		//根据 clusterId 更新报警规则
     	try {
-    		String updateSql = StringUtil.replaceSequenced( SQL_UPDATE_ALARM_SETTINGS_BY_ID, alarmSettings.getMaxDelayOfCheck(), alarmSettings.getMaxCpuUsage(), alarmSettings.getMaxMemoryUsage(), alarmSettings.getMaxLoad(), alarmSettings.getWangwangList(), alarmSettings.getPhoneList(), alarmSettings.getEmailList(), alarmSettings.getMaxConnectionPerIp(), alarmSettings.getMaxWatchPerIp(), alarmSettings.getDataDir(), alarmSettings.getDataLogDir(), alarmSettings.getMaxDiskUsage(), alarmSettings.getClusterId() + EMPTY_STRING );
+    		String updateSql = StringUtil.replaceSequenced( SQL_UPDATE_ALARM_SETTINGS_BY_ID, //
+    				                                                                                   alarmSettings.getMaxDelayOfCheck(), //
+    				                                                                                   alarmSettings.getMaxCpuUsage(), //
+    				                                                                                   alarmSettings.getMaxMemoryUsage(), //
+    				                                                                                   alarmSettings.getMaxLoad(), //
+    				                                                                                   alarmSettings.getWangwangList(), //
+    				                                                                                   alarmSettings.getPhoneList(), //
+    				                                                                                   alarmSettings.getEmailList(), //
+    				                                                                                   alarmSettings.getMaxConnectionPerIp(), //
+    				                                                                                   alarmSettings.getMaxWatchPerIp(), //
+    				                                                                                   alarmSettings.getDataDir(), //
+    				                                                                                   alarmSettings.getDataLogDir(), //
+    				                                                                                   alarmSettings.getMaxDiskUsage(), //
+    				                                                                                   alarmSettings.getNodePathCheckRule(), //
+    				                                                                                   alarmSettings.getClusterId() + EMPTY_STRING );
 			int num = DbcpUtil.executeUpdate( updateSql );
 			if( 1 == num ){
 				return true;
 			}
 			return false;
 		} catch ( Exception e ) {
-			throw new DaoException( "Error when update AlarmSettings by cluster_id: " + alarmSettings + ", Error: " + e.getMessage(), e );
+			throw new DaoException( "Error when update AlarmSettings by cluster_id: " + alarmSettings + 
+					                                  ", Error: " + e.getMessage(), e );
 		}
 	}
 

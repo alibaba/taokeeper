@@ -2,7 +2,7 @@ package com.taobao.taokeeper.model;
 
 
 /**
- * Description:	Model: TaoKeeper ÉèÖÃ
+ * Description:	Model: TaoKeeper ç³»ç»Ÿè®¾ç½®
  * @author   yinshi.nc
  * @Date	 2011-11-13
  */
@@ -15,7 +15,10 @@ public class TaoKeeperSettings {
 	private String 	description;
 
 	public TaoKeeperSettings(){}
-	public TaoKeeperSettings(int settingsId, String envName, int maxThreadsOfZooKeeperCheck, String description ){
+	public TaoKeeperSettings(int settingsId, //
+			                                String envName, //
+			                                int maxThreadsOfZooKeeperCheck, //
+			                                String description ){
 		this.settingsId 				= settingsId;
 		this.envName 					= envName;
 		this.maxThreadsOfZooKeeperCheck	= maxThreadsOfZooKeeperCheck;
@@ -50,7 +53,9 @@ public class TaoKeeperSettings {
 
 	@Override
 	public String toString() {
-		return "TaoKeeperSettings:[settingsId=" + settingsId+ ", envName=" + envName + ", maxThreadsOfZooKeeperCheck="+ maxThreadsOfZooKeeperCheck + ", description=" + description + ", description=" + description;
+		return "TaoKeeperSettings:[settingsId=" + settingsId+ ", envName=" + envName + 
+				    ", maxThreadsOfZooKeeperCheck="+ maxThreadsOfZooKeeperCheck + ", description=" + 
+				    description + ", description=" + description;
 	}
 	
 }

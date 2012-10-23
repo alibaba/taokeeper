@@ -167,7 +167,7 @@ public class ZooKeeperController extends BaseController {
 				ThreadPoolManager.addJobToZKClusterDumperExecutor( new ZKClusterConfigDumper() );
 				
 				//现在要加入一个默认的报警
-				alarmSettingsDAO.addAlarmSettings( new AlarmSettings( clusterId, "5", "60", "70", "2", "银时", "15869027928", "yinshi.nc@taobao.com", "200","1000","/home/yinshi.nc","/home/yinshi.nc","70" ) );
+				alarmSettingsDAO.addAlarmSettings( new AlarmSettings( clusterId, "5", "60", "70", "2", "银时", "15869027928", "yinshi.nc@taobao.com", "200","1000","/home/yinshi.nc","/home/yinshi.nc","70","" ) );
 				
 				//启动自检
 				if( null != zooKeeperCluster.getServerList() && !zooKeeperCluster.getServerList().isEmpty() ){

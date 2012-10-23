@@ -28,6 +28,8 @@ public class SystemConstant {
 	public final static int MINS_RATE_OF_COLLECT_ZOOKEEPER = 1;
 	public final static int MINS_RATE_OF_COLLECT_HOST_PERFORMANCE = 2;
 	public final static int MINS_RATE_OF_DUMP_ZOOKEEPER_CLUSTER = 1;
+	
+	public final static int HOURS_RATE_OF_ZOOKEEPER_NODE_CHECK = 1;
 
 	public final static String COMMAND_CONS = "echo cons | nc {0} {1}";
 	public final static String COMMAND_STAT = "echo stat | nc {0} {1}";

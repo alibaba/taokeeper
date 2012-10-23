@@ -19,7 +19,8 @@ public class AlarmSettings {
 	private String	maxLoad;
 	private String  maxConnectionPerIp;
 	private String  maxWatchPerIp;
-	
+	/** 节点检测规则 （Added 2012-10-22） */
+	private String  nodePathCheckRule;
 	
 	private String dataDir;
 	private String dataLogDir;
@@ -28,7 +29,20 @@ public class AlarmSettings {
 	
 	public AlarmSettings(){}
 	
-	public AlarmSettings( int clusterId, String maxDelayOfCheck, String maxCpuUsage, String maxMemoryUsage, String maxLoad, String wangwangList, String phoneList, String emailList, String maxConnectionPerIp, String maxWatchPerIp, String dataDir, String dataLogDir, String maxDiskUsage  ){
+	public AlarmSettings( int clusterId, //
+			                           String maxDelayOfCheck, //
+			                           String maxCpuUsage, //
+			                           String maxMemoryUsage, //
+			                           String maxLoad, //
+			                           String wangwangList, //
+			                           String phoneList, //
+			                           String emailList, //
+			                           String maxConnectionPerIp, //
+			                           String maxWatchPerIp, //
+			                           String dataDir, //
+			                           String dataLogDir, //
+			                           String maxDiskUsage,//
+			                           String nodePathCheckRule  ){
 		this.clusterId = clusterId;
 		this.maxDelayOfCheck = maxDelayOfCheck;
 		this.maxCpuUsage = maxCpuUsage;
@@ -41,6 +55,7 @@ public class AlarmSettings {
 		this.maxWatchPerIp = maxWatchPerIp;
 		this.dataDir = dataDir;
 		this.dataLogDir = dataLogDir;
+		this.nodePathCheckRule = nodePathCheckRule;
 		this.setMaxDiskUsage( maxDiskUsage );
 	}
 	
@@ -123,17 +138,36 @@ public class AlarmSettings {
 		this.dataLogDir = dataLogDir;
 	}
 
-	@Override
-	public String toString() {
-		return "AlarmSettings:[clusterId=" + clusterId+ ", maxDelayOfCheck=" + maxDelayOfCheck + ", maxCpuUsage="+ maxCpuUsage + ", maxMemoryUsage=" + maxMemoryUsage + ", maxLoad=" + maxLoad;
-	}
-
 	public String getMaxDiskUsage() {
 		return maxDiskUsage;
 	}
 
 	public void setMaxDiskUsage( String maxDiskUsage ) {
 		this.maxDiskUsage = maxDiskUsage;
+	}
+
+	/**
+	 * 这里会返回如下格式的内容：<br>
+	 * [/:nileader,yinshi;/nileader:test]^{} 或<br>
+	 * []^{ /:nileader,/nileader:test } <br>
+	 * 分别表示：<br>
+	 * "/"这个path下，只能够出现nileader和yinshi这两个节点，/nileader 这个path下，只能够出现test节点 或<br>
+	 * "/"这个path下，不能够出现nileader这个节点，/nileader 这个path下，不能够出现test节点<br>
+	 * @return
+	 */
+	public String getNodePathCheckRule() {
+		return nodePathCheckRule;
+	}
+
+	public void setNodePathCheckRule( String nodePathCheckRule ) {
+		this.nodePathCheckRule = nodePathCheckRule;
+	}
+
+	@Override
+	public String toString() {
+		return "AlarmSettings:[clusterId=" + clusterId+ ", maxDelayOfCheck=" + maxDelayOfCheck + 
+				    ", maxCpuUsage="+ maxCpuUsage + ", maxMemoryUsage=" + maxMemoryUsage + 
+				    ", maxLoad=" + maxLoad;
 	}
 	
 }

@@ -1,6 +1,7 @@
 package com.taobao.taokeeper.monitor.core;
 
 import java.util.Properties;
+import java.util.Timer;
 
 import javax.servlet.Servlet;
 import javax.servlet.http.HttpServlet;
@@ -16,13 +17,14 @@ import com.taobao.taokeeper.common.constant.SystemConstant;
 import com.taobao.taokeeper.dao.SettingsDAO;
 import com.taobao.taokeeper.model.TaoKeeperSettings;
 import com.taobao.taokeeper.model.type.Message;
-import com.taobao.taokeeper.monitor.core.task.CheckerJob;
 import com.taobao.taokeeper.monitor.core.task.HostPerformanceCollectTask;
 import com.taobao.taokeeper.monitor.core.task.ZooKeeperALiveCheckerJob;
 import com.taobao.taokeeper.monitor.core.task.ZooKeeperClusterMapDumpJob;
+import com.taobao.taokeeper.monitor.core.task.ZooKeeperNodeChecker;
 import com.taobao.taokeeper.monitor.core.task.ZooKeeperStatusCollectJob;
 import com.taobao.taokeeper.monitor.core.task.runable.ClientThroughputStatJob;
 import com.taobao.taokeeper.reporter.alarm.TbMessageSender;
+import common.toolkit.java.constant.BaseConstant;
 import common.toolkit.java.exception.DaoException;
 import common.toolkit.java.util.ObjectUtil;
 import common.toolkit.java.util.StringUtil;
@@ -70,6 +72,15 @@ public class Initialization extends HttpServlet implements Servlet {
 
 		/** 收集机器CPU LOAD MEMEORY */
 		ThreadUtil.startThread( new HostPerformanceCollectTask() );
+		
+		
+		Timer timer = new Timer();
+		//开启ZooKeeper Node的Path检查
+		timer.schedule( new ZooKeeperNodeChecker(), 5000, //
+				           BaseConstant.MILLISECONDS_OF_ONE_HOUR  * 
+				           SystemConstant.HOURS_RATE_OF_ZOOKEEPER_NODE_CHECK  );
+		
+		
 
 		//ThreadUtil.startThread( new CheckerJob( ) );
 

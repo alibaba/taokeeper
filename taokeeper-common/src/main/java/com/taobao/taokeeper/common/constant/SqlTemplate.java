@@ -19,9 +19,46 @@ public class SqlTemplate {
 	
 	
 	/** Query alarm settings by cluster id*/
-	public static final String SQL_QUERY_ALARM_SETTINGS_BY_ID    = "SELECT alarm_settings_id, cluster_id, wangwang_list, phone_list, email_list, max_delay_of_check, max_cpu_usage, max_memory_usage, max_load, max_connection_per_ip, max_watch_per_ip, data_dir, data_log_dir, max_disk_usage FROM alarm_settings WHERE cluster_id= {0}";
-	/** Update alarm settings by cluster id  UPDATE alarm_settings SET max_delay_of_check='{0}', max_cpu_usage='{1}', max_memory_usage='{2}', max_load='{3}', wangwang_list='{4}', phone_list='{5}', email_list='{6}', max_connection_per_ip='{7}', max_watch_per_ip='{8}', WHERE cluster_id= {9} */
-	public static final String SQL_UPDATE_ALARM_SETTINGS_BY_ID   = "UPDATE alarm_settings SET max_delay_of_check='{0}', max_cpu_usage='{1}', max_memory_usage='{2}', max_load='{3}', wangwang_list='{4}', phone_list='{5}', email_list='{6}', max_connection_per_ip='{7}', max_watch_per_ip='{8}', data_dir='{9}', data_log_dir='{10}', max_disk_usage='{11}' WHERE cluster_id= {12}";
+	public static final String SQL_QUERY_ALARM_SETTINGS_BY_ID    = "SELECT " +
+			                                                                                                    "alarm_settings_id, " +
+			                                                                                                    "cluster_id, " +
+			                                                                                                    "wangwang_list, " +
+			                                                                                                    "phone_list, " +
+			                                                                                                    "email_list, " +
+			                                                                                                    "max_delay_of_check, " +
+			                                                                                                    "max_cpu_usage," +
+			                                                                                                    "max_memory_usage, " +
+			                                                                                                    "max_load, " +
+			                                                                                                    "max_connection_per_ip, " +
+			                                                                                                    "max_watch_per_ip, " +
+			                                                                                                    "data_dir, " +
+			                                                                                                    "data_log_dir, " +
+			                                                                                                    "max_disk_usage, " +
+			                                                                                                    "node_path_check_rule " +
+			                                                                                                    "FROM " +
+			                                                                                                    "alarm_settings " +
+			                                                                                                    "WHERE " +
+			                                                                                                    "cluster_id= {0}";
+	/** Update alarm settings by cluster id  */
+	public static final String SQL_UPDATE_ALARM_SETTINGS_BY_ID   = "UPDATE " +
+																												"alarm_settings " +
+																												"SET " +
+																												"max_delay_of_check='{0}', " +
+																												"max_cpu_usage='{1}', " +
+																												"max_memory_usage='{2}', " +
+																												"max_load='{3}', " +
+																												"wangwang_list='{4}', " +
+																												"phone_list='{5}', " +
+																												"email_list='{6}', " +
+																												"max_connection_per_ip='{7}', " +
+																												"max_watch_per_ip='{8}', " +
+																												"data_dir='{9}', " +
+																												"data_log_dir='{10}', " +
+																												"max_disk_usage='{11}', " +
+																												"node_path_check_rule='{12}' " +
+																												"WHERE " +
+																												"cluster_id= {13}";
+	
 	/** Add alarm settings , cluster_id, max_delay_of_check, max_cpu_usage, max_memory_usage, max_load, wangwang_list, phone_list, email_list */
 	public static final String SQL_ADD_ALARM_SETTINGS                   = "INSERT INTO alarm_settings ( cluster_id, max_delay_of_check, max_cpu_usage, max_memory_usage, max_load, wangwang_list, phone_list, email_list, max_connection_per_ip, max_watch_per_ip, data_dir, data_log_dir, max_disk_usage ) VALUES ( '{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}','{10}','{11}','{12}')";
 	

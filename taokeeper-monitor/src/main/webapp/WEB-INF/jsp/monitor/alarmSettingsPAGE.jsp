@@ -74,6 +74,18 @@ a:visited { text-decoration:none}
 		 	<td valign="middle">单机 Watcher数 峰值报警</td>
 		 	<td valign="middle" ><input type="text" name="maxWatchPerIp" id="maxWatchPerIp" value="${alarmSettings.maxWatchPerIp}"/></td>
 		 </tr>
+		 <tr >
+		 	<td valign="middle">Node Check Rule</td>
+		 	<td valign="middle" ><input type="text" name="nodePathCheckRule" id="nodePathCheckRule" value="${alarmSettings.nodePathCheckRule}" size="50"/>
+		 	<br>
+		 	<font color="blue">样例</font>：<b>|只能出现|^|不能出现| </b>
+		 	<br>
+		 	<font color="blue">例子</font>：
+		 	 <b>|/</b>:nileader,yinshi;<b>/nileader</b>:test<b>|</b>^<b>|/</b>:test<b>|</b><br>
+	 		 <font color="blue">表示</font>：<br>
+	  		"<b>/</b>"这个path下，只能够出现nileader和yinshi这两个节点，"<b>/nileader</b>" 这个path下，只能够出现test节点, "<b>/</b>" 这个path下，不能够出现test节点<br>
+		 	</td>
+		 </tr>
 
 
 	
