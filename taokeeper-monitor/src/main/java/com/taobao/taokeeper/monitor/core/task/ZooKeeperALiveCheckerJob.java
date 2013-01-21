@@ -23,6 +23,7 @@ import com.taobao.taokeeper.monitor.core.ThreadPoolManager;
 import com.taobao.taokeeper.monitor.core.task.runable.ZKServerAliveCheck;
 import common.toolkit.java.exception.DaoException;
 import common.toolkit.java.util.StringUtil;
+import common.toolkit.java.util.ThreadUtil;
 /**
  * Description: Check if alive one node(ip).
  * 
@@ -37,6 +38,12 @@ public class ZooKeeperALiveCheckerJob implements Runnable {
 	public void run() {
 
 		while ( true ) {
+			
+			if( !GlobalInstance.need_node_alive_check ){
+				LOG.info( "No need to node_alive_check, need_node_alive_check=" + GlobalInstance.need_node_alive_check );
+				ThreadUtil.sleep( 1000 * 60 * DELAY_MINS_OF_TWO_CYCLE_ALIVE_CHECK_ZOOKEEPER  );
+				continue;
+			}
 			try {
 				// 根据clusterId来获取一个zk集群
 				WebApplicationContext wac = ContextLoader.getCurrentWebApplicationContext();
@@ -78,15 +85,14 @@ public class ZooKeeperALiveCheckerJob implements Runnable {
 				} catch ( DaoException daoException ) {
 					LOG.warn( "Error when handle data base" + daoException.getMessage() );
 				} catch ( Exception e ) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					LOG.error( "Exception when check zk server alive, Error: " + e.getMessage(), e );
 				}
 				// 每1分钟收集一次检测
 				Thread.sleep( 1000 * 60 * DELAY_MINS_OF_TWO_CYCLE_ALIVE_CHECK_ZOOKEEPER );
 				// Thread.sleep( 1000 * 20 *
 				// DELAY_MINS_OF_TWO_CYCLE_ALIVE_CHECK_ZOOKEEPER );
 			} catch ( Throwable e ) {
-				e.printStackTrace();
+				LOG.error( "Exception when check zk server alive, Error: " + e.getMessage(), e );
 			}
 		}
 	}

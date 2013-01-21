@@ -46,7 +46,7 @@ public class ZKServerAliveCheck implements Runnable {
 		try {
 			checkAliveAndAlarm();
 		} catch ( Exception e ) {
-			e.printStackTrace();
+			LOG.error( "Exception when check zk server alive, Error: " + e.getMessage(), e );
 		}
 	}
 
@@ -73,10 +73,14 @@ public class ZKServerAliveCheck implements Runnable {
 
 				// TODO 这里的并发问题要考虑下。
 				// 如果已经有线程在对其进行自检了。
-				if ( 0 == GlobalInstance.getZooKeeperStatusType( ServletUtil.paraseIpAndPortFromServer( server )[0] ) )
+				String zkIp = ServletUtil.paraseIpAndPortFromServer( server )[0] ;
+				if ( 0 == GlobalInstance.getZooKeeperStatusType( zkIp ) ){
+					LOG.info( zkIp + " is checking, no need to check." );
 					continue;
+				}
 				// 如果要检查，标记为正在检查
-				GlobalInstance.putZooKeeperStatusType( ServletUtil.paraseIpAndPortFromServer( server )[0], 0 );
+				GlobalInstance.putZooKeeperStatusType( zkIp, 0 );
+				LOG.info( zkIp + " not check, start to check now time..." );
 				String ip = server.split( COLON )[0];
 
 				String wangwangList = alarmSettings.getWangwangList();
@@ -122,7 +126,7 @@ public class ZKServerAliveCheck implements Runnable {
 							
 						}
 						GlobalInstance.putZooKeeperStatusType( ip, 2 );
-						LOG.info( "#-" + this.zooKeeperCluster.getClusterName() + "-" + server + "自检结果ERROR" );
+						LOG.info( "Exception when check #-" + this.zooKeeperCluster.getClusterName() + "-" + server + ", Error: " + e.getMessage(), e );
 					} finally {
 						if ( null != sub ) {
 							sub.close();
@@ -137,7 +141,7 @@ public class ZKServerAliveCheck implements Runnable {
 			}// for each server
 			return;
 		} catch ( Exception e ) {
-			e.printStackTrace();
+			LOG.error( "Exception when check zk server alive, Error: " + e.getMessage(), e );
 		} finally {
 			// 检查完一定要进行释放。
 			GlobalInstance.removeFromAllCheckingCluster( this.zooKeeperCluster.getClusterId() + EMPTY_STRING );

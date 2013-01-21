@@ -37,6 +37,7 @@ import common.toolkit.java.exception.SSHException;
 import common.toolkit.java.util.DateUtil;
 import common.toolkit.java.util.JsonUtil;
 import common.toolkit.java.util.StringUtil;
+import common.toolkit.java.util.ThreadUtil;
 import common.toolkit.java.util.io.FileUtil;
 import common.toolkit.java.util.io.IOUtil;
 import common.toolkit.java.util.io.SSHUtil;
@@ -56,6 +57,12 @@ public class ClientThroughputStatJob implements Runnable {
 	@Override
 	public void run() {
 
+		
+		if( !GlobalInstance.need_client_throughput_stat ){
+			LOG.info( "No need to need_client_throughput_stat=" + GlobalInstance.need_client_throughput_stat );
+			ThreadUtil.sleep( 1000 * 60 * MINS_RATE_OF_COLLECT_ZOOKEEPER  );
+			return;
+		}
 		
 		if( isInitState ){
 			String fileName = SystemConstant.dataStoreBasePath + SystemConstant.dataStoreCategoryPath_clientStat + SystemConstant.PREFIX_OF_ZOOKEEPER_CLIENT_STAT_FILE_NAME + DateUtil.getNowTime( DateFormat.Date ) + ".stat";

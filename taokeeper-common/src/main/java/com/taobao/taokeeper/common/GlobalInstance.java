@@ -24,6 +24,19 @@ public class GlobalInstance {
 
 	/** 上次更新ZooKeeper时间，毫秒 */
 	private static long GlobalInstance_TIME_OF_UPDATE_ZOOKEEPER_NODE;
+	
+	/** 是否要进行节点自检 */
+	public static boolean need_node_alive_check = true;
+	/** 是否需要进行机器状态收集*/
+	public static boolean need_host_performance_collect = true;
+	/** 多余节点监控 */
+	public static boolean need_node_checker = true;
+	
+	/** 多余节点监控 */
+	public static boolean need_zk_status_collect = true;
+	
+	public static boolean need_client_throughput_stat = true;
+	
 
 	// ZooKeeper集群中每台机器状态信息
 	private static Map< String/** IP */

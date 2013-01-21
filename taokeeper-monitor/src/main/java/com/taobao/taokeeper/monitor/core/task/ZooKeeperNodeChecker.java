@@ -42,11 +42,15 @@ public class ZooKeeperNodeChecker extends TimerTask{
 		alarmSettingsDAO = ( AlarmSettingsDAO ) wac.getBean( "alarmSettingsDAO" );
 	}
 	
-	
-	
 	@Override
 	public void run() {
 
+		if( !GlobalInstance.need_node_checker ){
+			LOG.info( "No need to check node name, need_node_checker= " + GlobalInstance.need_node_checker );
+			return;
+		}
+		
+		
 			try {
 				// 根据clusterId来获取一个zk集群
 				ZooKeeperClusterDAO zooKeeperClusterDAO = ( ZooKeeperClusterDAO ) wac.getBean( "zooKeeperClusterDAO" );

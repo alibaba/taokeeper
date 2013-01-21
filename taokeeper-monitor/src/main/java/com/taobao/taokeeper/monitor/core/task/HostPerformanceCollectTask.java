@@ -1,5 +1,6 @@
 package com.taobao.taokeeper.monitor.core.task;
 
+import static com.taobao.taokeeper.common.constant.SystemConstant.DELAY_MINS_OF_TWO_CYCLE_ALIVE_CHECK_ZOOKEEPER;
 import static com.taobao.taokeeper.common.constant.SystemConstant.MINS_RATE_OF_COLLECT_HOST_PERFORMANCE;
 import static common.toolkit.java.constant.SymbolConstant.COLON;
 
@@ -23,6 +24,7 @@ import com.taobao.taokeeper.monitor.core.task.runable.ZKServerPerformanceCollect
 import common.toolkit.java.exception.DaoException;
 import common.toolkit.java.util.DateUtil;
 import common.toolkit.java.util.StringUtil;
+import common.toolkit.java.util.ThreadUtil;
 
 /**
  * Description: Collect info of host performance
@@ -37,6 +39,13 @@ public class HostPerformanceCollectTask implements Runnable {
 	public void run() {
 
 		while ( true ) {
+			
+			if( !GlobalInstance.need_host_performance_collect ){
+				LOG.info( "No need to host_performance_collect, need_host_performance_collect=" + GlobalInstance.need_host_performance_collect );
+				ThreadUtil.sleep( 1000 * 60 * MINS_RATE_OF_COLLECT_HOST_PERFORMANCE  );
+				continue;
+			}
+			
 			try {
 				// 根据clusterId来获取一个zk集群
 				WebApplicationContext wac = ContextLoader.getCurrentWebApplicationContext();

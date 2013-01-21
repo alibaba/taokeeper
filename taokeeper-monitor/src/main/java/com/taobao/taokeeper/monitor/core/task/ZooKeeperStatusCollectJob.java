@@ -24,6 +24,7 @@ import com.taobao.taokeeper.monitor.core.task.runable.ZKServerStatusCollector;
 import common.toolkit.java.exception.DaoException;
 import common.toolkit.java.util.DateUtil;
 import common.toolkit.java.util.StringUtil;
+import common.toolkit.java.util.ThreadUtil;
 /**
  * Description: Collect info of zookeeper by jmx.
  * 
@@ -40,6 +41,14 @@ public class ZooKeeperStatusCollectJob implements Runnable {
 	public void run() {
 
 		while ( true ) {
+			
+			if( !GlobalInstance.need_zk_status_collect ){
+				LOG.info( "No need to zk status collect, need_zk_status_collect=" + GlobalInstance.need_zk_status_collect );
+				ThreadUtil.sleep( 1000 * 60 * MINS_RATE_OF_COLLECT_ZOOKEEPER );
+				continue;
+			}
+			
+			
 			try {
 				// 根据clusterId来获取一个zk集群
 				WebApplicationContext wac = ContextLoader.getCurrentWebApplicationContext();

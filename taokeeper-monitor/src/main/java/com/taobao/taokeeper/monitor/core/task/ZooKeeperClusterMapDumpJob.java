@@ -21,6 +21,7 @@ public class ZooKeeperClusterMapDumpJob implements Runnable {
 	public void run() {
 		
 		while( true ){
+			
 			try{
 				ThreadPoolManager.addJobToZKClusterDumperExecutor( new ZKClusterConfigDumper() );
 				Thread.sleep( 1000 * 60 * MINS_RATE_OF_DUMP_ZOOKEEPER_CLUSTER );

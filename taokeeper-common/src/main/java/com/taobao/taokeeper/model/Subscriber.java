@@ -33,9 +33,11 @@ public class Subscriber{
 		this.serverList = serverList;
 		this.path = path;
 		zkClient = new ZkClient( serverList, 10000 );
+		log.info( "====zk conn log====>start conn to zk server: " + this.serverList );
 		this.maxDelaySecsForNotify = maxDelaySecsForNotify;
 		//��������
 		this.mointorData( path );
+		
 	}
 
 	
@@ -82,6 +84,7 @@ public class Subscriber{
 	public void close(){
 		this.zkClient.close();
 		this.zkClient = null;
+		log.info( "====zk conn log====>start disconn to zk server: " + this.serverList );
 	}
 	
 

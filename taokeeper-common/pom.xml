@@ -20,6 +20,11 @@
 			<artifactId>zookeeper</artifactId>
 		</dependency>
 		<dependency>
+			<groupId>org.apache.zookeeper</groupId>
+			<artifactId>zookeeper</artifactId>
+			<classifier>sources</classifier>
+		</dependency>
+		<dependency>
 			<groupId>com.taobao.taokeeper</groupId>
 			<artifactId>zkclient</artifactId>
 		</dependency>
