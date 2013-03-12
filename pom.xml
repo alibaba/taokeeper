@@ -101,9 +101,6 @@
 		<apache.standard.taglib.version>1.1.2</apache.standard.taglib.version>
 		<sitemesh.version>2.4.2</sitemesh.version>
 
-		<config.client.version>1.5.6</config.client.version>
-		<msgcenter.version>1.0.0-SNAPSHOT</msgcenter.version>
-
 	</properties>
 
 
@@ -464,45 +461,6 @@
 				<version>${toolkit.version}</version>
 				<classifier>sources</classifier>
 			</dependency>
-
-
-			<!-- taobao jar -->
-			<dependency>
-				<groupId>com.taobao.configserver</groupId>
-				<artifactId>config-client</artifactId>
-				<version>${config.client.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>com.taobao.jm.msgcenter</groupId>
-				<artifactId>msgcenter-utils</artifactId>
-				<version>${msgcenter.version}</version>
-				<exclusions>
-					<exclusion>
-						<groupId>javax.xml.bind</groupId>
-						<artifactId>jaxb-api</artifactId>
-					</exclusion>
-					<exclusion>
-						<groupId>com.sun.xml.bind</groupId>
-						<artifactId>jaxb-xjc</artifactId>
-					</exclusion>
-					<exclusion>
-						<groupId>com.sun.xml.bind</groupId>
-						<artifactId>jaxb-impl</artifactId>
-					</exclusion>
-				</exclusions>
-			</dependency>
-			<dependency>
-				<groupId>com.sun.xml.bind</groupId>
-				<artifactId>jaxb-impl</artifactId>
-				<version>2.2.2-SNAPSHOT</version>
-			</dependency>
-
-
-
-
-
-
-
 
 		</dependencies>
 	</dependencyManagement>

@@ -11,7 +11,6 @@ Any question to: nileader@gmail.com
 4. Exec taokeeper-build/build.cmd to generate taokeeper-monitor.war
 
 
-
 How to deploy(See more,please to http://rdc.taobao.com/team/jm/archives/1450 )
 
 1. Download taokeeper.sql( https://github.com/downloads/taobao/taokeeper/taokeeper.sql ),init mysql.
@@ -49,4 +48,27 @@ linux：JAVA_OPTS=-DconfigFilePath="/home/admin/taokeeper-monitor/config/taokeep
 
 6. Visit the page: http://127.0.0.1:8080/taokeeper-monitor
          
+         
+         
+         
+         
+Alibaba OpenSource Maven Repository  
+	<profiles>
+		<profile>
+			<id>opensource</id>
+			<repositories>
+				<repository>
+					<id>taocodeReleases</id>
+					<name>taocode nexus</name>
+					<url>http://mvnrepo.code.taobao.org/nexus/content/repositories/releases/</url>
+				</repository>
+				<repository>
+					<id>taocodeSnapshots</id>
+					<name>taocode nexus</name>
+					<url>http://mvnrepo.code.taobao.org/nexus/content/repositories/snapshots/</url>
+				</repository>
+			</repositories>
+		</profile>
+	</profiles>
+
         
