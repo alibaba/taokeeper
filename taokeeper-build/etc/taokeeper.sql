@@ -6,21 +6,22 @@ USE taokeeper;
 -- ----------------------------
 DROP TABLE IF EXISTS `alarm_settings`;
 CREATE TABLE `alarm_settings` (
-  `alarm_settings_id` int(11) NOT NULL auto_increment,
+  `alarm_settings_id` int(11) NOT NULL AUTO_INCREMENT,
   `cluster_id` int(11) NOT NULL,
-  `wangwang_list` varchar(255) default NULL,
-  `phone_list` varchar(255) default NULL,
-  `email_list` varchar(255) default NULL,
-  `max_delay_of_check` varchar(255) default NULL,
-  `max_cpu_usage` varchar(255) default NULL,
-  `max_memory_usage` varchar(255) default NULL,
-  `max_load` varchar(255) default NULL,
-  `max_connection_per_ip` varchar(255) default NULL,
-  `max_watch_per_ip` varchar(255) default NULL,
-  `data_dir` varchar(255) default NULL,
-  `data_log_dir` varchar(255) default NULL,
-  `max_disk_usage` varchar(255) default NULL,
-  PRIMARY KEY  (`alarm_settings_id`),
+  `wangwang_list` varchar(255) DEFAULT NULL,
+  `phone_list` varchar(255) DEFAULT NULL,
+  `email_list` varchar(255) DEFAULT NULL,
+  `max_delay_of_check` varchar(255) DEFAULT NULL,
+  `max_cpu_usage` varchar(255) DEFAULT NULL,
+  `max_memory_usage` varchar(255) DEFAULT NULL,
+  `max_load` varchar(255) DEFAULT NULL,
+  `max_connection_per_ip` varchar(255) DEFAULT NULL,
+  `max_watch_per_ip` varchar(255) DEFAULT NULL,
+  `data_dir` varchar(255) DEFAULT NULL,
+  `data_log_dir` varchar(255) DEFAULT NULL,
+  `max_disk_usage` varchar(255) DEFAULT NULL,
+  `node_path_check_rule` text,
+  PRIMARY KEY (`alarm_settings_id`),
   UNIQUE KEY `uk_alarm_settings_cid` (`cluster_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=gbk;
 

@@ -47,11 +47,10 @@ public class SystemConstant {
 	public static String dataStoreCategoryPath_clientStat = "/ZooKeeperClientThroughputStat/";
 	public static String PREFIX_OF_ZOOKEEPER_CLIENT_STAT_FILE_NAME = "zookeeper-client-";
 	
+	public static String URL_TEMPLEMENT_OF_MESSAG_SEND = "http://${ip}/mchttpapi/module/api/${messageType}.htm?nickname=${targetAddress}&title=${subject}&message=${content}";
+	public static String IP_OF_MESSAG_SEND = "";
 	
 	
-	
-
-	public static String configOfMsgCenter = "";
 
 	public static String serverOfMsgCenter = "";
 	public static String sourceIdOfMsgCenter = "";

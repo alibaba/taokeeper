@@ -55,13 +55,6 @@
 			<version>${taokeeper.version}</version>
 		</dependency>
 
-		<dependency>
-			<groupId>org.nileader.java</groupId>
-			<artifactId>makarov-toolkit</artifactId>
-			<version>1.0.0-SNAPSHOT</version>
-		</dependency>
-
-
 		<!-- LOG -->
 		<dependency>
 			<groupId>commons-logging</groupId>

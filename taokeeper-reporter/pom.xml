@@ -20,27 +20,6 @@
 			<version>${taokeeper.version}</version>
 		</dependency>
 
-
-		<!-- Config client -->
-		<dependency>
-			<groupId>com.taobao.configserver</groupId>
-			<artifactId>config-client</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>com.taobao.jm.msgcenter</groupId>
-			<artifactId>msgcenter-utils</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>com.sun.xml.bind</groupId>
-			<artifactId>jaxb-impl</artifactId>
-		</dependency>
-
-
-
-
-
-
-
 	</dependencies>
 
 
