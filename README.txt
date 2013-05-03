@@ -1,8 +1,8 @@
 Notice:The file is encoded by UTF-8
 
-HomePage: http://rdc.taobao.com/team/jm/archives/1450
+HomePage: http://jm.taobao.org/2012/01/12/zookeeper%E7%9B%91%E6%8E%A7/
 CopyRight by Taobao.com
-Any question to: nileader@gmail.com
+Any question to: nileader@qq.com
    
    
 1. Use To manage projects dependence using maven
@@ -11,15 +11,15 @@ Any question to: nileader@gmail.com
 4. Exec taokeeper-build/build.cmd to generate taokeeper-monitor.war
 
 
-How to deploy(See more,please to http://rdc.taobao.com/team/jm/archives/1450 )
+How to deploy(See more,please to http://jm.taobao.org/2012/01/12/zookeeper%E7%9B%91%E6%8E%A7/ )
 
-1. Download taokeeper.sql( https://github.com/downloads/taobao/taokeeper/taokeeper.sql ),init mysql.
+1. Download taokeeper.sql( http://pan.baidu.com/share/link?shareid=515952&uk=2064399439 ),init mysql.
 
-2. Download taokeeper-monitor.tar.gz ( https://github.com/downloads/taobao/taokeeper/taokeeper-monitor.tar.gz ), 
+2. Download taokeeper-monitor.tar.gz ( http://pan.baidu.com/share/link?shareid=515943&uk=2064399439 ), 
     tar -zxvf taokeeper-monitor.tar.gz  to webapps of tomcat, 
     make sure the path is %TOMCAT_HOME%\webapps\taokeeper-monitor\WEB-INF
 
-3. Download taokeeper-monitor-config.properties https://github.com/downloads/taobao/taokeeper/taokeeper-monitor-config.properties ), 
+3. Download taokeeper-monitor-config.properties http://pan.baidu.com/share/link?shareid=515942&uk=2064399439 ), 
     store it such as /home/admin/taokeeper-monitor/config/taokeeper-monitor-config.properties
 
 ----------------------------------------------------------------
