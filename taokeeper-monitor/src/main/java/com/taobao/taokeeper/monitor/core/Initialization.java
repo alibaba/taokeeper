@@ -97,6 +97,7 @@ public class Initialization extends HttpServlet implements Servlet {
 	 */
 	private void initSystem() {
 
+		LOG.info( "=================================Start to init system===========================" );
 		Properties properties = null;
 		try {
 			properties = SystemUtil.loadProperty();
@@ -126,6 +127,8 @@ public class Initialization extends HttpServlet implements Servlet {
 
 		SystemConstant.IP_OF_MESSAG_SEND = StringUtil.trimToEmpty( properties.getProperty( "SystemConstant.IP_OF_MESSAG_SEND" ) );
 
+		
+		LOG.info( "=================================Finish init system===========================" );
 		ThreadPoolManager.addJobToMessageSendExecutor( new TbMessageSender( new Message( "银时", "TaoKeeper启动", "TaoKeeper启动",
 				Message.MessageType.WANGWANG ) ) );
 

@@ -30,7 +30,7 @@
 						<configuration>
 							<transformers>
 								<transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-									<mainClass>com.taobao.zookeeper.presstest.createnode.SequenceNodeTest</mainClass>
+									<mainClass>com.taobao.taokeeper.research.test.performance.session.SessionPressTest</mainClass>
 								</transformer>
 							</transformers>
 						</configuration>
