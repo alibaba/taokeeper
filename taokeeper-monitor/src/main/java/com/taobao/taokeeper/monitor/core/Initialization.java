@@ -125,7 +125,7 @@ public class Initialization extends HttpServlet implements Servlet {
 		SystemConstant.passwordOfSSH = StringUtil.defaultIfBlank( properties.getProperty( "SystemConstant.passwordOfSSH" ), "123456" );
 		SystemConstant.portOfSSH = IntegerUtil.defaultIfError( properties.getProperty( "SystemConstant.portOfSSH" ), 22 );
 
-		SystemConstant.IP_OF_MESSAG_SEND = StringUtil.trimToEmpty( properties.getProperty( "SystemConstant.IP_OF_MESSAG_SEND" ) );
+		SystemConstant.IP_OF_MESSAGE_SEND = StringUtil.trimToEmpty( properties.getProperty( "SystemConstant.IP_OF_MESSAGE_SEND" ) );
 
 		
 		LOG.info( "=================================Finish init system===========================" );

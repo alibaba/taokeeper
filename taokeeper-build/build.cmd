@@ -1,1 +1,1 @@
-mvn eclipse:eclipse package -f ../pom.xml -Dmaven.test.skip -e
+mvn clean package -U -f ../pom.xml -Dmaven.test.skip -e

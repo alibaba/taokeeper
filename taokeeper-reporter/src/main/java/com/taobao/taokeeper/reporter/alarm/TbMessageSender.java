@@ -36,13 +36,16 @@ public class TbMessageSender implements MessageSender {
 	@Override
 	public void run() {
 
-		if ( null == messages || 0 == messages.length || StringUtil.isBlank( SystemConstant.IP_OF_MESSAG_SEND ) )
+		if ( null == messages || 0 == messages.length || StringUtil.isBlank( SystemConstant.IP_OF_MESSAGE_SEND ) ){
+			LOG.info( "[TaoKeeper]No need to send message: messages.length: " + messages + ", IP_OF_MESSAGE_SEND=" + SystemConstant.IP_OF_MESSAGE_SEND );
 			return;
+		}
 
 		for ( Message message : this.messages ) {
 			try {
 				this.sendMessage( StringUtil.trimToEmpty( message.getTargetAddresses() ), StringUtil.trimToEmpty( message.getSubject() ),
 						StringUtil.trimToEmpty( message.getContent() ), StringUtil.trimToEmpty( message.getType().toString() ) );
+				LOG.info( "[TaoKeeper]Message send success: " + message );
 			} catch ( Exception e ) {
 				e.printStackTrace();
 				LOG.error( "Message send error: " + message + e.getMessage() );
@@ -68,10 +71,11 @@ public class TbMessageSender implements MessageSender {
 		if ( StringUtil.isBlank( targetAddresses ) || StringUtil.isBlank( channel ) )
 			return false;
 
+		
 		List<String> targetAddressList = ListUtil.parseList( StringUtil.trimToEmpty( targetAddresses ), COMMA );
 
 		Map<String, String> map = new HashMap<String, String>();
-		map.put( "ip", SystemConstant.IP_OF_MESSAG_SEND );
+		map.put( "ip", SystemConstant.IP_OF_MESSAGE_SEND );
 		map.put( "subject", URLEncoder.encode( subject, "UTF-8" ) );
 		map.put( "content", URLEncoder.encode( content, "UTF-8" ) );
 		String url = "";
