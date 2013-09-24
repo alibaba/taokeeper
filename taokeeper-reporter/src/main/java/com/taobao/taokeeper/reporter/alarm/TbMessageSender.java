@@ -95,6 +95,7 @@ public class TbMessageSender implements MessageSender {
 				url = StringUtil.replacePlaceholder( SystemConstant.URL_TEMPLEMENT_OF_MESSAG_SEND, map );
 			}
 		}
+		LOG.info( "[Taokeeper]Send message: " + url );
 		return "ok".equalsIgnoreCase( NetUtil.getContentOfUrl( url ) );
 
 	}

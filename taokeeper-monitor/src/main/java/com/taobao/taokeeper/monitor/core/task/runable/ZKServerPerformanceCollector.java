@@ -95,8 +95,9 @@ public class ZKServerPerformanceCollector implements Runnable {
 								new Message( wangwangList, "ZK Server cpu usage too high-" + clusterName, hostPerformanceEntity.getIp() + " cpu usage too high! " + cpuUsage + "-" + maxCpuUsage + "=" + difference,
 								Message.MessageType.WANGWANG ),
 								new Message( phoneList, "ZK Server cpu usage too high-" + clusterName, "ZK Server cpu usage too high-" + clusterName + hostPerformanceEntity.getIp() + " cpu usage too high! " + cpuUsage + "-"
-										+ maxCpuUsage + "=" + difference, Message.MessageType.WANGWANG )
+										+ maxCpuUsage + "=" + difference, Message.MessageType.SMS )
 								) );
+						LOG.info( "WangWangList: " + wangwangList );
 					}
 				}
 			}
@@ -119,6 +120,7 @@ public class ZKServerPerformanceCollector implements Runnable {
 								new Message( phoneList, "", "ZK Server memory usage too high-" + clusterName + hostPerformanceEntity.getIp() + memoryUsage + "-" + maxMemoryUsage + "=" + difference, Message.MessageType.SMS )
 								
 								) );
+						LOG.info( "WangWangList: " + wangwangList );
 					}
 				}
 			}
@@ -142,7 +144,7 @@ public class ZKServerPerformanceCollector implements Runnable {
 										+ maxLoad + "=" + difference, Message.MessageType.SMS )
 								
 								) );
-						
+						LOG.info( "WangWangList: " + wangwangList );
 					}
 				}
 			}
@@ -184,6 +186,7 @@ public class ZKServerPerformanceCollector implements Runnable {
 														+ hostPerformanceEntity.getIp() + "," + mountedOn + ": " + diskUsage
 														+ "%, max setting usage is: " + maxDiskUsage + "%", Message.MessageType.SMS )
 												) );
+										LOG.info( "WangWangList: " + wangwangList );
 									}
 								}
 							}
