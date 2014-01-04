@@ -78,7 +78,7 @@ public class SqlTemplate {
 	
 	
 	/** zookeeper_stat */
-	public static final String SQL_INSERT_TAOKEEPER_STAT = "INSERT INTO taokeeper_stat ( cluster_id, server, stat_date_time, stat_date, connections, watches, send_times, receive_times, node_count ) VALUES ( {0},'{1}', '{2}', '{3}', {4}, {5}, {6}, {7}, {8} )";
+	public static final String SQL_INSERT_TAOKEEPER_STAT = "INSERT INTO taokeeper_stat ( cluster_id, server, stat_date_time, stat_date, connections, watches, send_times, receive_times, node_count, rwps ) VALUES ( {0},'{1}', '{2}', '{3}', {4}, {5}, {6}, {7}, {8}, '{9}' )";
 	public static final String SQL_QUERY_TAOKEEPER_STAT_BY_CLUSTERID_SERVER_DATE = "SELECT * FROM taokeeper_stat where cluster_id='{0}' AND server='{1}' AND stat_date='{2}'";
 	public static final String SQL_QUERY_TAOKEEPER_STAT_BY_CLUSTERID_DATE = "SELECT * FROM taokeeper_stat where cluster_id='{0}' AND stat_date='{1}'";
 	

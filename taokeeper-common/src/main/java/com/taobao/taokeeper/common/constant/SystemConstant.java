@@ -35,6 +35,7 @@ public class SystemConstant {
 	public final static String COMMAND_STAT = "echo stat | nc {0} {1}";
 	public final static String COMMAND_WCHS = "echo wchs | nc {0} {1}";
 	public final static String COMMAND_WCHC = "echo wchc | nc {0} {1}";
+	public final static String COMMAND_RWPS = "echo rwps | nc {0} {1}";
 
 	public static String userNameOfSSH = "nobody";
 	public static String passwordOfSSH = "look";

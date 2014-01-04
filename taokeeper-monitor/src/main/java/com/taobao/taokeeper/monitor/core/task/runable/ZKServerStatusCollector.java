@@ -1,5 +1,6 @@
 package com.taobao.taokeeper.monitor.core.task.runable;
 
+import static com.taobao.taokeeper.common.constant.SystemConstant.COMMAND_RWPS;
 import static com.taobao.taokeeper.common.constant.SystemConstant.COMMAND_STAT;
 import static com.taobao.taokeeper.common.constant.SystemConstant.COMMAND_WCHC;
 import static com.taobao.taokeeper.common.constant.SystemConstant.COMMAND_WCHS;
@@ -14,13 +15,14 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.context.ContextLoader;
 import org.springframework.web.context.WebApplicationContext;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.taobao.taokeeper.common.GlobalInstance;
 import com.taobao.taokeeper.common.constant.SystemConstant;
 import com.taobao.taokeeper.dao.ReportDAO;
@@ -28,6 +30,7 @@ import com.taobao.taokeeper.model.AlarmSettings;
 import com.taobao.taokeeper.model.TaoKeeperStat;
 import com.taobao.taokeeper.model.ZooKeeperCluster;
 import com.taobao.taokeeper.model.ZooKeeperStatus;
+import com.taobao.taokeeper.model.ZooKeeperStatusV2;
 import com.taobao.taokeeper.model.type.Message;
 import com.taobao.taokeeper.monitor.core.ThreadPoolManager;
 import com.taobao.taokeeper.reporter.alarm.TbMessageSender;
@@ -39,11 +42,10 @@ import common.toolkit.java.exception.SSHException;
 import common.toolkit.java.util.DateUtil;
 import common.toolkit.java.util.ObjectUtil;
 import common.toolkit.java.util.StringUtil;
-import common.toolkit.java.util.collection.CollectionUtil;
-import common.toolkit.java.util.collection.ListUtil;
 import common.toolkit.java.util.collection.MapUtil;
 import common.toolkit.java.util.io.IOUtil;
 import common.toolkit.java.util.io.SSHUtil;
+
 
 /**
  * Description: 采集zooKeeper上的状态信息
@@ -96,15 +98,16 @@ public class ZKServerStatusCollector implements Runnable {
 			if( StringUtil.isBlank( ip ) || StringUtil.isBlank( port ) || ObjectUtil.isBlank( alarmSettings, zookeeperCluster ) ){
 				return;
 			}
-			ZooKeeperStatus zooKeeperStatus = new ZooKeeperStatus();
+			ZooKeeperStatusV2 zooKeeperStatus = new ZooKeeperStatusV2();
 			sshZooKeeperAndHandleStat( ip, Integer.parseInt( port ), zooKeeperStatus );
 			telnetZooKeeperAndHandleWchs( ip, Integer.parseInt( port ), zooKeeperStatus );
 			sshZooKeeperAndHandleWchc( ip, Integer.parseInt( port ), zooKeeperStatus, zookeeperCluster.getClusterId() );
+			sshZooKeeperAndHandleRwps( ip, Integer.parseInt( port ), (ZooKeeperStatusV2)zooKeeperStatus, zookeeperCluster.getClusterId() );
 			checkAndAlarm( alarmSettings, zooKeeperStatus, zookeeperCluster.getClusterName() );
 			GlobalInstance.putZooKeeperStatus( ip, zooKeeperStatus );
 			//Store taokeeper stat to DB
 			if( needStoreToDB ){
-				storeTaoKeeperStatToDB( zookeeperCluster.getClusterId(), zooKeeperStatus );
+				storeTaoKeeperStatToDB( zookeeperCluster.getClusterId(), (ZooKeeperStatusV2)zooKeeperStatus );
 			}
 			
 			LOG.info( "Finish #" + zookeeperCluster.getClusterName() + "-" + ip );
@@ -314,6 +317,137 @@ public class ZKServerStatusCollector implements Runnable {
 	}
 	
 	
+	/**
+	 * 进行Telnet连接并进行执行rwps。
+	 * 
+	 * @throws Exception
+	 */
+	private void sshZooKeeperAndHandleRwps( String ip, int port, ZooKeeperStatusV2 zooKeeperStatus, int clusterId ) {
+
+		try {
+			if ( StringUtil.isBlank( ip, port + EMPTY_STRING ) ) {
+				LOG.warn( "Ip is empty" );
+				return;
+			}
+			String rwpsOutput = SSHUtil.execute( ip, SystemConstant.portOfSSH, userNameOfSSH, passwordOfSSH,
+					StringUtil.replaceSequenced( COMMAND_RWPS, ip, port + EMPTY_STRING ) );
+
+			/**
+			 * RealTime R/W Statistics:
+             * getChildren2:   0.0
+             * 
+             * createSession:  0.0
+             * 
+             * closeSession:   0.1
+             * 
+             * setData:        11.9
+             * 
+             * setWatches:     0.0
+             * 
+             * getChildren:    27.9
+             * 
+             * delete:         0.0
+             * 
+             * create:         0.0
+             * 
+             * exists:         51.5
+             * 
+             * getDate:        2881.1
+			 */
+			if ( StringUtil.isBlank( rwpsOutput ) ) {
+				LOG.warn( "No output execute " + StringUtil.replaceSequenced( COMMAND_WCHC, ip, port + EMPTY_STRING ) );
+				return;
+			}
+
+			StringBuffer wchcOutputWithIp = new StringBuffer();
+			String[] wchcOutputArray = rwpsOutput.split( BR );
+			if ( 0 == wchcOutputArray.length ) {
+				LOG.warn( "No output of command " + StringUtil.replaceSequenced( COMMAND_WCHC, ip, port + EMPTY_STRING ) );
+				return;
+			}
+			Map< String, List< String > > watchedPathMap = new HashMap< String, List< String > >();
+			String sessionId = EMPTY_STRING;
+			List< String > watchedPathList = new ArrayList< String >();
+
+			double getChildren2 = 0, createSession = 0, closeSession = 0, setData = 0, setWatches = 0, getChildren = 0, delete=0,
+					create=0,exists=0,getData=0;
+			
+			ZooKeeperStatusV2.RWStatistics rwps = null;
+			
+			for ( String line : wchcOutputArray ) {
+				
+				if ( StringUtil.isBlank( line ) ) {
+					continue;
+				} else if ( line.contains( "getChildren2" ) ) {
+					
+					line = line.substring( line.indexOf( "getChildren2" ) + ( "getChildren2".length() + 1 ) );
+					getChildren2 = Math.round( Double.valueOf( StringUtil.trimToEmpty( line ) ) * 100 )/100;
+					
+				}else if ( line.contains( "createSession" ) ) {
+					
+					line = line.substring( line.indexOf( "createSession" ) + ( "createSession".length() + 1 ) );
+					createSession = Math.round( Double.valueOf( StringUtil.trimToEmpty( line ) ) * 100 )/100;
+					
+				} else if ( line.contains( "closeSession" ) ) {
+					
+					line = line.substring( line.indexOf( "closeSession" ) + ( "closeSession".length() + 1 ) );
+					closeSession = Math.round( Double.valueOf( StringUtil.trimToEmpty( line ) ) * 100 )/100;
+					
+				}else if ( line.contains( "setData" ) ) {
+					
+					line = line.substring( line.indexOf( "setData" ) + ( "setData".length() + 1 ) );
+					setData = Math.round( Double.valueOf( StringUtil.trimToEmpty( line ) ) * 100 )/100;
+					
+				}else if ( line.contains( "setWatches" ) ) {
+					
+					line = line.substring( line.indexOf( "setWatches" ) + ( "setWatches".length() + 1 ) );
+					setWatches = Math.round( Double.valueOf( StringUtil.trimToEmpty( line ) ) * 100 )/100;
+					
+				}else if ( line.contains( "getChildren" ) ) {
+					
+					line = line.substring( line.indexOf( "getChildren" ) + ( "getChildren".length() + 1 ) );
+					getChildren = Math.round( Double.valueOf( StringUtil.trimToEmpty( line ) ) * 100 )/100;
+					
+				}else if ( line.contains( "delete" ) ) {
+					
+					line = line.substring( line.indexOf( "delete" ) + ( "delete".length() + 1 ) );
+					delete =  Math.round( Double.valueOf( StringUtil.trimToEmpty( line ) ) * 100 )/100;
+					
+				}else if ( line.contains( "create" ) ) {
+					
+					line = line.substring( line.indexOf( "create" ) + ( "create".length() + 1 ) );
+					create = Math.round( Double.valueOf( StringUtil.trimToEmpty( line ) ) * 100 )/100;
+					
+				}else if ( line.contains( "exists" ) ) {
+					
+					line = line.substring( line.indexOf( "exists" ) + ( "exists".length() + 1 ) );
+					exists = Math.round( Double.valueOf( StringUtil.trimToEmpty( line ) ) * 100 )/100;
+					
+				}else if ( line.contains( "getDate" ) ) {
+					
+					line = line.substring( line.indexOf( "getDate" ) + ( "getDate".length() + 1 ) );
+					getData = Math.round( Double.valueOf( StringUtil.trimToEmpty( line ) ) * 100 )/100;
+					
+				}else {
+					continue;
+				}
+			}// 遍历rwps返回的内容
+
+			rwps = new ZooKeeperStatusV2.RWStatistics( getChildren2, createSession, closeSession, setData, setWatches, getChildren, delete, create, exists, getData );
+			zooKeeperStatus.setRwps( rwps );
+			
+			
+		} catch ( SSHException e ) {
+			LOG.warn( "Error when sshZooKeeperAndHandleWchc:[ip:" + ip + ", port:" + port + " ] " + e.getMessage() );
+		} catch ( Exception e ) {
+			LOG.error( "程序错误: " + e.getMessage() );
+			e.printStackTrace();
+		}
+	}
+	
+	
+	
+	
 	
 	
 	
@@ -374,12 +508,20 @@ public class ZKServerStatusCollector implements Runnable {
 	 * @param clusterId
 	 * @param zooKeeperStatus
 	 */
-	private void storeTaoKeeperStatToDB( int clusterId, ZooKeeperStatus zooKeeperStatus ) {
+	private void storeTaoKeeperStatToDB( int clusterId, ZooKeeperStatusV2 zooKeeperStatus ) {
 
 		try {
 			WebApplicationContext wac = ContextLoader.getCurrentWebApplicationContext();
 			ReportDAO reportDAO = ( ReportDAO ) wac.getBean( "reportDAO" );
 
+			TypeToken< ZooKeeperStatusV2.RWStatistics > type = new TypeToken< ZooKeeperStatusV2.RWStatistics >() {
+			};
+
+			String rwStatistics = "";
+			if ( !ObjectUtil.isBlank( zooKeeperStatus.getRwps()) ) {
+				rwStatistics = new Gson().toJson( zooKeeperStatus.getRwps(), type.getType() );
+			}
+			
 			reportDAO.addTaoKeeperStat( new TaoKeeperStat( clusterId, 
 																	zooKeeperStatus.getIp(), 
 																	DateUtil.getNowTime( DateFormat.DateTime ), 
@@ -388,7 +530,7 @@ public class ZKServerStatusCollector implements Runnable {
 																	zooKeeperStatus.getWatches(),
 																	Long.parseLong( zooKeeperStatus.getSent() ), 
 																	Long.parseLong( zooKeeperStatus.getReceived() ),
-																	zooKeeperStatus.getNodeCount() ) );
+																	zooKeeperStatus.getNodeCount(), rwStatistics ) );
 		} catch ( NumberFormatException e ) {
 			LOG.error( "将统计信息记入数据库出错：" + e.getMessage() );
 			e.printStackTrace();

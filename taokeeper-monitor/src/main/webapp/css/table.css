@@ -1,6 +1,6 @@
-.mytable {align:center;border-collapse:collapse;border:solid #6AA70B;border-width:0px 0 0 0px;width:600;} 
-.mytable table tr {padding-top:5px;list-style:none; border-bottom:#6AA70B 1px dotted ;font-size: 12px;;height:20px;} 
-.mytable table tr.t1 {background-color:#EEEEEE;}/* µÚÒ»ÐÐµÄ±³¾°É« */ 
-.mytable table tr.t2{background-color:#;}/* µÚ¶þÐÐµÄ±³¾°É« */ 
-.mytable table tr.t3 {background-color:#CCCCCC;}/* Êó±ê¾­¹ýÊ±µÄ±³¾°É« */
+.mytable {align:center;border-collapse:collapse;border:solid #6AA70B;border-width:0px 0 0 0px;width:500;} 
+.mytable table tr {padding-top:5px;list-style:none; border-bottom:#6AA70B 1px dotted ;font-size: 12px;;height:40px;} 
+.mytable table tr.t1 {background-color:#EEEEEE;}/* ï¿½ï¿½Ò»ï¿½ÐµÄ±ï¿½ï¿½ï¿½É« */ 
+.mytable table tr.t2{background-color:#;}/* ï¿½Ú¶ï¿½ï¿½ÐµÄ±ï¿½ï¿½ï¿½É« */ 
+.mytable table tr.t3 {background-color:#CCCCCC;}/* ï¿½ï¿½ê¾­ï¿½ï¿½Ê±ï¿½Ä±ï¿½ï¿½ï¿½É« */
 .mytable table tr td{ align:center; }

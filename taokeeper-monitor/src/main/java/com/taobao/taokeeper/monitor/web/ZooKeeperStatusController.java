@@ -19,6 +19,8 @@ import org.springframework.web.servlet.ModelAndView;
 import com.taobao.taokeeper.common.GlobalInstance;
 import com.taobao.taokeeper.model.ZooKeeperCluster;
 import com.taobao.taokeeper.model.ZooKeeperStatus;
+import com.taobao.taokeeper.model.ZooKeeperStatusV2;
+
 import common.toolkit.java.exception.DaoException;
 import common.toolkit.java.util.StringUtil;
 import common.toolkit.java.util.io.ServletUtil;
@@ -51,7 +53,7 @@ public class ZooKeeperStatusController extends BaseController {
 				return null;
 			}
 			
-			Map<String, ZooKeeperStatus> zooKeeperStatusMap = new HashMap<String, ZooKeeperStatus>();
+			Map<String, ZooKeeperStatusV2> zooKeeperStatusMap = new HashMap<String, ZooKeeperStatusV2>();
 			
 			//进行系统数据采集
 			List<String> serverList = zooKeeperCluster.getServerList();
@@ -60,11 +62,11 @@ public class ZooKeeperStatusController extends BaseController {
 					String ip = StringUtil.trimToEmpty( server.split( COLON )[0] );
 					//获取自检状态
 					int statusType = GlobalInstance.getZooKeeperStatusType( ip );
-					ZooKeeperStatus zooKeeperStatus = GlobalInstance.getZooKeeperStatus(ip);
+					ZooKeeperStatusV2 zooKeeperStatus = GlobalInstance.getZooKeeperStatus(ip);
 					if( null != zooKeeperStatus ){
 						zooKeeperStatus.setStatusType( statusType );
 					}else{
-						zooKeeperStatus = new ZooKeeperStatus();
+						zooKeeperStatus = new ZooKeeperStatusV2();
 						zooKeeperStatus.setStatusType( statusType );
 					}
 					zooKeeperStatusMap.put( ip, zooKeeperStatus );

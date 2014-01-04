@@ -38,7 +38,7 @@ public class ReportDAOImpl implements ReportDAO {
 					StringUtil.defaultIfBlank( taoKeeperStat.getStatDateTime(), DateUtil.getNowTime( DateFormat.DateTime ) ),
 					StringUtil.defaultIfBlank( taoKeeperStat.getStatDate(), DateUtil.getNowTime( DateFormat.Date ) ), taoKeeperStat.getConnections()
 							+ "", taoKeeperStat.getWatches() + "", taoKeeperStat.getSendTimes() + "", taoKeeperStat.getReceiveTimes() + "",
-					taoKeeperStat.getNodeCount() + "" );
+					taoKeeperStat.getNodeCount() + "", taoKeeperStat.getRwps() );
 
 			DbcpUtil.executeInsert( insertSql );
 		} catch ( Exception e ) {
@@ -77,8 +77,9 @@ public class ReportDAOImpl implements ReportDAO {
 				long sendTimes 		= rs.getLong( "send_times" );
 				long receiveTimes 	= rs.getLong( "receive_times" );
 				int nodeCount 		= rs.getInt( "node_count" );
+				String rwps         = rs.getString( "rwps" );
 				taoKeeperStatList.add( new TaoKeeperStat( clusterId, server, statDateTime, statDate, connections, watches, sendTimes, receiveTimes,
-						nodeCount ) );
+						nodeCount, rwps ) );
 			}
 			return taoKeeperStatList;
 		} catch ( Exception e ) {
@@ -122,8 +123,9 @@ public class ReportDAOImpl implements ReportDAO {
 				int sendTimes = rs.getInt( "send_times" );
 				int receiveTimes = rs.getInt( "receive_times" );
 				int nodeCount = rs.getInt( "node_count" );
+				String rwps         = rs.getString( "rwps" );
 				this.addStatToTaokeeperStatMap( taoKeeperStatMap, new TaoKeeperStat( clusterId, server, statDateTime, statDate, connections, watches,
-						sendTimes, receiveTimes, nodeCount ) );
+						sendTimes, receiveTimes, nodeCount, rwps ) );
 			}
 
 			return taoKeeperStatMap;

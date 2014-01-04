@@ -16,12 +16,12 @@ public class TaoKeeperStat {
 	private long sendTimes;
 	private long receiveTimes;
 	private long nodeCount;
-	
+	private String rwps;
 	
 	
 	
 	public TaoKeeperStat(){}
-	public TaoKeeperStat(int clusterId, String server, String statDateTime, String statDate, int connections, int watches, long sendTimes, long receiveTimes, long nodeCount ){
+	public TaoKeeperStat(int clusterId, String server, String statDateTime, String statDate, int connections, int watches, long sendTimes, long receiveTimes, long nodeCount, String rwps ){
 		this.clusterId    = clusterId;
 		this.server       = server;
 		this.statDateTime = statDateTime;
@@ -31,6 +31,7 @@ public class TaoKeeperStat {
 		this.sendTimes    = sendTimes;
 		this.receiveTimes = receiveTimes;
 		this.nodeCount    = nodeCount;
+		this.rwps         = rwps;
 	}
 	
 
@@ -87,6 +88,12 @@ public class TaoKeeperStat {
 	}
 	public void setConnections( int connections ) {
 		this.connections = connections;
+	}
+	public String getRwps() {
+		return rwps;
+	}
+	public void setRwps( String rwps ) {
+		this.rwps = rwps;
 	}
 	
 }

@@ -11,6 +11,8 @@ import com.taobao.taokeeper.model.AlarmSettings;
 import com.taobao.taokeeper.model.TaoKeeperSettings;
 import com.taobao.taokeeper.model.ZooKeeperCluster;
 import com.taobao.taokeeper.model.ZooKeeperStatus;
+import com.taobao.taokeeper.model.ZooKeeperStatusV2;
+
 import common.toolkit.java.entity.HostPerformanceEntity;
 import common.toolkit.java.entity.io.Connection;
 
@@ -40,7 +42,7 @@ public class GlobalInstance {
 
 	// ZooKeeper集群中每台机器状态信息
 	private static Map< String/** IP */
-	, ZooKeeperStatus > zooKeeperStatusSet = new ConcurrentHashMap< String, ZooKeeperStatus >();
+	, ZooKeeperStatusV2 > zooKeeperStatusSet = new ConcurrentHashMap< String, ZooKeeperStatusV2 >();
 	// 节点自检结果 0:不确定 1:OK 2: ERROR
 	private static Map< String/** IP */
 	, Integer > zooKeeperStatusTypeSet = new ConcurrentHashMap< String, Integer >();
@@ -105,18 +107,18 @@ public class GlobalInstance {
 	}
 
 	/** 将机器的状态信息放置到全局变量中去 */
-	public static void putZooKeeperStatus( String ip, ZooKeeperStatus zooKeeperStatus ) {
+	public static void putZooKeeperStatus( String ip, ZooKeeperStatusV2 zooKeeperStatus ) {
 		zooKeeperStatusSet.put( ip, zooKeeperStatus );
 	}
 
 	/** 根据ip获取机器状态信息 */
-	public static ZooKeeperStatus getZooKeeperStatus( String ip ) {
+	public static ZooKeeperStatusV2 getZooKeeperStatus( String ip ) {
 		return zooKeeperStatusSet.get( ip );
 	}
 
 	/** 将所有机器的状态信息返回 */
 	public static Map< String/** IP */
-	, ZooKeeperStatus > getAllZooKeeperStatus() {
+	, ZooKeeperStatusV2 > getAllZooKeeperStatus() {
 		return zooKeeperStatusSet;
 	}
 

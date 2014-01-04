@@ -16,20 +16,13 @@
 	href="<c:url value="/css/smoothness/jquery-ui-1.8.5.custom.css" />"
 	type="text/css" />
 <script type="text/javascript"
-	src="<c:url value="/js/jquery-1.4.2.min.js" />"></script>
+	src="<c:url value="/js/jquery-2.0.3.min.js" />"></script>
 <script type="text/javascript"
 	src="<c:url value="/js/jquery-ui-1.8.5.custom.min.js" />"></script>
 <decorator:head />
-<script type="text/javascript">
-$(function() {
-	$('#popupDialog').dialog({
-		autoOpen: false,
-		height: 'auto',
-		width: 'auto',
-		modal: true
-	});
-});
-</script>
+
+
+
 </head>
 <body class="composite">
 <div id="banner"><a href="<c:url value="/default.do" />" id="bannerLeft">

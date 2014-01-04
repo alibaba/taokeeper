@@ -1,6 +1,6 @@
 <%@ page language="java" pageEncoding="GBK"%><%@ include
 	file="/WEB-INF/common/taglibs.jsp"%>
-<div id="navcolumn" style="height: 500px;">
+<div id="navcolumn" style="height: 100px;">
 	<ul>
 
 		<li>Monitor

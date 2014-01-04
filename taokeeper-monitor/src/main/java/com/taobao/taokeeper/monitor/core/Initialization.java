@@ -90,6 +90,8 @@ public class Initialization extends HttpServlet implements Servlet {
 
 		LOG.info( "*********************************************************" );
 		LOG.info( "****************TaoKeeper Startup Success****************" );
+		LOG.info( "*********************************************************" );
+		LOG.info( "任何建议与问题，请到 http://jm-blog.aliapp.com/?p=1450 进行反馈。" );
 	}
 
 	/**

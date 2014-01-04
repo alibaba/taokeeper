@@ -58,6 +58,7 @@ CREATE TABLE `taokeeper_stat` (
   `send_times` bigint(20) unsigned DEFAULT 0,
   `receive_times` bigint(20) unsigned DEFAULT 0,
   `node_count` int(11) DEFAULT 0,
+  `rwps` varchar(255) NOT NULL COMMENT '',
   PRIMARY KEY (`cluster_id`,`server`,`stat_date_time`)
 ) ENGINE=InnoDB DEFAULT CHARSET=gbk;
 

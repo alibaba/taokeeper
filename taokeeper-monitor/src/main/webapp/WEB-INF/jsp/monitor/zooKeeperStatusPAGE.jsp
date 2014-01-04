@@ -16,6 +16,9 @@ a:active { text-decoration:none}
 a:hover { text-decoration:none} 
 a:visited { text-decoration:none}
 </style>
+<script src="http://code.highcharts.com/highcharts.js"></script>
+<script src="http://code.highcharts.com/modules/exporting.js"></script>
+
 
 
 
@@ -30,7 +33,7 @@ a:visited { text-decoration:none}
 	</c:forEach>
 </select>
 <span>${description}</span><br/><br/>
-<div align="center" class="mytable" id="tab">
+<div align="left" class="mytable" id="tab">
 <table border="0" cellspacing="0" cellpadding="0">
 
 	<tr style="background-color:#DDDDDE;">
@@ -65,12 +68,30 @@ a:visited { text-decoration:none}
 		</tr>
 	</c:forEach>
 </table>
-</div>
+
+
 <br/><br/>
 <b>提示</b>:<br><br>
  1. 节点自检 是指对集群中每个IP所在ZK节点上的PATH:  <b>/YINSHI.MONITOR.ALIVE.CHECK</b> 定期进行三次如下流程 : <br/>
 <b>节点连接</b> - <b>数据发布</b> - <b>修改通知</b> - <b>获取数据</b> - <b>数据对比</b>, 三次流程均成功视为该节点处于正常状态。<br><br>
  2. 角色分类：<b>L</b>: Leader, <b>F</b>: Follower, <b>O</b>: Observer, <b>S</b>: Standalone
+ 
+ </div>
+ <br>
+ <br>
+ 
+ <br>
+  <h1>ZooKeeper实时读写TPS</h1>
+  <table border="0" cellspacing="0" cellpadding="0" style="width: 50px;">
+	<tr>
+		<c:forEach var="zooKeeperStatus" items="${zooKeeperStatusMap}">
+				<td>${ zooKeeperStatus.key }</td>
+				<td style="background-color:#DDDDDE;">${ zooKeeperStatus.value.rwps }</td>
+		</c:forEach>
+	</table>
+	
+   <div id="container2" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+ 
 <script type="text/javascript"> 
 
 var Ptr=document.getElementById("tab").getElementsByTagName("tr"); 
@@ -146,6 +167,74 @@ var sHTML = '<p><button onclick="window.neatDialog.close()">关闭</button></p>'
 </SCRIPT>
 
 
+<script>
+
+window.onload = function(){
+
+	
+	// Radialize the colors
+	Highcharts.getOptions().colors = Highcharts.map(Highcharts.getOptions().colors, function(color) {
+	    return {
+	        radialGradient: { cx: 0.5, cy: 0.3, r: 0.7 },
+	        stops: [
+	            [0, color],
+	            [1, Highcharts.Color(color).brighten(-0.3).get('rgb')] // darken
+	        ]
+	    };
+	});
+	
+	// Build the chart
+    jQuery('#container').highcharts({
+        chart: {
+            plotBackgroundColor: null,
+            plotBorderWidth: null,
+            plotShadow: false
+        },
+        title: {
+            text: 'Browser market shares at a specific website, 2010'
+        },
+        tooltip: {
+    	    pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+        },
+        plotOptions: {
+            pie: {
+                allowPointSelect: true,
+                cursor: 'pointer',
+                dataLabels: {
+                    enabled: true,
+                    color: '#000000',
+                    connectorColor: '#000000',
+                    formatter: function() {
+                        return '<b>'+ this.point.name +'</b>: '+ Math.round(this.percentage) +' %';
+                    }
+                }
+            }
+        },
+        series: [{
+            type: 'pie',
+            name: 'Browser share',
+            data: [
+                ['Firefox',   145.0],
+                ['IE',       26.8],
+                {
+                    name: 'Chrome',
+                    y: 12.8,
+                    sliced: true,
+                    selected: true
+                },
+                ['Safari',    48.5],
+                ['Opera',     6.2],
+                ['Others',   140.7]
+            ]
+        }]
+    });
+	
+}
+
+
+
+
+</script>
 
 
 
