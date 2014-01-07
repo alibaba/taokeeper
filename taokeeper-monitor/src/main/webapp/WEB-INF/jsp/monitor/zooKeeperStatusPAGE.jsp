@@ -97,9 +97,10 @@ a:visited { text-decoration:none}
 	<tr>
 		<c:forEach var="zooKeeperStatus" items="${zooKeeperStatusMap}">
 				<td>${ zooKeeperStatus.key }</td>
-				<td style="background-color:#DDDDDE;">${ zooKeeperStatus.value.rwps }</td>
 		</c:forEach>
-	</table>
+            <td style="background-color:#DDDDDE;">${ zooKeeperStatus.value.rwps }</td>
+    </tr>
+  </table>
 	
    <div id="container2" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
  
