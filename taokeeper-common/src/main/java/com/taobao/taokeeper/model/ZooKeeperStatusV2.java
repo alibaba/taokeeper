@@ -9,6 +9,8 @@ package com.taobao.taokeeper.model;
 public class ZooKeeperStatusV2 extends ZooKeeperStatus {
 	
 	private RWStatistics rwps;
+    private RTStats rtStats;
+
 	public static class RWStatistics{
 		
 		
@@ -129,7 +131,97 @@ public class ZooKeeperStatusV2 extends ZooKeeperStatus {
 		}
 		
 	}
+    public static class RTStats {
+        private long createSession;
+        private long setData;
+        private long getChildren;
+        private long delete;
+        private long create;
+        private long exists;
+        private long getData;
 
+        public RTStats() {
+        }
+
+        public RTStats(long createSession, long setData, long getChildren, long delete, long create, long exists, long getData) {
+            this.createSession = createSession;
+            this.setData = setData;
+            this.getChildren = getChildren;
+            this.delete = delete;
+            this.create = create;
+            this.exists = exists;
+            this.getData = getData;
+        }
+
+        public long getCreateSession() {
+            return createSession;
+        }
+
+        public void setCreateSession(long createSession) {
+            this.createSession = createSession;
+        }
+
+        public long getSetData() {
+            return setData;
+        }
+
+        public void setSetData(long setData) {
+            this.setData = setData;
+        }
+
+        public long getGetChildren() {
+            return getChildren;
+        }
+
+        public void setGetChildren(long getChildren) {
+            this.getChildren = getChildren;
+        }
+
+        public long getDelete() {
+            return delete;
+        }
+
+        public void setDelete(long delete) {
+            this.delete = delete;
+        }
+
+        public long getCreate() {
+            return create;
+        }
+
+        public void setCreate(long create) {
+            this.create = create;
+        }
+
+        public long getExists() {
+            return exists;
+        }
+
+        public void setExists(long exists) {
+            this.exists = exists;
+        }
+
+        public long getGetData() {
+            return getData;
+        }
+
+        public void setGetData(long getData) {
+            this.getData = getData;
+        }
+
+        @Override
+        public String toString() {
+            return "RTStats{" +
+                    "createSession=" + createSession +
+                    ", setData=" + setData +
+                    ", getChildren=" + getChildren +
+                    ", delete=" + delete +
+                    ", create=" + create +
+                    ", exists=" + exists +
+                    ", getData=" + getData +
+                    '}';
+        }
+    }
 
 
 
@@ -137,12 +229,16 @@ public class ZooKeeperStatusV2 extends ZooKeeperStatus {
 		return rwps;
 	}
 
-
-
-
 	public void setRwps( RWStatistics rwps ) {
 		this.rwps = rwps;
 	}
-	
 
+
+    public RTStats getRtStats() {
+        return rtStats;
+    }
+
+    public void setRtStats(RTStats rtStats) {
+        this.rtStats = rtStats;
+    }
 }

@@ -31,7 +31,10 @@ public class SystemConstant {
 	
 	public final static int HOURS_RATE_OF_ZOOKEEPER_NODE_CHECK = 1;
 
-	public final static String COMMAND_CONS = "echo cons | nc {0} {1}";
+    public final static int MINS_RATE_OF_ZOOKEEPER_RT_MONITOR = 2;
+
+
+    public final static String COMMAND_CONS = "echo cons | nc {0} {1}";
 	public final static String COMMAND_STAT = "echo stat | nc {0} {1}";
 	public final static String COMMAND_WCHS = "echo wchs | nc {0} {1}";
 	public final static String COMMAND_WCHC = "echo wchc | nc {0} {1}";
