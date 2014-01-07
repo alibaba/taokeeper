@@ -86,8 +86,8 @@ a:visited { text-decoration:none}
     <tr>
         <c:forEach var="zooKeeperStatus" items="${zooKeeperStatusMap}">
         <td>${ zooKeeperStatus.key }</td>
-        <td style="background-color:#DDDDDE;">${ zooKeeperStatus.value.rtStats }</td>
         </c:forEach>
+        <td style="background-color:#DDDDDE;">${ zooKeeperStatus.value.rtStats }</td>
     </tr>
 </table>
 
@@ -97,8 +97,8 @@ a:visited { text-decoration:none}
 	<tr>
 		<c:forEach var="zooKeeperStatus" items="${zooKeeperStatusMap}">
 				<td>${ zooKeeperStatus.key }</td>
-		</c:forEach>
             <td style="background-color:#DDDDDE;">${ zooKeeperStatus.value.rwps }</td>
+        </c:forEach>
     </tr>
   </table>
 	
