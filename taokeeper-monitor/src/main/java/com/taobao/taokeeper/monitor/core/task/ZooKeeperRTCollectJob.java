@@ -8,6 +8,8 @@ import common.toolkit.java.util.ObjectUtil;
 import common.toolkit.java.util.collection.CollectionUtil;
 import common.toolkit.java.util.collection.ListUtil;
 import org.apache.zookeeper.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.context.ContextLoader;
 import org.springframework.web.context.WebApplicationContext;
 
@@ -23,6 +25,7 @@ import java.util.concurrent.CountDownLatch;
  * To change this template use File | Settings | File Templates.
  */
 public class ZooKeeperRTCollectJob extends TimerTask {
+    private static final Logger LOG_rtMonitor = LoggerFactory.getLogger("rtMonitor");
 
     private WebApplicationContext wac;
 
@@ -138,6 +141,16 @@ public class ZooKeeperRTCollectJob extends TimerTask {
         //System.out.println("getChildren:" + String.valueOf(rt / cnt));
 
         rtStatus.put(cluster.getClusterId(), update);
+
+        LOG_rtMonitor.warn("[rt-check] servers : " + ListUtil.toString(cluster.getServerList())
+        + " --- createSession : " + update.get("createSession")
+        + ", create : " + update.get("create")
+        + ", delete : " + update.get("delete")
+        + ", getChildren : " + update.get("getChildren")
+        + ", setData : " + update.get("setData")
+        + ", getData : " + update.get("getData")
+        + ", exists : " + update.get("exists")
+        );
     }
 
     private class DefaultWatcher implements Watcher {
