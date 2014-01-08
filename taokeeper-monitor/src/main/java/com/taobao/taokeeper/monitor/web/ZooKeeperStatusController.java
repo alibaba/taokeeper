@@ -1,29 +1,26 @@
 package com.taobao.taokeeper.monitor.web;
-import static common.toolkit.java.constant.EmptyObjectConstant.EMPTY_STRING;
-import static common.toolkit.java.constant.SymbolConstant.COLON;
-
-import java.io.IOException;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
+import com.taobao.taokeeper.common.GlobalInstance;
+import com.taobao.taokeeper.model.ZooKeeperCluster;
+import com.taobao.taokeeper.model.ZooKeeperStatusV2;
+import com.taobao.taokeeper.monitor.core.task.ZooKeeperRTCollectJob;
+import common.toolkit.java.exception.DaoException;
+import common.toolkit.java.util.StringUtil;
+import common.toolkit.java.util.io.ServletUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.taobao.taokeeper.common.GlobalInstance;
-import com.taobao.taokeeper.model.ZooKeeperCluster;
-import com.taobao.taokeeper.model.ZooKeeperStatus;
-import com.taobao.taokeeper.model.ZooKeeperStatusV2;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
-import common.toolkit.java.exception.DaoException;
-import common.toolkit.java.util.StringUtil;
-import common.toolkit.java.util.io.ServletUtil;
+import static common.toolkit.java.constant.EmptyObjectConstant.EMPTY_STRING;
+import static common.toolkit.java.constant.SymbolConstant.COLON;
 
 /**
  * Control of ZooKeeperStatus 
@@ -80,6 +77,7 @@ public class ZooKeeperStatusController extends BaseController {
 			model.put("description", zooKeeperCluster.getDescription() );
 			model.put("zooKeeperClusterMap", zooKeeperClusterMap );
 			model.put( "timeOfUpdateZooKeeperStatusSet", GlobalInstance.timeOfUpdateZooKeeperStatusSet );
+            model.put("clusterRTStatsMap", ZooKeeperRTCollectJob.getRtStatus().get(zooKeeperCluster.getClusterId()));
 			return new ModelAndView( "monitor/zooKeeperStatusPAGE", model );
 			
 		} catch (NumberFormatException e) {

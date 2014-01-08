@@ -80,13 +80,12 @@ a:visited { text-decoration:none}
  <br>
  <br>
 
-
 <h1>ZooKeeper实时RT监控</h1>
 <table border="0" cellspacing="0" cellpadding="0" style="width: 50px;">
     <tr>
-        <c:forEach var="zooKeeperStatus" items="${zooKeeperStatusMap}">
-        <td>${ zooKeeperStatus.key }</td>
-        <td style="background-color:#DDDDDE;">${ zooKeeperStatus.value.rtStats }</td>
+        <c:forEach var="clusterRTStats" items="${clusterRTStatsMap}">
+            <td>${ clusterRTStats.key }</td>
+            <td style="background-color:#DDDDDE;">${ clusterRTStats.value } </td>
         </c:forEach>
     </tr>
 </table>
