@@ -82,23 +82,38 @@ a:visited { text-decoration:none}
 
 <h1>ZooKeeper实时RT监控</h1>
 <table border="0" cellspacing="0" cellpadding="0" style="width: 50px;">
+
     <tr>
-        <c:forEach var="clusterRTStats" items="${clusterRTStatsMap}">
-            <td>${ clusterRTStats.key }</td>
-            <td style="background-color:#DDDDDE;">${ clusterRTStats.value } </td>
+        <td>cluster:${ clusterName }</td>
+        <c:forEach var="each" items="${clusterRTStats}">
+            <td>${ each.key }</td>
+            <td style="background-color:#DDDDDE;">${ each.value } </td>
         </c:forEach>
     </tr>
+
+    <tr>
+        <c:forEach var="clusterRTStats" items="${clusterRTStatsMap}">
+
+                <td>server:${ clusterRTStats.key }</td>
+                <c:forEach var="each" items="${clusterRTStats.value}">
+                    <td>${ each.key }</td>
+                    <td style="background-color:#DDDDDE;">${ each.value } </td>
+                </c:forEach>
+        </c:forEach>
+    </tr>
+
 </table>
 
  <br>
   <h1>ZooKeeper实时读写TPS</h1>
   <table border="0" cellspacing="0" cellpadding="0" style="width: 50px;">
-	<tr>
 		<c:forEach var="zooKeeperStatus" items="${zooKeeperStatusMap}">
-				<td>${ zooKeeperStatus.key }</td>
-            <td style="background-color:#DDDDDE;">${ zooKeeperStatus.value.rwps }</td>
+            <tr>
+               <td>${ zooKeeperStatus.key }</td>
+               <td style="background-color:#DDDDDE;">${ zooKeeperStatus.value.rwps }</td>
+            </tr>
+
         </c:forEach>
-    </tr>
   </table>
 	
    <div id="container2" style="min-width: 310px; height: 400px; margin: 0 auto"></div>

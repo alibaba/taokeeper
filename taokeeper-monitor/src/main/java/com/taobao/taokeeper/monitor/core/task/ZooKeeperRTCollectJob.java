@@ -29,14 +29,21 @@ public class ZooKeeperRTCollectJob extends TimerTask {
 
     private WebApplicationContext wac;
 
-    private static volatile Map<Integer, Map<String, String>> rtStatus = new HashMap<Integer, Map<String, String>>();
+    private static volatile Map<Integer, Map<String, Map<String, String>>> rtStatus = new HashMap<Integer, Map<String, Map<String, String>>>();
+
+    private static volatile Map<Integer, Map<String, String>> clustRTStatus = new HashMap<Integer, Map<String, String>>();
+
 
     public ZooKeeperRTCollectJob() {
         wac = ContextLoader.getCurrentWebApplicationContext();
     }
 
-    public static Map<Integer, Map<String, String>> getRtStatus() {
+    public static Map<Integer, Map<String, Map<String, String>>> getRtStatus() {
         return rtStatus;
+    }
+
+    public static Map<Integer, Map<String, String>> getClustRTStatus() {
+        return clustRTStatus;
     }
 
     private List<ZooKeeperCluster> getMonitorCluster() throws DaoException {
@@ -56,24 +63,133 @@ public class ZooKeeperRTCollectJob extends TimerTask {
         return zooKeeperClusterSet;
     }
 
+    private class launchCollectRTJob implements Runnable {
+        private final ZooKeeperCluster cluster;
+
+        private launchCollectRTJob(ZooKeeperCluster cluster) {
+            this.cluster = cluster;
+        }
+
+        @Override
+        public void run() {
+            try {
+                collectRT(cluster);
+            } catch (IOException e) {
+                e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+            } catch (InterruptedException e) {
+                e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+            }
+        }
+    }
+
     private void collectRT(ZooKeeperCluster cluster) throws IOException, InterruptedException {
 
         if (ObjectUtil.isBlank(cluster) || CollectionUtil.isBlank(cluster.getServerList())) {
             return;
         }
 
+        Map<String, Map<String, String>> serverRTUpdate = new HashMap<String, Map<String, String>>();
+
+        for (String server : cluster.getServerList()) {
+            Map<String, String> update = new HashMap<String, String>();
+
+            CountDownLatch connectSignal = new CountDownLatch(1);
+
+            long st = System.currentTimeMillis();
+            ZooKeeper zkClient = new ZooKeeper(server, 5000, new DefaultWatcher(connectSignal));
+            connectSignal.await();
+            long rt = System.currentTimeMillis() - st;
+            update.put("createSession", String.valueOf(rt));
+
+            final int cnt = 30;
+            st = System.currentTimeMillis();
+            for (int i = 0; i < cnt; i++) {
+                try {
+                    zkClient.create("/qiaoyi.dingqy" + i, "rtMonitor".getBytes(), ZooDefs.Ids.OPEN_ACL_UNSAFE, CreateMode.PERSISTENT);
+                } catch (KeeperException e) {
+                }
+            }
+            rt = System.currentTimeMillis() - st;
+            update.put("create", String.valueOf(rt / cnt));
+
+            st = System.currentTimeMillis();
+            for (int i = 0; i < cnt; i++) {
+                try {
+                    zkClient.exists("/qiaoyi.dingqy" + i, false);
+                } catch (KeeperException e) {
+                }
+            }
+            rt = System.currentTimeMillis() - st;
+            update.put("exists", String.valueOf(rt / cnt));
+
+            st = System.currentTimeMillis();
+            for (int i = 0; i < cnt; i++) {
+                try {
+                    zkClient.setData("/qiaoyi.dingqy" + i, "rtMonitor".getBytes(), -1);
+                } catch (KeeperException e) {
+                }
+            }
+            rt = System.currentTimeMillis() - st;
+            update.put("setData", String.valueOf(rt / cnt));
+
+            st = System.currentTimeMillis();
+            for (int i = 0; i < cnt; i++) {
+                try {
+                    zkClient.getData("/qiaoyi.dingqy" + i, false, null);
+                } catch (KeeperException e) {
+                }
+            }
+            rt = System.currentTimeMillis() - st;
+            update.put("getData", String.valueOf(rt / cnt));
+
+            st = System.currentTimeMillis();
+            for (int i = 0; i < cnt; i++) {
+                try {
+                    zkClient.delete("/qiaoyi.dingqy" + i, -1);
+                } catch (KeeperException e) {
+                }
+            }
+            rt = System.currentTimeMillis() - st;
+            update.put("delete", String.valueOf(rt / cnt));
+
+            st = System.currentTimeMillis();
+            for (int i = 0; i < cnt; i++) {
+                try {
+                    zkClient.getChildren("/qiaoyi.dingqy" + i, false);
+                } catch (KeeperException e) {
+                }
+            }
+            rt = System.currentTimeMillis() - st;
+            update.put("getChildren", String.valueOf(rt / cnt));
+
+            serverRTUpdate.put(server, update);
+
+            LOG_rtMonitor.warn("[rt-check] servers : " + server
+                    + " --- createSession : " + update.get("createSession")
+                    + ", create : " + update.get("create")
+                    + ", delete : " + update.get("delete")
+                    + ", getChildren : " + update.get("getChildren")
+                    + ", setData : " + update.get("setData")
+                    + ", getData : " + update.get("getData")
+                    + ", exists : " + update.get("exists")
+            );
+        }
+
+        rtStatus.put(cluster.getClusterId(), serverRTUpdate);
+
+        // for cluster rt monitor
+        // XXX todo refactor
         Map<String, String> update = new HashMap<String, String>();
 
         CountDownLatch connectSignal = new CountDownLatch(1);
 
         long st = System.currentTimeMillis();
-        ZooKeeper zkClient = new ZooKeeper(ListUtil.toString(cluster.getServerList()), 5000, new DefaultWatcher(connectSignal));
+        ZooKeeper zkClient = new ZooKeeper(ListUtil.toString(cluster.getServerList()), 10000, new DefaultWatcher(connectSignal));
         connectSignal.await();
         long rt = System.currentTimeMillis() - st;
         update.put("createSession", String.valueOf(rt));
-        //System.out.println("createSession:" + String.valueOf(rt));
 
-        final int cnt = 50;
+        final int cnt = 30;
         st = System.currentTimeMillis();
         for (int i = 0; i < cnt; i++) {
             try {
@@ -83,7 +199,6 @@ public class ZooKeeperRTCollectJob extends TimerTask {
         }
         rt = System.currentTimeMillis() - st;
         update.put("create", String.valueOf(rt / cnt));
-        //System.out.println("create:" + String.valueOf(rt / cnt));
 
         st = System.currentTimeMillis();
         for (int i = 0; i < cnt; i++) {
@@ -94,7 +209,6 @@ public class ZooKeeperRTCollectJob extends TimerTask {
         }
         rt = System.currentTimeMillis() - st;
         update.put("exists", String.valueOf(rt / cnt));
-        //System.out.println("exists:" + String.valueOf(rt / cnt));
 
         st = System.currentTimeMillis();
         for (int i = 0; i < cnt; i++) {
@@ -105,7 +219,6 @@ public class ZooKeeperRTCollectJob extends TimerTask {
         }
         rt = System.currentTimeMillis() - st;
         update.put("setData", String.valueOf(rt / cnt));
-        //System.out.println("setData:" + String.valueOf(rt / cnt));
 
         st = System.currentTimeMillis();
         for (int i = 0; i < cnt; i++) {
@@ -116,7 +229,6 @@ public class ZooKeeperRTCollectJob extends TimerTask {
         }
         rt = System.currentTimeMillis() - st;
         update.put("getData", String.valueOf(rt / cnt));
-        //System.out.println("getData:" + String.valueOf(rt / cnt));
 
         st = System.currentTimeMillis();
         for (int i = 0; i < cnt; i++) {
@@ -127,7 +239,6 @@ public class ZooKeeperRTCollectJob extends TimerTask {
         }
         rt = System.currentTimeMillis() - st;
         update.put("delete", String.valueOf(rt / cnt));
-        //System.out.println("delete:" + String.valueOf(rt / cnt));
 
         st = System.currentTimeMillis();
         for (int i = 0; i < cnt; i++) {
@@ -138,19 +249,18 @@ public class ZooKeeperRTCollectJob extends TimerTask {
         }
         rt = System.currentTimeMillis() - st;
         update.put("getChildren", String.valueOf(rt / cnt));
-        //System.out.println("getChildren:" + String.valueOf(rt / cnt));
 
-        rtStatus.put(cluster.getClusterId(), update);
-
-        LOG_rtMonitor.warn("[rt-check] servers : " + ListUtil.toString(cluster.getServerList())
-        + " --- createSession : " + update.get("createSession")
-        + ", create : " + update.get("create")
-        + ", delete : " + update.get("delete")
-        + ", getChildren : " + update.get("getChildren")
-        + ", setData : " + update.get("setData")
-        + ", getData : " + update.get("getData")
-        + ", exists : " + update.get("exists")
+        LOG_rtMonitor.warn("[cluster-rt-check] servers : " + ListUtil.toString(cluster.getServerList())
+                + " --- createSession : " + update.get("createSession")
+                + ", create : " + update.get("create")
+                + ", delete : " + update.get("delete")
+                + ", getChildren : " + update.get("getChildren")
+                + ", setData : " + update.get("setData")
+                + ", getData : " + update.get("getData")
+                + ", exists : " + update.get("exists")
         );
+
+        clustRTStatus.put(cluster.getClusterId(), update);
     }
 
     private class DefaultWatcher implements Watcher {
@@ -177,14 +287,14 @@ public class ZooKeeperRTCollectJob extends TimerTask {
             if (clusters == null) return;
 
             for (ZooKeeperCluster cluster : clusters) {
-                collectRT(cluster);
+                Thread t = new Thread(new launchCollectRTJob(cluster));
+                t.start();
             }
 
             Thread.sleep(500l);
 
         } catch (DaoException e) {
         } catch (InterruptedException e) {
-        } catch (IOException e) {
         }
         return;
 
