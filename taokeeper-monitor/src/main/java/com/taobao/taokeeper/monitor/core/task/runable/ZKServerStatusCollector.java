@@ -50,6 +50,7 @@ public class ZKServerStatusCollector implements Runnable {
     private static final String MODE_FOLLOWER = "Mode: follower";
     private static final String MODE_LEADERER = "Mode: leader";
     private static final String MODE_STANDALONE = "Mode: standalone";
+    private static final String MODE_OBSERVER = "Mode: observer";
     private static final String NODE_COUNT = "Node count:";
 
     private static final String STRING_CONNECTIONS_WATCHING = "connections watching";
@@ -148,7 +149,9 @@ public class ZKServerStatusCollector implements Runnable {
                     zooKeeperStatus.setMode( "L" );
                 } else if ( line.contains( MODE_STANDALONE ) ) {
                     zooKeeperStatus.setMode( "S" );
-                } else if ( line.contains( NODE_COUNT ) ) {
+                } else if ( line.contains( MODE_OBSERVER ) ) {
+                    zooKeeperStatus.setMode( "O" );
+                }else if ( line.contains( NODE_COUNT ) ) {
                     zooKeeperStatus.setNodeCount( Integer.parseInt( StringUtil.trimToEmpty( line.replace( NODE_COUNT, EMPTY_STRING ) ) ) );
                 } else if ( line.contains( STRING_SENT ) ) {
                     zooKeeperStatus.setSent( StringUtil.trimToEmpty( line.replace( STRING_SENT, EMPTY_STRING ) ) );
