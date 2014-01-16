@@ -91,16 +91,17 @@ a:visited { text-decoration:none}
         </c:forEach>
     </tr>
 
-    <tr>
-        <c:forEach var="clusterRTStats" items="${clusterRTStatsMap}">
 
+        <c:forEach var="clusterRTStats" items="${clusterRTStatsMap}">
+    <tr>
                 <td>server:${ clusterRTStats.key }</td>
                 <c:forEach var="each" items="${clusterRTStats.value}">
                     <td>${ each.key }</td>
                     <td style="background-color:#DDDDDE;">${ each.value } </td>
                 </c:forEach>
-        </c:forEach>
     </tr>
+        </c:forEach>
+
 
 </table>
 
