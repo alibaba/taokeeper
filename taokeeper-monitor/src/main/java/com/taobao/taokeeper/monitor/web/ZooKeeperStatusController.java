@@ -2,7 +2,6 @@ package com.taobao.taokeeper.monitor.web;
 import com.taobao.taokeeper.common.GlobalInstance;
 import com.taobao.taokeeper.model.ZooKeeperCluster;
 import com.taobao.taokeeper.model.ZooKeeperStatusV2;
-import com.taobao.taokeeper.monitor.core.task.ZooKeeperRTCollectJob;
 import common.toolkit.java.exception.DaoException;
 import common.toolkit.java.util.StringUtil;
 import common.toolkit.java.util.io.ServletUtil;
@@ -77,8 +76,8 @@ public class ZooKeeperStatusController extends BaseController {
 			model.put("description", zooKeeperCluster.getDescription() );
 			model.put("zooKeeperClusterMap", zooKeeperClusterMap );
 			model.put( "timeOfUpdateZooKeeperStatusSet", GlobalInstance.timeOfUpdateZooKeeperStatusSet );
-            model.put("clusterRTStatsMap", ZooKeeperRTCollectJob.getRtStatus().get(zooKeeperCluster.getClusterId()));
-            model.put("clusterRTStats", ZooKeeperRTCollectJob.getClustRTStatus().get(zooKeeperCluster.getClusterId()));
+            //model.put("clusterRTStatsMap", ZooKeeperRTCollectJob.getRtStatus().get(zooKeeperCluster.getClusterId()));
+            //model.put("clusterRTStats", ZooKeeperRTCollectJob.getClustRTStatus().get(zooKeeperCluster.getClusterId()));
 			return new ModelAndView( "monitor/zooKeeperStatusPAGE", model );
 			
 		} catch (NumberFormatException e) {

@@ -78,15 +78,10 @@ public class Initialization extends HttpServlet implements Servlet {
 
 
         //开启ZooKeeper RT monitor
+        /*
         timer.schedule( new ZooKeeperRTCollectJob(), 5000, //
                 BaseConstant.MILLISECONDS_OF_ONE_MINUTE  *
                         SystemConstant.MINS_RATE_OF_ZOOKEEPER_RT_MONITOR);
-
-        // for test
-        /*
-        timer.schedule( new ZooKeeperRTCollectJob(), 0, //
-                BaseConstant.MILLISECONDS_OF_ONE_SECOND  *
-                        30  );
           */
 
 		//ThreadUtil.startThread( new CheckerJob( ) );
