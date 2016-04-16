@@ -17,10 +17,10 @@ import org.apache.zookeeper.ZooDefs.Ids;
 import org.apache.zookeeper.ZooKeeper;
 import org.apache.zookeeper.ZooKeeper.States;
 
-import common.toolkit.java.constant.EmptyObjectConstant;
-import common.toolkit.java.util.StatisticsUtil;
-import common.toolkit.java.util.StringUtil;
-import common.toolkit.java.util.system.SystemUtil;
+import common.toolkit.constant.EmptyObjectConstant;
+import common.toolkit.util.StatisticsUtil;
+import common.toolkit.util.StringUtil;
+import common.toolkit.util.system.SystemUtil;
 
 /**
  * ZOOKEEPER压测：进行写入数据压力测试

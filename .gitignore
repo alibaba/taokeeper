@@ -1,4 +1,5 @@
 # ignore files
+.idea
 .project
 .settings/
 taokeeper-monitor/target/

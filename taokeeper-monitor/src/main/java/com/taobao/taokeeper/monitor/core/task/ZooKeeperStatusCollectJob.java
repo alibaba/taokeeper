@@ -1,7 +1,7 @@
 package com.taobao.taokeeper.monitor.core.task;
 
 import static com.taobao.taokeeper.common.constant.SystemConstant.MINS_RATE_OF_COLLECT_ZOOKEEPER;
-import static common.toolkit.java.constant.SymbolConstant.COLON;
+import static common.toolkit.constant.SymbolConstant.COLON;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -21,10 +21,10 @@ import com.taobao.taokeeper.model.ZooKeeperCluster;
 import com.taobao.taokeeper.monitor.core.Initialization;
 import com.taobao.taokeeper.monitor.core.ThreadPoolManager;
 import com.taobao.taokeeper.monitor.core.task.runable.ZKServerStatusCollector;
-import common.toolkit.java.exception.DaoException;
-import common.toolkit.java.util.DateUtil;
-import common.toolkit.java.util.StringUtil;
-import common.toolkit.java.util.ThreadUtil;
+import common.toolkit.exception.DaoException;
+import common.toolkit.util.DateUtil;
+import common.toolkit.util.StringUtil;
+import common.toolkit.util.ThreadUtil;
 /**
  * Description: Collect info of zookeeper by jmx.
  * 

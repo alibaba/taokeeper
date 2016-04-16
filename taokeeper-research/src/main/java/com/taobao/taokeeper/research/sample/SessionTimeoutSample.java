@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.util.concurrent.CountDownLatch;
 
 import org.apache.log4j.PropertyConfigurator;
-import org.apache.log4j.xml.DOMConfigurator;
 import org.apache.zookeeper.CreateMode;
 import org.apache.zookeeper.KeeperException;
 import org.apache.zookeeper.WatchedEvent;
@@ -13,8 +12,8 @@ import org.apache.zookeeper.Watcher.Event.KeeperState;
 import org.apache.zookeeper.ZooDefs.Ids;
 import org.apache.zookeeper.ZooKeeper;
 
-import common.toolkit.java.util.ObjectUtil;
-import common.toolkit.java.util.ThreadUtil;
+import common.toolkit.util.ObjectUtil;
+import common.toolkit.util.ThreadUtil;
 
 /**
  * ZooKeeper Java Api 使用样例<br>

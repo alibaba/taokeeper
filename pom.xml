@@ -4,7 +4,7 @@
 	<groupId>com.taobao.taokeeper</groupId>
 	<artifactId>taokeeper</artifactId>
 	<name>taokeeper</name>
-	<version>1.1.2</version><!-- 注意同时修改下面的properties中的版本号 -->
+	<version>2.0.0-SNAPSHOT</version><!-- 注意同时修改下面的properties中的版本号 -->
 	<packaging>pom</packaging>
 	<description>Taobao.com ZooKeeper Keeper(Include ZK permissions, defend, some tools, etc. )</description>
 	<organization>
@@ -30,13 +30,13 @@
 
 	<properties>
 
-		<taokeeper.version>1.1.2</taokeeper.version>
+		<taokeeper.version>2.0.0-SNAPSHOT</taokeeper.version>
 		<toolkit.version>0.0.4-SNAPSHOT</toolkit.version>
 		<source.encoding>UTF-8</source.encoding>
-		<java.version>1.6</java.version>
+		<java.version>1.8</java.version>
 
 		<zookeeper.version>3.4.3</zookeeper.version>
-		<zkclient.version>0.2-SNAPSHOT</zkclient.version>
+		<zkclient.version>0.11</zkclient.version>
 
 
 
@@ -91,7 +91,8 @@
 		<mysql-connector-java.version>5.1.12</mysql-connector-java.version>
 		<ganymed.ssh.version>build210</ganymed.ssh.version>
 		<jsontools.version>1.7</jsontools.version>
-		<json.version>2.2</json.version>
+		<json.version>20171018</json.version>
+        <gson.version>2.1</gson.version>
 
 
 
@@ -100,7 +101,7 @@
 		<servlet.jstl.version>1.2</servlet.jstl.version>
 		<apache.standard.taglib.version>1.1.2</apache.standard.taglib.version>
 		<sitemesh.version>2.4.2</sitemesh.version>
-
+        <c3p0.version>0.9.1.2</c3p0.version>
 	</properties>
 
 
@@ -367,17 +368,24 @@
 				<artifactId>zookeeper</artifactId>
 				<version>${zookeeper.version}</version>
 			</dependency>
+
+            <dependency>
+                <groupId>c3p0</groupId>
+                <artifactId>c3p0</artifactId>
+                <version>${c3p0.version}</version>
+            </dependency>
+
 			<dependency>
 				<groupId>org.apache.zookeeper</groupId>
 				<artifactId>zookeeper</artifactId>
 				<classifier>sources</classifier>
 				<version>${zookeeper.version}</version>
 			</dependency>
-			<dependency>
-				<groupId>com.taobao.taokeeper</groupId>
-				<artifactId>zkclient</artifactId>
-				<version>${zkclient.version}</version>
-			</dependency>
+            <dependency>
+                <groupId>com.101tec</groupId>
+                <artifactId>zkclient</artifactId>
+                <version>${zkclient.version}</version>
+            </dependency>
 
 			<!-- JSON -->
 			<dependency>
@@ -390,7 +398,11 @@
 				<artifactId>json</artifactId>
 				<version>${json.version}</version>
 			</dependency>
-
+            <dependency>
+                <groupId>com.google.code.gson</groupId>
+                <artifactId>gson</artifactId>
+                <version>${gson.version}</version>
+            </dependency>
 
 			<!-- Tags -->
 			<dependency>

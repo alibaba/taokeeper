@@ -1,5 +1,5 @@
 package com.taobao.taokeeper.monitor.web;
-import static common.toolkit.java.constant.EmptyObjectConstant.EMPTY_STRING;
+import static common.toolkit.constant.EmptyObjectConstant.EMPTY_STRING;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -13,11 +13,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import common.toolkit.java.entity.DateFormat;
-import common.toolkit.java.exception.DaoException;
-import common.toolkit.java.util.DateUtil;
-import common.toolkit.java.util.StringUtil;
-import common.toolkit.java.util.io.ServletUtil;
+import common.toolkit.entity.DateFormat;
+import common.toolkit.exception.DaoException;
+import common.toolkit.util.DateUtil;
+import common.toolkit.util.StringUtil;
+import common.toolkit.util.io.ServletUtil;
 
 /**
  * Report

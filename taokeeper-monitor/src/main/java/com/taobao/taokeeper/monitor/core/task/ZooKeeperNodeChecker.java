@@ -20,11 +20,11 @@ import com.taobao.taokeeper.model.ZooKeeperCluster;
 import com.taobao.taokeeper.model.type.Message;
 import com.taobao.taokeeper.monitor.core.ThreadPoolManager;
 import com.taobao.taokeeper.reporter.alarm.TbMessageSender;
-import common.toolkit.java.exception.DaoException;
-import common.toolkit.java.util.ObjectUtil;
-import common.toolkit.java.util.StringUtil;
-import common.toolkit.java.util.collection.CollectionUtil;
-import common.toolkit.java.util.collection.ListUtil;
+import common.toolkit.exception.DaoException;
+import common.toolkit.util.ObjectUtil;
+import common.toolkit.util.StringUtil;
+import common.toolkit.util.collection.CollectionUtil;
+import common.toolkit.util.collection.ListUtil;
 /**
  * Description: ZK节点的Path检查<br>
  * 啊！！！添加这个类的时候，距离taokeeper开始开发已经一年时间了，哎。时间过得真快，又要大一岁了，悲剧！

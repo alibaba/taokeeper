@@ -9,17 +9,17 @@ import com.taobao.taokeeper.model.*;
 import com.taobao.taokeeper.model.type.Message;
 import com.taobao.taokeeper.monitor.core.ThreadPoolManager;
 import com.taobao.taokeeper.reporter.alarm.TbMessageSender;
-import common.toolkit.java.entity.DateFormat;
-import common.toolkit.java.entity.io.Connection;
-import common.toolkit.java.entity.io.SSHResource;
-import common.toolkit.java.exception.DaoException;
-import common.toolkit.java.exception.SSHException;
-import common.toolkit.java.util.DateUtil;
-import common.toolkit.java.util.ObjectUtil;
-import common.toolkit.java.util.StringUtil;
-import common.toolkit.java.util.collection.MapUtil;
-import common.toolkit.java.util.io.IOUtil;
-import common.toolkit.java.util.io.SSHUtil;
+import common.toolkit.entity.DateFormat;
+import common.toolkit.entity.io.Connection;
+import common.toolkit.entity.io.SSHResource;
+import common.toolkit.exception.DaoException;
+import common.toolkit.exception.SSHException;
+import common.toolkit.util.DateUtil;
+import common.toolkit.util.ObjectUtil;
+import common.toolkit.util.StringUtil;
+import common.toolkit.util.collection.MapUtil;
+import common.toolkit.util.io.IOUtil;
+import common.toolkit.util.io.SSHUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.context.ContextLoader;
@@ -32,9 +32,9 @@ import java.util.List;
 import java.util.Map;
 
 import static com.taobao.taokeeper.common.constant.SystemConstant.*;
-import static common.toolkit.java.constant.BaseConstant.WORD_SEPARATOR;
-import static common.toolkit.java.constant.EmptyObjectConstant.EMPTY_STRING;
-import static common.toolkit.java.constant.HtmlTagConstant.BR;
+import static common.toolkit.constant.BaseConstant.WORD_SEPARATOR;
+import static common.toolkit.constant.EmptyObjectConstant.EMPTY_STRING;
+import static common.toolkit.constant.HtmlTagConstant.BR;
 
 
 /**

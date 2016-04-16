@@ -11,8 +11,8 @@ import org.apache.zookeeper.Watcher;
 import org.apache.zookeeper.ZooKeeper;
 import org.apache.zookeeper.ZooKeeper.States;
 
-import common.toolkit.java.util.StatisticsUtil;
-import common.toolkit.java.util.ThreadUtil;
+import common.toolkit.util.StatisticsUtil;
+import common.toolkit.util.ThreadUtil;
 
 /**
  * ��ݷ�����

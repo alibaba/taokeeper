@@ -1,6 +1,6 @@
 package com.taobao.taokeeper.monitor.service.impl;
 
-import static common.toolkit.java.constant.SymbolConstant.COLON;
+import static common.toolkit.constant.SymbolConstant.COLON;
 
 import java.util.List;
 
@@ -9,10 +9,10 @@ import org.slf4j.LoggerFactory;
 
 import com.taobao.taokeeper.model.TaoKeeperStat;
 import com.taobao.taokeeper.monitor.service.ReportService;
-import common.toolkit.java.constant.EmptyObjectConstant;
-import common.toolkit.java.exception.DaoException;
-import common.toolkit.java.util.ObjectUtil;
-import common.toolkit.java.util.StringUtil;
+import common.toolkit.constant.EmptyObjectConstant;
+import common.toolkit.exception.DaoException;
+import common.toolkit.util.ObjectUtil;
+import common.toolkit.util.StringUtil;
 
 /**
  * Description: Service of taokeeper_stat

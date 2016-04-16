@@ -2,8 +2,8 @@ package com.taobao.taokeeper.monitor.core.task.runable;
 
 import static com.taobao.taokeeper.common.constant.SystemConstant.DELAY_SECS_OF_TWO_SERVER_ALIVE_CHECK_ZOOKEEPER;
 import static com.taobao.taokeeper.common.constant.SystemConstant.ZOOKEEPER_MONITOR_PATH;
-import static common.toolkit.java.constant.EmptyObjectConstant.EMPTY_STRING;
-import static common.toolkit.java.constant.SymbolConstant.COLON;
+import static common.toolkit.constant.EmptyObjectConstant.EMPTY_STRING;
+import static common.toolkit.constant.SymbolConstant.COLON;
 
 import java.util.List;
 
@@ -17,9 +17,9 @@ import com.taobao.taokeeper.model.ZooKeeperCluster;
 import com.taobao.taokeeper.model.type.Message;
 import com.taobao.taokeeper.monitor.core.ThreadPoolManager;
 import com.taobao.taokeeper.reporter.alarm.TbMessageSender;
-import common.toolkit.java.util.ObjectUtil;
-import common.toolkit.java.util.StringUtil;
-import common.toolkit.java.util.io.ServletUtil;
+import common.toolkit.util.ObjectUtil;
+import common.toolkit.util.StringUtil;
+import common.toolkit.util.io.ServletUtil;
 
 /**
  * Description: Check if zookeeper server alive.<br>

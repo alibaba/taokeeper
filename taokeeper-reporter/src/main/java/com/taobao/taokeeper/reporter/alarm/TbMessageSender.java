@@ -1,6 +1,6 @@
 package com.taobao.taokeeper.reporter.alarm;
 
-import static common.toolkit.java.constant.SymbolConstant.COMMA;
+import static common.toolkit.constant.SymbolConstant.COMMA;
 
 import java.net.URLEncoder;
 import java.util.HashMap;
@@ -12,10 +12,10 @@ import org.slf4j.LoggerFactory;
 
 import com.taobao.taokeeper.common.constant.SystemConstant;
 import com.taobao.taokeeper.model.type.Message;
-import common.toolkit.java.entity.Message.MessageType;
-import common.toolkit.java.util.StringUtil;
-import common.toolkit.java.util.collection.ListUtil;
-import common.toolkit.java.util.io.NetUtil;
+import common.toolkit.entity.Message.MessageType;
+import common.toolkit.util.StringUtil;
+import common.toolkit.util.collection.ListUtil;
+import common.toolkit.util.io.NetUtil;
 
 /**
  * Description: 淘宝内部使用：旺旺消息与手机短信

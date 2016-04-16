@@ -1,6 +1,6 @@
 package com.taobao.taokeeper.monitor.web;
-import static common.toolkit.java.constant.EmptyObjectConstant.EMPTY_STRING;
-import static common.toolkit.java.constant.SymbolConstant.COLON;
+import static common.toolkit.constant.EmptyObjectConstant.EMPTY_STRING;
+import static common.toolkit.constant.SymbolConstant.COLON;
 
 import java.util.HashMap;
 import java.util.List;
@@ -15,10 +15,10 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.taobao.taokeeper.common.GlobalInstance;
 import com.taobao.taokeeper.model.ZooKeeperCluster;
-import common.toolkit.java.entity.HostPerformanceEntity;
-import common.toolkit.java.exception.DaoException;
-import common.toolkit.java.util.StringUtil;
-import common.toolkit.java.util.io.ServletUtil;
+import common.toolkit.entity.HostPerformanceEntity;
+import common.toolkit.exception.DaoException;
+import common.toolkit.util.StringUtil;
+import common.toolkit.util.io.ServletUtil;
 
 /**
  * @author yinshi.nc@taobao.com

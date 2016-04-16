@@ -1,6 +1,6 @@
 package com.taobao.taokeeper.common;
 
-import static common.toolkit.java.constant.EmptyObjectConstant.EMPTY_STRING;
+import static common.toolkit.constant.EmptyObjectConstant.EMPTY_STRING;
 
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -10,11 +10,10 @@ import java.util.concurrent.atomic.AtomicBoolean;
 import com.taobao.taokeeper.model.AlarmSettings;
 import com.taobao.taokeeper.model.TaoKeeperSettings;
 import com.taobao.taokeeper.model.ZooKeeperCluster;
-import com.taobao.taokeeper.model.ZooKeeperStatus;
 import com.taobao.taokeeper.model.ZooKeeperStatusV2;
 
-import common.toolkit.java.entity.HostPerformanceEntity;
-import common.toolkit.java.entity.io.Connection;
+import common.toolkit.entity.HostPerformanceEntity;
+import common.toolkit.entity.io.Connection;
 
 /**
  * Description: 全局Instance

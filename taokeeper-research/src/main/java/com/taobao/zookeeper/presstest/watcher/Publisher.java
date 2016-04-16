@@ -8,7 +8,7 @@ import org.apache.zookeeper.KeeperException;
 import org.apache.zookeeper.KeeperException.Code;
 import org.apache.zookeeper.ZooKeeper;
 
-import common.toolkit.java.util.ThreadUtil;
+import common.toolkit.util.ThreadUtil;
 
 /**
  * ��ݷ�����

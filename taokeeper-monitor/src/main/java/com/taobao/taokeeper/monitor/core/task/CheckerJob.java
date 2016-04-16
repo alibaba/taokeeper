@@ -9,8 +9,8 @@ import org.I0Itec.zkclient.ZkClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import common.toolkit.java.entity.DateFormat;
-import common.toolkit.java.util.DateUtil;
+import common.toolkit.entity.DateFormat;
+import common.toolkit.util.DateUtil;
 
 /**
  * Description: Check if alive one node(ip).

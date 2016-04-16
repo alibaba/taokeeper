@@ -6,8 +6,8 @@ import java.util.Map;
 
 import com.taobao.taokeeper.common.type.NodePathCheckRule;
 
-import common.toolkit.java.util.StringUtil;
-import common.toolkit.java.util.collection.ListUtil;
+import common.toolkit.util.StringUtil;
+import common.toolkit.util.collection.ListUtil;
 
 /**
  * 

@@ -1,8 +1,8 @@
 package com.taobao.taokeeper.common.constant;
 
 
-import common.toolkit.java.constant.SymbolConstant;
-import common.toolkit.java.util.StringUtil;
+import common.toolkit.constant.SymbolConstant;
+import common.toolkit.util.StringUtil;
 
 /**
  * Description: System constant,有些变量在Spring初始化的时候会注入。

@@ -51,7 +51,7 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 	<!-- Character Encoding Filter -->
 	<filter>
 		<filter-name>CharacterEncoding</filter-name>
-		<filter-class>common.toolkit.java.filter.RequestCharacterEncodingFilter</filter-class>
+		<filter-class>common.toolkit.filter.RequestCharacterEncodingFilter</filter-class>
 		<init-param>
 			<param-name>request-encoding-post</param-name>
 			<param-value>GBK</param-value>

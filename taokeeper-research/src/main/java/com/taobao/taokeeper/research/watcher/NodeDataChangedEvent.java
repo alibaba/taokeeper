@@ -14,8 +14,8 @@ import org.apache.zookeeper.ZooKeeper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import common.toolkit.java.util.ObjectUtil;
-import common.toolkit.java.util.ThreadUtil;
+import common.toolkit.util.ObjectUtil;
+import common.toolkit.util.ThreadUtil;
 
 /**
  *  这个测试类主要是为了证明，get接口可以注册两类事件：1. 数据变更 2. 节点被删除

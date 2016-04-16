@@ -12,9 +12,9 @@ import org.apache.zookeeper.ZooKeeper.States;
 
 import com.taobao.taokeeper.research.test.performance.onlysetdata.Publisher;
 
-import common.toolkit.java.util.ObjectUtil;
-import common.toolkit.java.util.StatisticsUtil;
-import common.toolkit.java.util.ThreadUtil;
+import common.toolkit.util.ObjectUtil;
+import common.toolkit.util.StatisticsUtil;
+import common.toolkit.util.ThreadUtil;
 
 /**
  * 

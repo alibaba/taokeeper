@@ -2,7 +2,7 @@ package com.taobao.taokeeper.dao;
 import java.util.List;
 
 import com.taobao.taokeeper.model.ZooKeeperCluster;
-import common.toolkit.java.exception.DaoException;
+import common.toolkit.exception.DaoException;
 
 /**
  * Description: Access DB for zookeeper cluster

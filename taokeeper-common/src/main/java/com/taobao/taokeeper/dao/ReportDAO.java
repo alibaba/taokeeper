@@ -3,7 +3,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.taobao.taokeeper.model.TaoKeeperStat;
-import common.toolkit.java.exception.DaoException;
+import common.toolkit.exception.DaoException;
 
 /**
  * Description: Access DB for taokeeper_stat

@@ -15,8 +15,8 @@ import org.apache.zookeeper.ZooKeeper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import common.toolkit.java.util.ObjectUtil;
-import common.toolkit.java.util.ThreadUtil;
+import common.toolkit.util.ObjectUtil;
+import common.toolkit.util.ThreadUtil;
 
 /**
  *  这个测试类主要是测试哪些事件会触发NodeChildrenChangedEvent

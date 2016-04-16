@@ -2,9 +2,9 @@ package com.taobao.taokeeper.monitor.core.task.runable;
 
 import static com.taobao.taokeeper.common.constant.SystemConstant.passwordOfSSH;
 import static com.taobao.taokeeper.common.constant.SystemConstant.userNameOfSSH;
-import static common.toolkit.java.constant.EmptyObjectConstant.EMPTY_STRING;
-import static common.toolkit.java.constant.SymbolConstant.PERCENT;
-import static common.toolkit.java.constant.SymbolConstant.SLASH;
+import static common.toolkit.constant.EmptyObjectConstant.EMPTY_STRING;
+import static common.toolkit.constant.SymbolConstant.PERCENT;
+import static common.toolkit.constant.SymbolConstant.SLASH;
 
 import java.util.Map;
 
@@ -18,10 +18,10 @@ import com.taobao.taokeeper.model.ZooKeeperCluster;
 import com.taobao.taokeeper.model.type.Message;
 import com.taobao.taokeeper.monitor.core.ThreadPoolManager;
 import com.taobao.taokeeper.reporter.alarm.TbMessageSender;
-import common.toolkit.java.entity.HostPerformanceEntity;
-import common.toolkit.java.exception.SSHException;
-import common.toolkit.java.util.StringUtil;
-import common.toolkit.java.util.io.SSHUtil;
+import common.toolkit.entity.HostPerformanceEntity;
+import common.toolkit.exception.SSHException;
+import common.toolkit.util.StringUtil;
+import common.toolkit.util.io.SSHUtil;
 
 /**
  * Description: Collect zooKeeper machine performance CPU/LOAD/MEM

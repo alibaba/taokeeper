@@ -10,7 +10,7 @@ import org.springframework.web.context.WebApplicationContext;
 import com.taobao.taokeeper.common.GlobalInstance;
 import com.taobao.taokeeper.dao.ZooKeeperClusterDAO;
 import com.taobao.taokeeper.model.ZooKeeperCluster;
-import common.toolkit.java.exception.DaoException;
+import common.toolkit.exception.DaoException;
 
 /**
  * Description: Dump zooKeeper cluster config info from database.

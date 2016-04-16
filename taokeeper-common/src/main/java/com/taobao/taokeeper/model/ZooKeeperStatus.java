@@ -1,11 +1,11 @@
 package com.taobao.taokeeper.model;
-import static common.toolkit.java.constant.HtmlTagConstant.BR;
+import static common.toolkit.constant.HtmlTagConstant.BR;
 
 import java.util.List;
 import java.util.Map;
 
-import common.toolkit.java.entity.io.Connection;
-import common.toolkit.java.util.StringUtil;
+import common.toolkit.entity.io.Connection;
+import common.toolkit.util.StringUtil;
 
 /**
  * Description: Model: ZooKeeperStat

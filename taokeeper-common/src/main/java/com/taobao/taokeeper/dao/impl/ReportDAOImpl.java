@@ -1,6 +1,6 @@
 package com.taobao.taokeeper.dao.impl;
 
-import static common.toolkit.java.constant.EmptyObjectConstant.EMPTY_STRING;
+import static common.toolkit.constant.EmptyObjectConstant.EMPTY_STRING;
 
 import java.sql.ResultSet;
 import java.util.ArrayList;
@@ -11,13 +11,13 @@ import java.util.Map;
 import com.taobao.taokeeper.common.constant.SqlTemplate;
 import com.taobao.taokeeper.dao.ReportDAO;
 import com.taobao.taokeeper.model.TaoKeeperStat;
-import common.toolkit.java.entity.DateFormat;
-import common.toolkit.java.entity.db.DBConnectionResource;
-import common.toolkit.java.exception.DaoException;
-import common.toolkit.java.util.DateUtil;
-import common.toolkit.java.util.StringUtil;
-import common.toolkit.java.util.collection.CollectionUtil;
-import common.toolkit.java.util.db.DbcpUtil;
+import common.toolkit.entity.DateFormat;
+import common.toolkit.entity.db.DBConnectionResource;
+import common.toolkit.exception.DaoException;
+import common.toolkit.util.DateUtil;
+import common.toolkit.util.StringUtil;
+import common.toolkit.util.collection.CollectionUtil;
+import common.toolkit.util.db.DbcpUtil;
 
 /**
  * Description: Access DB for taokeeper_stat

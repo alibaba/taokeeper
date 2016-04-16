@@ -2,16 +2,16 @@ package com.taobao.taokeeper.dao.impl;
 import static com.taobao.taokeeper.common.constant.SqlTemplate.SQL_INSERT_TAOKEEPER_SETTINGS_BY_ID;
 import static com.taobao.taokeeper.common.constant.SqlTemplate.SQL_QUERY_TAOKEEPER_SETTINGS_BY_ID;
 import static com.taobao.taokeeper.common.constant.SqlTemplate.SQL_UPDATE_TAOKEEPER_SETTINGS_BY_ID;
-import static common.toolkit.java.constant.EmptyObjectConstant.EMPTY_STRING;
+import static common.toolkit.constant.EmptyObjectConstant.EMPTY_STRING;
 
 import java.sql.ResultSet;
 
 import com.taobao.taokeeper.dao.SettingsDAO;
 import com.taobao.taokeeper.model.TaoKeeperSettings;
-import common.toolkit.java.entity.db.DBConnectionResource;
-import common.toolkit.java.exception.DaoException;
-import common.toolkit.java.util.StringUtil;
-import common.toolkit.java.util.db.DbcpUtil;
+import common.toolkit.entity.db.DBConnectionResource;
+import common.toolkit.exception.DaoException;
+import common.toolkit.util.StringUtil;
+import common.toolkit.util.db.DbcpUtil;
 /**
  * Description: Access DB for taokeeper settings
  * @author   yinshi.nc

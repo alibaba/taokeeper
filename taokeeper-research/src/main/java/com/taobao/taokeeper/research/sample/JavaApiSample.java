@@ -11,7 +11,7 @@ import org.apache.zookeeper.Watcher.Event.KeeperState;
 import org.apache.zookeeper.ZooDefs.Ids;
 import org.apache.zookeeper.ZooKeeper;
 
-import common.toolkit.java.util.ObjectUtil;
+import common.toolkit.util.ObjectUtil;
 
 /**
  * ZooKeeper Java Api 使用样例<br>

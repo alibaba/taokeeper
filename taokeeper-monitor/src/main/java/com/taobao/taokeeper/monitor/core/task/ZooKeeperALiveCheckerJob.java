@@ -1,8 +1,8 @@
 package com.taobao.taokeeper.monitor.core.task;
 import static com.taobao.taokeeper.common.constant.SystemConstant.DELAY_MINS_OF_TWO_CYCLE_ALIVE_CHECK_ZOOKEEPER;
 import static com.taobao.taokeeper.common.constant.SystemConstant.ZOOKEEPER_MONITOR_PATH;
-import static common.toolkit.java.constant.EmptyObjectConstant.EMPTY_STRING;
-import static common.toolkit.java.constant.SymbolConstant.COLON;
+import static common.toolkit.constant.EmptyObjectConstant.EMPTY_STRING;
+import static common.toolkit.constant.SymbolConstant.COLON;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,9 +21,9 @@ import com.taobao.taokeeper.model.Subscriber;
 import com.taobao.taokeeper.model.ZooKeeperCluster;
 import com.taobao.taokeeper.monitor.core.ThreadPoolManager;
 import com.taobao.taokeeper.monitor.core.task.runable.ZKServerAliveCheck;
-import common.toolkit.java.exception.DaoException;
-import common.toolkit.java.util.StringUtil;
-import common.toolkit.java.util.ThreadUtil;
+import common.toolkit.exception.DaoException;
+import common.toolkit.util.StringUtil;
+import common.toolkit.util.ThreadUtil;
 /**
  * Description: Check if alive one node(ip).
  * 

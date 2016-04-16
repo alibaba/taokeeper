@@ -1,7 +1,7 @@
 package com.taobao.taokeeper.dao;
 
 import com.taobao.taokeeper.model.AlarmSettings;
-import common.toolkit.java.exception.DaoException;
+import common.toolkit.exception.DaoException;
 
 /**
  * Description: Access DB for alarm settings

@@ -4,8 +4,8 @@ import static com.taobao.taokeeper.common.constant.SqlTemplate.SQL_QUERY_ALL_CLU
 import static com.taobao.taokeeper.common.constant.SqlTemplate.SQL_QUERY_ALL_DETAIL_CLUSTER;
 import static com.taobao.taokeeper.common.constant.SqlTemplate.SQL_QUERY_CLUSTER_BY_ID;
 import static com.taobao.taokeeper.common.constant.SqlTemplate.SQL_UPDATE_ZOOKEEPER_CLUSTER_SETTINGS_BY_ID;
-import static common.toolkit.java.constant.EmptyObjectConstant.EMPTY_STRING;
-import static common.toolkit.java.constant.SymbolConstant.COMMA;
+import static common.toolkit.constant.EmptyObjectConstant.EMPTY_STRING;
+import static common.toolkit.constant.SymbolConstant.COMMA;
 
 import java.sql.ResultSet;
 import java.util.ArrayList;
@@ -13,12 +13,12 @@ import java.util.List;
 
 import com.taobao.taokeeper.dao.ZooKeeperClusterDAO;
 import com.taobao.taokeeper.model.ZooKeeperCluster;
-import common.toolkit.java.entity.db.DBConnectionResource;
-import common.toolkit.java.exception.DaoException;
-import common.toolkit.java.util.StringUtil;
-import common.toolkit.java.util.collection.ArrayUtil;
-import common.toolkit.java.util.collection.CollectionUtil;
-import common.toolkit.java.util.db.DbcpUtil;
+import common.toolkit.entity.db.DBConnectionResource;
+import common.toolkit.exception.DaoException;
+import common.toolkit.util.StringUtil;
+import common.toolkit.util.collection.ArrayUtil;
+import common.toolkit.util.collection.CollectionUtil;
+import common.toolkit.util.db.DbcpUtil;
 /**
  * Description: Access DB for zookeeper cluster
  * @author   yinshi.nc

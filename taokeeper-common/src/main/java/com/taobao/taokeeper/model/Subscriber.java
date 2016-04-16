@@ -1,6 +1,6 @@
 package com.taobao.taokeeper.model;
 import static com.taobao.taokeeper.common.constant.SystemConstant.DELAY_SECS_OF_TWO_SERVER_ALIVE_CHECK_ZOOKEEPER;
-import static common.toolkit.java.constant.EmptyObjectConstant.EMPTY_STRING;
+import static common.toolkit.constant.EmptyObjectConstant.EMPTY_STRING;
 
 import java.util.ArrayList;
 import java.util.List;
