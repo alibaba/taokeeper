@@ -23,7 +23,7 @@ CREATE TABLE `alarm_settings` (
   `node_path_check_rule` text,
   PRIMARY KEY (`alarm_settings_id`),
   UNIQUE KEY `uk_alarm_settings_cid` (`cluster_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=gbk;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 -- Table taokeeper_settings
@@ -33,10 +33,10 @@ CREATE TABLE `taokeeper_settings` (
   `settings_id` int(11) NOT NULL AUTO_INCREMENT,
   `env_name` varchar(20) DEFAULT NULL,
   `max_threads_of_zookeeper_check` int(5) DEFAULT NULL,
-  `description` varchar(10) DEFAULT NULL,
+  `description` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`settings_id`),
   UNIQUE KEY `uk_alarm_settings_cid` (`env_name`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=gbk;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 -- Records of taokeeper_settings
@@ -60,7 +60,7 @@ CREATE TABLE `taokeeper_stat` (
   `node_count` int(11) DEFAULT 0,
   `rwps` varchar(255) NOT NULL COMMENT '',
   PRIMARY KEY (`cluster_id`,`server`,`stat_date_time`)
-) ENGINE=InnoDB DEFAULT CHARSET=gbk;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 
 -- ----------------------------
@@ -73,4 +73,4 @@ CREATE TABLE `zookeeper_cluster` (
   `server_list` varchar(255) NOT NULL,
   `description` varchar(255) default NULL,
   PRIMARY KEY  (`cluster_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=gbk;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;

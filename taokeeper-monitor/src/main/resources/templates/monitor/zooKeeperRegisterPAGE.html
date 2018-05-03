@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>ZooKeeper 注册</title>
+    <link href="/css/styles.css" rel="stylesheet"/>
+
+</head>
+<body>
+<h1>ZooKeeper 注册</h1>
+<div align="center" class="mytable" id="tab">
+    <form th:action="@{/zookeeper/register}" th:object="${zooKeeperCluster}" method="post">
+        <input type="text" th:field="*{clusterName}" placeholder="集群名称" />
+        <input type="text" th:field="*{serverList}" placeholder="服务器列表（逗号分隔）" />
+        <input type="text" th:field="*{description}" placeholder="描述" />
+        <button type="submit">提交</button>
+    </form>
+    <p th:text="${handleMessage}"></p>
+</div>
+<script src="/js/script.js"></script>
+</body>
+</html>
