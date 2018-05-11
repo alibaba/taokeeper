@@ -1,0 +1,30 @@
+.mytable {
+    align: center;
+    border-collapse: collapse;
+    border: solid #6AA70B;
+    border-width: 0px 0 0 0px;
+    width: 600px;
+}
+
+.mytable table tr {
+    list-style: none;
+    border-bottom: #6AA70B 1px dotted;
+    font-size: 12px;
+    height: 20px;
+}
+
+.mytable table tr.t1 {
+    background-color: #EEEEEE;
+}
+
+.mytable table tr.t2 {
+    background-color: #;
+}
+
+.mytable table tr.t3 {
+    background-color: #CCCCCC;
+}
+
+a:link, a:active, a:hover, a:visited {
+    text-decoration: none;
+}

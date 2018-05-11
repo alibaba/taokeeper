@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>ZooKeeper 集群信息</title>
+    <link rel="stylesheet" th:href="@{/css/monitor/zooKeeperSettings.css}">
+</head>
+<body>
+    <h1>ZooKeeper 集群信息<font size="2">  <a th:href="@{/zooKeeper.do(method='zooKeeperRegisterPAGE')}">加入监控</a></font></h1>
+
+    <select id="clusterSelector" onchange="javascript:location.href=this.value;">
+        <option th:each="zooKeeperCluster : ${zooKeeperClusterMap}"
+                th:value="@{/zooKeeper.do(method='zooKeeperSettingsPAGE', clusterId=${zooKeeperCluster.key})}"
+                th:text="${zooKeeperCluster.value.clusterName}"
+                th:selected="${zooKeeperCluster.key eq clusterId}"></option>
+    </select>
+
+    <div align="center" class="mytable" id="tab">
+        <form name="updateZooKeeperSettings" id="updateZooKeeperSettings" th:action="@{/zooKeeper.do(method='updateZooKeeperSettingsHandle')}" method="post">
+            <table>
+                <tr style="background-color:#D3D1D1; text-align:center;">
+                    <td><b>配置项</b></td>
+                    <td><b>设置参数</b></td>
+                </tr>
+                <tr>
+                    <td valign="middle">ZooKeeper集群名称</td>
+                    <td valign="middle"><input type="text" name="clusterName" id="clusterName" th:value="${zooKeeperCluster.clusterName}" size="100"/></td>
+                </tr>
+                <tr>
+                    <td valign="middle">机器列表</td>
+                    <td valign="middle"><input type="text" name="serverListString" id="serverListString" th:value="${zooKeeperClusterServerList}" size="100"/></td>
+                </tr>
+                <tr>
+                    <td valign="middle">描述</td>
+                    <td valign="middle"><input type="text" name="description" id="description" th:value="${zooKeeperCluster.description}" size="100"/></td>
+                </tr>
+                <tr>
+                    <td valign="middle"></td>
+                    <td align="right"><input type="submit" value="Update" size="90"/> <font color="red" th:text="${handleMessage}"></font></td>
+                </tr>
+            </table>
+            <input type="hidden" th:value="${clusterId}" name="clusterId" id="clusterId"/>
+        </form>
+    </div>
+
+    <script th:src="@{/js/monitor/zooKeeperSettings.js}"></script>
+</body>
+</html>

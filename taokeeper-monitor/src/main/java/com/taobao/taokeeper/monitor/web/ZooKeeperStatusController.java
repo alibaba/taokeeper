@@ -8,6 +8,7 @@ import common.toolkit.util.io.ServletUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -27,12 +28,12 @@ import static common.toolkit.constant.SymbolConstant.COLON;
  * @since 2011-08-10
  */
 @Controller
-@RequestMapping("/zooKeeperStatus.do")
+@RequestMapping("/zookeeperStatus")
 public class ZooKeeperStatusController extends BaseController {
 	
 	private static final Logger LOG = LoggerFactory.getLogger( ZooKeeperStatusController.class );
 	
-	@RequestMapping(params = "method=showZooKeeperStatusPAGE")
+	@RequestMapping("showZooKeeperStatusPAGE")
 	public ModelAndView showZooKeeperStatusPAGE(HttpServletRequest request, HttpServletResponse response, String clusterId ) throws IOException{
 
 		try {
@@ -45,7 +46,7 @@ public class ZooKeeperStatusController extends BaseController {
 			}
 			
 			if( null ==  zooKeeperCluster ){
-				ServletUtil.writeToResponse( response, "目前还没有这样的ZK集群<a href='zooKeeper.do?method=zooKeeperRegisterPAGE'><font color='red'> 加入监控</font></a>" );
+				ServletUtil.writeToResponse( response, "目前还没有这样的ZK集群<a href='/zookeeper/register'><font color='red'> 加入监控</font></a>" );
 				return null;
 			}
 			
