@@ -33,6 +33,9 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicReference;
 
 import static com.taobao.taokeeper.common.constant.SystemConstant.*;
 import static common.toolkit.constant.EmptyObjectConstant.EMPTY_STRING;
@@ -260,8 +263,8 @@ public class ServerMonitorTask implements Runnable{
      */
     private int handleSelfCheck(String ip, int port) {
         final String selfCheckPath = "/YINSHI.MONITOR.ALIVE.CHECK-"+ip+":"+port+"-"+System.currentTimeMillis();
-        final String[] receivedData = {null};
-        final boolean[] dataChanged = {false};
+        final AtomicReference<String> receivedData = new AtomicReference<String>();
+        final CountDownLatch dataChangeSignal = new CountDownLatch(1);
         ZkClient zkClient = null;
 
         try {
@@ -291,8 +294,8 @@ public class ServerMonitorTask implements Runnable{
             // 步骤6: 在节点上创建监听
             zkClient.subscribeDataChanges(selfCheckPath, new IZkDataListener() {
                 public void handleDataChange(String dataPath, Object data) throws Exception {
-                    receivedData[0] = data.toString();
-                    dataChanged[0] = true;
+                    receivedData.set(data.toString());
+                    dataChangeSignal.countDown();
                 }
 
                 public void handleDataDeleted(String dataPath) throws Exception {
@@ -304,25 +307,22 @@ public class ServerMonitorTask implements Runnable{
             String testData = String.valueOf(System.currentTimeMillis());
             zkClient.writeData(selfCheckPath, testData);
 
-            // 等待数据变更通知
-            int waitCount = 0;
-            while (!dataChanged[0] && waitCount < 10) { // 最多等待10秒
-                try {
-                    Thread.sleep(1000);
-                } catch (InterruptedException e) {
-                    // ignore
+            // 等待数据变更通知，latch也确保回调线程写入的数据对当前线程可见。
+            try {
+                if (!dataChangeSignal.await(10, TimeUnit.SECONDS)) {
+                    LOG.warn("Did not receive data change notification" + " on "+ip+":"+port);
+                    return 2;
                 }
-                waitCount++;
-            }
-
-            // 步骤8: 检查收到的通知和数据是否正确
-            if (!dataChanged[0]) {
-                LOG.warn("Did not receive data change notification" + " on "+ip+":"+port);
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+                LOG.warn("Interrupted while waiting for data change notification on "+ip+":"+port, e);
                 return 2;
             }
 
-            if (!testData.equals(receivedData[0])) {
-                LOG.warn("Data mismatch. Expected: " + testData + ", but got: " + receivedData[0] + " on "+ip+":"+port);
+            // 步骤8: 检查收到的通知和数据是否正确
+            String actualData = receivedData.get();
+            if (!testData.equals(actualData)) {
+                LOG.warn("Data mismatch. Expected: " + testData + ", but got: " + actualData + " on "+ip+":"+port);
                 return 2;
             }
 
